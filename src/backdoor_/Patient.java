@@ -2,6 +2,8 @@ package backdoor_;
 
 /**
  * Container for each patient's information
+ * If a patient's info has changed serverside the current object should be deleted and reloaded
+ * If a patient's info has been changed locally the current object should update the DataBase
  * 
  * @author Andrew
  * 

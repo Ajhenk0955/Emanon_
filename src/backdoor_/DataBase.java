@@ -48,4 +48,13 @@ public class DataBase {
 	private void GetPart(String Part) {
 		// TODO
 	}
+
+	/**
+	 * returns list of patients with given term in the name
+	 * 
+	 * @param SearchTerm
+	 */
+	private void GetName(String SearchTerm) {
+		// TODO
+	}
 }
