@@ -4,8 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 
 public class LoginController implements Initializable{
@@ -22,9 +27,15 @@ public class LoginController implements Initializable{
 	 * @param button_Click
 	 */
 	@FXML
-	private void login_Button_Action(ActionEvent button_Click){
+	private void login_Button_Action(ActionEvent button_Click) throws Exception{
 		if(login_Username.getText().equals("test") && login_Password.getText().equals("test")){
-			login_Label.setText("Yay");
+			((Node) (button_Click.getSource())).getScene().getWindow().hide();
+			Parent parent = FXMLLoader.load(getClass().getResource("/application/MainMenu.fxml"));
+			Stage stage = new Stage();
+			Scene scene = new Scene(parent);
+			stage.setScene(scene);
+			stage.setTitle("MainMenu");
+			stage.show();
 		} else{
 			login_Label.setText("Nay");
 		}

@@ -2,22 +2,22 @@ package application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Login extends Application{
+public class Main extends Application {
 
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage primaryStage) throws Exception{
 		Parent root = FXMLLoader.load(getClass().getResource("/application/Login.fxml"));
 		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.setTitle("Login");
-		stage.show();
-		
+		primaryStage.setScene(scene);
+		primaryStage.setTitle("Login");
+		primaryStage.show();
 	}
-	
+
 	public static void main(String[] args) {
-        launch(args);
-    }
+		launch(args);
+	}
 }
