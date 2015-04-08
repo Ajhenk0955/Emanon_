@@ -6,16 +6,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.LoginController">
+<AnchorPane prefHeight="460.0" prefWidth="462.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <children>
-      <TextField fx:id="login_Username" layoutX="76.0" layoutY="69.0" promptText="Username" />
-      <PasswordField fx:id="login_Password" layoutX="76.0" layoutY="125.0" promptText="Password" />
-      <Button fx:id="login_Button" layoutX="120.0" layoutY="175.0" mnemonicParsing="false" onAction="#login_Button_Action" text="Login" textAlignment="CENTER" AnchorPane.bottomAnchor="94.0">
+      <TextField fx:id="login_Username" alignment="CENTER" layoutX="125.0" layoutY="230.0" promptText="Username" stylesheets="@JMetroDarkTheme.css" />
+      <PasswordField fx:id="login_Password" alignment="CENTER" layoutX="125.0" layoutY="270.0" promptText="Password" />
+      <Button fx:id="login_Button" layoutX="306.0" layoutY="340.0" mnemonicParsing="false" onAction="#login_Button_Action" stylesheets="@JMetroDarkTheme.css" text="Login" textAlignment="CENTER" AnchorPane.bottomAnchor="87.0">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Label fx:id="login_Label" layoutX="80.0" layoutY="34.0" prefHeight="17.0" prefWidth="141.0" textAlignment="CENTER" />
+      <Label fx:id="login_Label" layoutX="79.0" layoutY="50.0" prefHeight="17.0" prefWidth="141.0" textAlignment="CENTER" />
+      <Label contentDisplay="CENTER" layoutX="109.0" layoutY="30.0" prefHeight="77.0" prefWidth="223.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="Emanon: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="89.0" layoutY="103.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="File System" />
    </children>
 </AnchorPane>
