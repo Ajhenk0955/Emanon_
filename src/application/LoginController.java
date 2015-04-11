@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -35,6 +36,7 @@ public class LoginController implements Initializable{
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
 			stage.setTitle("MainMenu");
+			stage.getIcons().add(new Image("file:resources/images/medical_record_logo.png"));
 			stage.show();
 		} else{
 			login_Label.setText("Nay");
