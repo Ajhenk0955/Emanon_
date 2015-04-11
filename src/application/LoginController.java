@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.keyczar.*;
 
 
 public class LoginController implements Initializable{
@@ -43,7 +42,6 @@ public class LoginController implements Initializable{
 			login_Label.setText("Nay");
 		}
 	}
-	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub potentially add security initialization here
 		
