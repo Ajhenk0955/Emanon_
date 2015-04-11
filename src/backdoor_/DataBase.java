@@ -1,8 +1,12 @@
 package backdoor_;
 
+import java.util.Arrays;
+
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoCredential;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -19,11 +23,19 @@ public class DataBase {
 	private MongoDatabase database;
 	private MongoCollection<Document> collection;
 	
-	public DataBase(){
+	
+	
+	public DataBase(String user, String databaseName, char[] password){
+		MongoCredential credential = MongoCredential.createCredential(user,
+                databaseName,
+                password);
 		//TODO finish implementing mongo
-		mongoClient = new MongoClient( "localhost" );
-		database = mongoClient.getDatabase("patientDataBase");
+		mongoClient = new MongoClient( "localhost");
+		MongoClientOptions test = new MongoClientOptions(null);
+		database = mongoClient.getDatabase(databaseName);
+		
 		collection = database.getCollection("test");
+		
 	}
 
 	/**
