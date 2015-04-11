@@ -42,9 +42,8 @@ public class LoginController implements Initializable{
 			login_Label.setText("Nay");
 		}
 	}
-	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub potentially add security initialization here
 		
 	}
 
