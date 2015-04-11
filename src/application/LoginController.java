@@ -35,7 +35,7 @@ public class LoginController implements Initializable{
 			Stage stage = new Stage();
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
-			stage.setTitle("MainMenu");
+			stage.setTitle("Main Menu");
 			stage.getIcons().add(new Image("file:resources/images/medical_record_logo.png"));
 			stage.show();
 		} else{
