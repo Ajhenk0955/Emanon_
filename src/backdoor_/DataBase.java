@@ -7,6 +7,12 @@ package backdoor_;
  * 
  */
 public class DataBase {
+	
+	public DataBase(){
+		
+		MongoClient mongoClient = new MongoClient( "localhost" );
+		MongoDatabase database = mongoClient.getDatabase("mydb");
+	}
 
 	/**
 	 * Uploads data from Patient objects
