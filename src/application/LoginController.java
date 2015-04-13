@@ -22,6 +22,8 @@ public class LoginController implements Initializable{
 	private PasswordField login_Password;
 	@FXML
 	private Label login_Label;
+	@FXML
+	private Button login_Button;
 	/**
 	 * logs the user into the system
 	 * TODO -> must set up database methods and call
