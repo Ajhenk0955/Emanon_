@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -34,15 +35,15 @@ public class LoginController implements Initializable{
 			Stage stage = new Stage();
 			Scene scene = new Scene(parent);
 			stage.setScene(scene);
-			stage.setTitle("MainMenu");
+			stage.setTitle("Main Menu");
+			stage.getIcons().add(new Image("file:resources/images/medical_record_logo.png"));
 			stage.show();
 		} else{
 			login_Label.setText("Nay");
 		}
 	}
-	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub potentially add security initialization here
 		
 	}
 

@@ -10,7 +10,7 @@
    <children>
       <ToolBar layoutX="136.0" layoutY="266.0" prefHeight="43.0" prefWidth="444.0">
         <items>
-          <Button mnemonicParsing="false" text="Screen 1" />
+          <Button mnemonicParsing="false" onAction="#buttonClick1" text="Screen 1" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Screen 2" />
             <Button layoutX="118.0" layoutY="10.0" mnemonicParsing="false" text="Screen 3" />
             <Button layoutX="226.0" layoutY="10.0" mnemonicParsing="false" text="Screen 4" />
