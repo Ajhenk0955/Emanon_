@@ -17,7 +17,7 @@ public class Main extends Application {
 	}
 
 	private final void readObject(ObjectInputStream in)
-			throws java.io.IOException {
+		throws java.io.IOException {
 		throw new java.io.IOException("Class cannot be deserialized");
 	}
 
@@ -32,7 +32,7 @@ public class Main extends Application {
 		primaryStage.setTitle("Welcome! Please Login");
 		primaryStage.getIcons().add(new Image("file:resources/images/medical_record_logo.png"));
 		primaryStage.show();
-		setInitiallized(true);
+		//setInitiallized(true);
 	}
 
 	public static void main(String[] args) {
@@ -44,6 +44,6 @@ public class Main extends Application {
 	}
 
 	public void setInitiallized(boolean initiallized) {
-		this.initiallized = initiallized;
+	this.initiallized = initiallized;
 	}
 }
