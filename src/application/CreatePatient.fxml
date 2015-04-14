@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.BorderPane?>
 
 
-<BorderPane prefHeight="602.0" prefWidth="588.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane prefHeight="602.0" prefWidth="588.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.LoginController">
    <center>
       <AnchorPane prefHeight="0.0" prefWidth="100.0" styleClass="background" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="468.0" layoutY="518.0" mnemonicParsing="false" text="Button" />
-            <TextField layoutX="118.0" layoutY="233.0" prefHeight="25.0" prefWidth="35.0" />
-            <TextField layoutX="394.0" layoutY="166.0" />
-            <TextField layoutX="115.0" layoutY="166.0" prefHeight="25.0" prefWidth="185.0" />
-            <TextField layoutX="377.0" layoutY="233.0" prefHeight="25.0" prefWidth="54.0" promptText="Day" />
-            <TextField layoutX="369.0" layoutY="278.0" />
-            <TextField layoutX="135.0" layoutY="332.0" promptText="(000) 000-0000" />
-            <TextField layoutX="394.0" layoutY="332.0" />
-            <TextField layoutX="98.0" layoutY="393.0" prefHeight="25.0" prefWidth="324.0" />
-            <TextField layoutX="77.0" layoutY="452.0" prefHeight="25.0" prefWidth="116.0" />
-            <TextField layoutX="388.0" layoutY="452.0" prefHeight="25.0" prefWidth="77.0" />
+            <Button layoutX="468.0" layoutY="518.0" mnemonicParsing="false" text="SAVE" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="118.0" layoutY="233.0" prefHeight="25.0" prefWidth="35.0" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="394.0" layoutY="166.0" prefHeight="25.0" prefWidth="168.0" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="115.0" layoutY="166.0" prefHeight="25.0" prefWidth="185.0" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="377.0" layoutY="233.0" prefHeight="25.0" prefWidth="54.0" promptText="Day" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="369.0" layoutY="278.0" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="135.0" layoutY="332.0" promptText="(000) 000-0000" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="394.0" layoutY="332.0" promptText="(000) 000-0000" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="98.0" layoutY="393.0" prefHeight="25.0" prefWidth="324.0" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="77.0" layoutY="452.0" prefHeight="25.0" prefWidth="116.0" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="388.0" layoutY="452.0" prefHeight="25.0" prefWidth="77.0" />
             <Label layoutX="47.0" layoutY="170.0" styleClass="main_column_section" stylesheets="@../../../../Documents/FGCU/CEN%203037%20-%20SOFTWARE%20SPECS/green_black_674/templatemo_style.css" text="First Name" textFill="#d3c7c7" />
             <Label layoutX="332.0" layoutY="170.0" styleClass="main_column_section" stylesheets="@../../../../Documents/FGCU/CEN%203037%20-%20SOFTWARE%20SPECS/green_black_674/templatemo_style.css" text="Last Name" textFill="#d3c7c7" />
             <Label layoutX="77.0" layoutY="237.0" text="M.I." textFill="#d3c7c7" />
@@ -35,15 +35,15 @@
             <Label layoutX="47.0" layoutY="456.0" text="City" textFill="#d3c7c7" />
             <Label layoutX="223.0" layoutY="456.0" text="State" textFill="#d3c7c7" />
             <Label layoutX="360.0" layoutY="456.0" text="Zip" textFill="#d3c7c7" />
-            <ChoiceBox layoutX="263.0" layoutY="452.0" prefHeight="25.0" prefWidth="62.0" />
-            <ChoiceBox layoutX="134.0" layoutY="278.0" prefHeight="25.0" prefWidth="58.0" />
-            <Text fill="#00c8ff" fontSmoothingType="LCD" layoutX="163.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Patient" textAlignment="CENTER" wrappingWidth="262.13671875">
+            <ChoiceBox blendMode="SOFT_LIGHT" layoutX="263.0" layoutY="452.0" prefHeight="25.0" prefWidth="76.0" />
+            <ChoiceBox blendMode="SOFT_LIGHT" layoutX="134.0" layoutY="278.0" prefHeight="25.0" prefWidth="58.0" />
+            <Text fill="#fffd77" fontSmoothingType="LCD" layoutX="163.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Patient" textAlignment="CENTER" wrappingWidth="262.13671875">
                <font>
                   <Font size="43.0" />
                </font>
             </Text>
-            <TextField layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="76.0" promptText="Year" />
-            <ChoiceBox layoutX="296.0" layoutY="233.0" prefHeight="25.0" prefWidth="58.0" />
+            <TextField blendMode="SOFT_LIGHT" layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="76.0" promptText="Year" />
+            <ChoiceBox blendMode="SOFT_LIGHT" layoutX="296.0" layoutY="233.0" prefHeight="25.0" prefWidth="58.0" />
          </children>
          <stylesheets>
             <URL value="@JMetroDarkTheme.css" />

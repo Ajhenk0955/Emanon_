@@ -1,5 +1,16 @@
 package backdoor_;
 
+import java.util.Arrays;
+
+import org.bson.Document;
+
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoCredential;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+
 /**
  * contains methods for pulling and pushing from database
  * 
@@ -7,6 +18,25 @@ package backdoor_;
  * 
  */
 public class DataBase {
+	
+	private MongoClient mongoClient;
+	private MongoDatabase database;
+	private MongoCollection<Document> collection;
+	
+	
+	
+	public DataBase(String user, String databaseName, char[] password){
+		MongoCredential credential = MongoCredential.createCredential(user,
+                databaseName,
+                password);
+		//TODO finish implementing mongo
+		mongoClient = new MongoClient( "localhost");
+		MongoClientOptions test = new MongoClientOptions(null);
+		database = mongoClient.getDatabase(databaseName);
+		
+		collection = database.getCollection("test");
+		
+	}
 
 	/**
 	 * Uploads data from Patient objects
@@ -24,6 +54,8 @@ public class DataBase {
 	private Patient PullPatientProfile(int UID) {
 		return null;
 		// TODO
+		Document myDoc = collection.find(eq("i", 71)).first();
+		System.out.println(myDoc.toJson());
 	}
 
 	/**
@@ -56,5 +88,32 @@ public class DataBase {
 	 */
 	private void GetName(String SearchTerm) {
 		// TODO
+	}
+	
+	private void GetAllPatients(){
+		MongoCursor<Document> cursor = collection.find().iterator();
+		try {
+		    while (cursor.hasNext()) {
+		        System.out.println(cursor.next().toJson());
+		    }
+		} finally {
+		    cursor.close();
+		}
+	}
+
+	public MongoClient getMongoClient() {
+		return mongoClient;
+	}
+
+	public void setMongoClient(MongoClient mongoClient) {
+		this.mongoClient = mongoClient;
+	}
+
+	public MongoDatabase getDatabase() {
+		return database;
+	}
+
+	public void setDatabase(MongoDatabase database) {
+		this.database = database;
 	}
 }

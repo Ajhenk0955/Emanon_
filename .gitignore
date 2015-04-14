@@ -1,1 +1,4 @@
 /bin
+*.java
+src/apps/JMetroDarkTheme.css
+*.fxml
