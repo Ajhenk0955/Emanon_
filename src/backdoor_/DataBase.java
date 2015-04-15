@@ -1,23 +1,12 @@
 package backdoor_;
 
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 import org.bson.Document;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.BulkWriteOperation;
-import com.mongodb.BulkWriteResult;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -29,52 +18,44 @@ import com.mongodb.client.MongoDatabase;
  * 
  */
 public class DataBase {
-
+	
 	private MongoClient mongoClient;
-	private DB database;
-	private DBCollection collection;
-
-	/**
-	 * sets up connection and collection TODO make close connection on end.
-	 * TODO FIX TO NON-DEPRICATED METHOD
-	 * @param userName
-	 * @param databaseName
-	 * @param password
-	 */
-	public DataBase(String userName, String databaseName, char[] password) {
-		MongoCredential credential = MongoCredential.createCredential(userName,
-				databaseName, password);
-		MongoClient mongoClient = new MongoClient(
-				new ServerAddress("localHost"), Arrays.asList(credential));
-		database = mongoClient.getDB(databaseName);
-
-		collection = database.getCollection("users");
-
+	private MongoDatabase database;
+	private MongoCollection<Document> collection;
+	
+	
+	
+	public DataBase(String user, String databaseName, char[] password){
+		MongoCredential credential = MongoCredential.createCredential(user,
+                databaseName,
+                password);
+		//TODO finish implementing mongo
+		mongoClient = new MongoClient( "localhost");
+		MongoClientOptions test = new MongoClientOptions(null);
+		database = mongoClient.getDatabase(databaseName);
+		
+		collection = database.getCollection("test");
+		
 	}
 
 	/**
 	 * Uploads data from Patient objects
 	 */
-	private void UpdateData(DBObject[] Patients) {
-		// TODO test to make sure this works!
-		collection.insert(Patients);
+	private void UpdateData(Patient[] Patients) {
+		// TODO
 	}
 
 	/**
 	 * Fetches Patient Info from database
 	 * 
 	 * @param UID
-	 * @return 
 	 * @return Patient Files
 	 */
-	private  DBObject PullPatientProfile(int UID) {
-		BasicDBObject temp = new BasicDBObject("_ID", UID);
+	private Patient PullPatientProfile(int UID) {
+		return null;
 		// TODO
-		DBCursor cursor = collection.find(temp);
-		DBObject temp1 = cursor.next();
-		cursor.close();
-		return temp1;
-
+		Document myDoc = collection.find(eq("i", 71)).first();
+		System.out.println(myDoc.toJson());
 	}
 
 	/**
@@ -108,15 +89,15 @@ public class DataBase {
 	private void GetName(String SearchTerm) {
 		// TODO
 	}
-
-	private void GetAllPatients() {
+	
+	private void GetAllPatients(){
 		MongoCursor<Document> cursor = collection.find().iterator();
 		try {
-			while (cursor.hasNext()) {
-				System.out.println(cursor.next().toJson());
-			}
+		    while (cursor.hasNext()) {
+		        System.out.println(cursor.next().toJson());
+		    }
 		} finally {
-			cursor.close();
+		    cursor.close();
 		}
 	}
 
