@@ -15,8 +15,8 @@
       </Label>
       <VBox layoutX="14.0" layoutY="123.0" prefHeight="118.0" prefWidth="161.0">
          <children>
-          <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleMMButtons" prefHeight="33.0" prefWidth="164.0" text="Search Patient" />
-            <Button fx:id="createPatientButton" mnemonicParsing="false" onAction="#handleMMButtons" prefHeight="33.0" prefWidth="163.0" text="Add New Patient" />
+          <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearchButton" prefHeight="33.0" prefWidth="164.0" text="Search Patient" />
+            <Button fx:id="createPatientButton" mnemonicParsing="false" onAction="#handleAddPatientButton" prefHeight="33.0" prefWidth="163.0" text="Add New Patient" />
          </children>
       </VBox>
       <TextField layoutX="341.0" layoutY="50.0" prefHeight="33.0" prefWidth="225.0" promptText="........" />
@@ -25,6 +25,6 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="quickSearchButton" layoutX="566.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleMMButtons" text="Go!" />
+      <Button fx:id="quickSearch" layoutX="566.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleSearchButton" text="Go!" />
    </children>
 </AnchorPane>

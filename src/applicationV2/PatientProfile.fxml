@@ -17,6 +17,31 @@
                <children>
                   <TabPane layoutX="-5.0" prefHeight="565.0" prefWidth="630.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
+                        <Tab text="Demographics">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.054409005628517824" orientation="VERTICAL" prefHeight="535.0" prefWidth="630.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <Button layoutX="159.0" layoutY="1.0" mnemonicParsing="false" text="Annotate" />
+                                                <Button layoutX="415.0" layoutY="1.0" mnemonicParsing="false" text="Back" />
+                                                <Button layoutX="243.0" layoutY="1.0" mnemonicParsing="false" text="Add File" />
+                                                <Button layoutX="324.0" layoutY="1.0" mnemonicParsing="false" text="Delete File" />
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <ScrollPane prefHeight="535.0" prefWidth="629.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
                       <Tab text="Pictures">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -80,31 +105,6 @@
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                              <children>
                                                 <ScrollPane prefHeight="539.0" prefWidth="623.0" />
-                                             </children>
-                                          </AnchorPane>
-                                      </items>
-                                    </SplitPane>
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </Tab>
-                        <Tab text="Demographics">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <SplitPane dividerPositions="0.054409005628517824" orientation="VERTICAL" prefHeight="535.0" prefWidth="630.0">
-                                      <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                             <children>
-                                                <Button layoutX="159.0" layoutY="1.0" mnemonicParsing="false" text="Annotate" />
-                                                <Button layoutX="415.0" layoutY="1.0" mnemonicParsing="false" text="Back" />
-                                                <Button layoutX="243.0" layoutY="1.0" mnemonicParsing="false" text="Add File" />
-                                                <Button layoutX="324.0" layoutY="1.0" mnemonicParsing="false" text="Delete File" />
-                                             </children>
-                                          </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                             <children>
-                                                <ScrollPane prefHeight="535.0" prefWidth="629.0" />
                                              </children>
                                           </AnchorPane>
                                       </items>
