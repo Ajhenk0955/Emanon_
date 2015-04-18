@@ -34,7 +34,7 @@ public class Patient {
 	private Name name;
 
 	// DOB
-	private Date birthDate;
+	private String birthDate;
 
 	// Billing
 	@Embedded
@@ -75,12 +75,12 @@ public class Patient {
 		this.part = part;
 	}
 
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setBirthDate(String toDate) {
+		this.birthDate = toDate;
 	}
 
 	public String getGender() {

@@ -140,4 +140,9 @@ public class DataBase {
 		// TODO
 	}
 
+	public void addPatient(Patient newPatient) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

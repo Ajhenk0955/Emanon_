@@ -2,12 +2,13 @@ package applicationV2;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import backdoor_.Billing;
+import backdoor_.DataBase;
 import backdoor_.Insurance;
 import backdoor_.Name;
 import backdoor_.Patient;
@@ -19,8 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -79,14 +78,14 @@ public class CreatePatientController implements Initializable {
 		// TODO VERIFY INPUTS
 		Patient newPatient = new Patient();
 
-		// Name
+		// Name TODO VERIFY NAME
 		Name newName = null;
 		if (!newName(newName))
 			return false;
 		newPatient.setName(newName);
 
 		// BirthDate (month/day/year)
-		Date toDate = null;
+		String toDate = null;
 		if (!toDate(toDate))
 			return false;
 		newPatient.setBirthDate(toDate);
@@ -103,8 +102,14 @@ public class CreatePatientController implements Initializable {
 		newPatient.setGender(gender.getValue());
 
 		// SSN
-		if (ssnValid())
-			newPatient.setSSN(ssn.getText());
+		if (!Verify("SSN", ssn.getText()))
+			return false;
+		newPatient.setSSN(ssn.getText());
+
+		char[] Password = null;
+		DataBase PatientLoader = new DataBase("Username", "DataBaseName",
+				Password);
+		PatientLoader.addPatient(newPatient);
 
 		return true;
 	}
@@ -114,8 +119,24 @@ public class CreatePatientController implements Initializable {
 	 * 
 	 * @return
 	 */
-	private boolean ssnValid() {
-		// TODO Auto-generated method stub
+	private boolean Verify(String type, String value) {
+		HashMap<String, String> REGEX = new HashMap<String, String>();
+		REGEX.put("SSN",
+				"^(?!000|666)[0-8][0-9]{2}-(?!00)[0-9]{2}-(?!0000)[0-9]{4}$");
+		REGEX.put("US-ZIP", "^[0-9]{5}(?:-[0-9]{4})?$");
+		REGEX.put("PHONE",
+				"^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$");
+		REGEX.put("PHONE-FORMAT",
+				"^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$");
+		REGEX.put("DATE", "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$");
+
+		Pattern pattern = Pattern.compile(REGEX.get(type));
+
+		Matcher matcher = pattern.matcher(value);
+		if (!matcher.matches())
+			return false;
+		if (type == "PHONE")
+			value = matcher.replaceFirst("($1) $2-$3");
 		return true;
 	}
 
@@ -126,12 +147,34 @@ public class CreatePatientController implements Initializable {
 	 * @return
 	 */
 	private boolean newBilling(Billing newBilling) {
-		newBilling.setZipCode(zipCode.getText());
-		newBilling.setState(state.getValue());
 
-		newBilling.setHomePhone(homePhone.getText());
+		if (!Verify("ZIP", zipCode.getText()))
+			return false;
+
+		newBilling.setZipCode(zipCode.getText());
+
+		// if no phone entered return false
+		if (homePhone.getText() == null && cellPhone.getText() == null)
+			return false;
+
+		String tempPhone;
+		if (cellPhone.getText() != null) {
+			tempPhone = cellPhone.getText();
+			if (!Verify("PHONE", tempPhone))
+				return false;
+			newBilling.setCellPhone(tempPhone);
+		}
+		if (homePhone.getText() != null) {
+			tempPhone = homePhone.getText();
+			if (!Verify("PHONE", tempPhone))
+				return false;
+			newBilling.setHomePhone(tempPhone);
+		}
+
+		// TODO VERIFY CITY/STATE
+
 		newBilling.setCity(city.getText());
-		newBilling.setCellPhone(cellPhone.getText());
+		newBilling.setState(state.getValue());
 
 		// When insurance is added just link TODO
 		Insurance newInsurance = new Insurance();
@@ -141,21 +184,16 @@ public class CreatePatientController implements Initializable {
 	}
 
 	/**
-	 * Validates the Date
+	 * Validates the Date MONTH/DAY/YEAR
 	 * 
 	 * @param toDate
 	 * @return
 	 */
-	private boolean toDate(Date toDate) {
-		String tempDate = String.format("%s %d, %s", monthOfBirth.getValue(),
+	private boolean toDate(String toDate) {
+		toDate = String.format("%s/%s/%s", monthOfBirth.getValue(),
 				dayOfBirth.getText(), yearOfBirth.getText());
-		try {
-			toDate = DateFormat.getDateInstance().parse(tempDate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Problem with the Date");
-			e.printStackTrace();
-		}
+		if (!Verify("DATE", toDate))
+			return false;
 		return true;
 	}
 
