@@ -31,36 +31,13 @@ public class CreatePatientController implements Initializable {
 
 	// form variables
 	@FXML
-	private TextField lastName;
+	private TextField lastName, zipCode, mInitial, homePhone, monthOfBirth,
+			ssn, firstName, cellPhone, yearOfBirth, address;
 	@FXML
-	private TextField zipCode;
-	@FXML
-	private TextField mInitial;
-	@FXML
-	private ChoiceBox<String> gender;
-	@FXML
-	private TextField city;
-	@FXML
-	private TextField homePhone;
-	@FXML
-	private TextField monthOfBirth;
-	@FXML
-	private TextField ssn;
-	@FXML
-	private TextField firstName;
-	@FXML
-	private ChoiceBox<String> dayOfBirth;
-	@FXML
-	private TextField cellPhone;
-	@FXML
-	private TextField yearOfBirth;
-	@FXML
-	private ChoiceBox<String> state;
-	@FXML
-	private TextField address;
+	private ChoiceBox<String> gender, city, dayOfBirth, state;
 
 	/**
-
+	 * 
 	 * Method for when user clicks the save button in CreatePatient
 	 * 
 	 * @Author M
@@ -147,7 +124,7 @@ public class CreatePatientController implements Initializable {
 
 		return true;
 	}
-	
+
 	@FXML
 	private void handleBackButton(ActionEvent e1) throws IOException {
 		Stage stage;
@@ -165,7 +142,7 @@ public class CreatePatientController implements Initializable {
 			stage.show();
 		}
 	}
-	
+
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
