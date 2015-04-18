@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="460.0" prefWidth="462.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.LoginController">
+   <children>
+      <TextField fx:id="login_Username" alignment="CENTER" layoutX="109.0" layoutY="218.0" prefHeight="25.0" prefWidth="206.0" promptText="Username" stylesheets="@JMetroDarkTheme.css" />
+      <PasswordField fx:id="login_Password" alignment="CENTER" layoutX="109.0" layoutY="251.0" prefHeight="25.0" prefWidth="206.0" promptText="Password" />
+      <Button fx:id="login_Button" layoutX="306.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleLoginButton" stylesheets="@JMetroDarkTheme.css" text="Login" textAlignment="CENTER" AnchorPane.bottomAnchor="87.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="login_Label" layoutX="79.0" layoutY="50.0" prefHeight="17.0" prefWidth="141.0" textAlignment="CENTER" />
+      <Label contentDisplay="CENTER" layoutX="109.0" layoutY="30.0" prefHeight="77.0" prefWidth="223.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="Emanon: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="89.0" layoutY="103.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="File System" />
+      <Hyperlink fx:id="login_Hyperlink" layoutX="141.0" layoutY="286.0" onAction="#handleLoginHyperlink" text="Forgot Username/Password?" />
+   </children>
+</AnchorPane>

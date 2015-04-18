@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="653.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.MainMenuController">
+   <children>
+      <Label layoutX="24.0" layoutY="14.0" text="Main Menu" textFill="#fcf6f6">
+         <font>
+            <Font size="49.0" />
+         </font>
+      </Label>
+      <VBox layoutX="14.0" layoutY="123.0" prefHeight="118.0" prefWidth="161.0">
+         <children>
+          <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleMMButtons" prefHeight="33.0" prefWidth="164.0" text="Search Patient" />
+            <Button fx:id="createPatientButton" mnemonicParsing="false" onAction="#handleMMButtons" prefHeight="33.0" prefWidth="163.0" text="Add New Patient" />
+         </children>
+      </VBox>
+      <TextField layoutX="341.0" layoutY="50.0" prefHeight="33.0" prefWidth="225.0" promptText="........" />
+      <Label layoutX="366.0" layoutY="29.0" text="Quick Search" textFill="#fcf6f6">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="quickSearchButton" layoutX="566.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleMMButtons" text="Go!" />
+   </children>
+</AnchorPane>
