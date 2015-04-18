@@ -1,25 +1,15 @@
 package backdoor_;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-
 import org.bson.Document;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.BulkWriteOperation;
-import com.mongodb.BulkWriteResult;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 /**
@@ -31,12 +21,14 @@ import com.mongodb.client.MongoDatabase;
 public class DataBase {
 
 	private MongoClient mongoClient;
-	private DB database;
-	private DBCollection collection;
+	private MongoDatabase database;
+	private MongoCollection<Document> collection;
+	private Datastore ds;
 
 	/**
-	 * sets up connection and collection TODO make close connection on end.
-	 * TODO FIX TO NON-DEPRICATED METHOD
+	 * sets up connection and collection TODO make close connection on end. TODO
+	 * FIX TO NON-DEPRICATED METHOD
+	 * 
 	 * @param userName
 	 * @param databaseName
 	 * @param password
@@ -44,95 +36,108 @@ public class DataBase {
 	public DataBase(String userName, String databaseName, char[] password) {
 		MongoCredential credential = MongoCredential.createCredential(userName,
 				databaseName, password);
-		MongoClient mongoClient = new MongoClient(
-				new ServerAddress("localHost"), Arrays.asList(credential));
-		database = mongoClient.getDB(databaseName);
+		mongoClient = new MongoClient(new ServerAddress("localHost"),
+				Arrays.asList(credential));
+		database = mongoClient.getDatabase("Emanon");
 
 		collection = database.getCollection("users");
 
+		// initiallizing morphia
+		Morphia morphia = new Morphia();
+		morphia.map(Patient.class).map(Insurance.class).map(Part.class);
+		ds = morphia.createDatastore(mongoClient, "users");
 	}
 
 	/**
 	 * Uploads data from Patient objects
 	 */
-	private void UpdateData(DBObject[] Patients) {
-		// TODO test to make sure this works!
-		collection.insert(Patients);
+	private void UpdateData(Patient[] Patients) {
+		// upload patients via morphia
+		ds.save(Patients);
+
 	}
 
 	/**
-	 * Fetches Patient Info from database
+	 * Fetches Patient Info from database THe correct function to use should be
+	 * collection.findOne(); not working/found
 	 * 
 	 * @param UID
-	 * @return 
-	 * @return Patient Files
+	 * @return
+	 * @return Patient Files as Document
 	 */
-	private  DBObject PullPatientProfile(int UID) {
-		BasicDBObject temp = new BasicDBObject("_ID", UID);
-		// TODO
-		DBCursor cursor = collection.find(temp);
-		DBObject temp1 = cursor.next();
-		cursor.close();
-		return temp1;
+	private Patient PullPatientProfile(int PatientID) {
+		// BasicDBObject temp = new BasicDBObject("_ID", UID);
+		// collection.findOneAndUpdate(temp, temp);
+		// MongoIterable<Document> cursor = collection.find(temp);
+		// return cursor.first();
+
+		// TODO insert try catches/throws
+
+		return ds.get(Patient.class, PatientID);
 
 	}
 
 	/**
 	 * Returns list of most Recent Patients
 	 */
-	private void GetMostRecent() {
-		// TODO
+	private List<Patient> GetMostRecent() {
+		// return collection.find().sort(new BasicDBObject("lastUpdated", -1))
+		// .into(new ArrayList<Document>());
+		// TODO try/catch/throw
+		return ds.find(Patient.class).order("-lastUpdated").asList();
 	}
 
 	/**
 	 * Returns list of Patients covered by insurer
+	 * 
+	 * @return
 	 */
-	private void GetInsurer(String Insurer) {
-		// TODO
+	private List<Patient> GetInsurer(String Insurer) {
+		// return collection.find(new BasicDBObject("insurance", Insurer)).into(
+		// new ArrayList<Document>());
+		// TODO try/catch/throw/ and potential flaw with insurance =
+		return ds.find(Patient.class).filter("insurance =", Insurer).asList();
 	}
 
 	/**
 	 * returns list of patients with selected part replacement
 	 * 
 	 * @param Part
+	 * @return
 	 */
-	private void GetPart(String Part) {
-		// TODO
+	private List<Patient> GetPart(String Part) {
+		// return collection.find(new BasicDBObject("part", Part)).into(
+		// new ArrayList<Document>());
+		// TODO try/catch/throw/ and potential flaw with part =
+		return ds.find(Patient.class).filter("part =", Part).asList();
 	}
 
 	/**
 	 * returns list of patients with given term in the name
 	 * 
 	 * @param SearchTerm
+	 * @return
 	 */
-	private void GetName(String SearchTerm) {
+	private List<Patient> GetName(String SearchTerm) {
+		// return collection.find(new BasicDBObject("name", SearchTerm)).into(
+		// new ArrayList<Document>());
+		// TODO try/catch/throw/ and potential flaw with insurance =
+		return ds.find(Patient.class).filter("Name $in", SearchTerm).asList();
+	}
+
+	/**
+	 * Returns a list of all patients
+	 * 
+	 * @return TODO make return list ordered by date
+	 */
+	private List<Patient> GetAllPatients() {
+		// return collection.find().into(new ArrayList<Document>());
+		// TODO try/catch/throw/ and potential flaw with insurance =
+		return ds.find(Patient.class).asList();
+	}
+
+	private void RemovePatient() {
 		// TODO
 	}
 
-	private void GetAllPatients() {
-		MongoCursor<Document> cursor = collection.find().iterator();
-		try {
-			while (cursor.hasNext()) {
-				System.out.println(cursor.next().toJson());
-			}
-		} finally {
-			cursor.close();
-		}
-	}
-
-	public MongoClient getMongoClient() {
-		return mongoClient;
-	}
-
-	public void setMongoClient(MongoClient mongoClient) {
-		this.mongoClient = mongoClient;
-	}
-
-	public MongoDatabase getDatabase() {
-		return database;
-	}
-
-	public void setDatabase(MongoDatabase database) {
-		this.database = database;
-	}
 }
