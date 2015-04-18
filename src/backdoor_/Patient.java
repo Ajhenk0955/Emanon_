@@ -2,13 +2,10 @@ package backdoor_;
 
 import java.util.Date;
 
-import javax.naming.Name;
-
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Embedded;
-import org.mongodb.morphia.annotations.Id;
-import org.mongodb.morphia.annotations.Property;
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 /**
  * Container for each patient's information If a patient's info has changed
@@ -26,6 +23,9 @@ public class Patient {
 	private ObjectId id;
 	private String lastUpdated;
 
+	// Gender
+	private String gender;
+
 	// Part
 	@Embedded
 	private Part part;
@@ -36,9 +36,9 @@ public class Patient {
 	// DOB
 	private Date birthDate;
 
-	// Insurance type
+	// Billing
 	@Embedded
-	private Insurance insurance;
+	private Billing billing;
 
 	// Social security
 	private String SSN;
@@ -67,14 +67,6 @@ public class Patient {
 		this.name = name;
 	}
 
-	public Insurance getInsurance() {
-		return insurance;
-	}
-
-	public void setInsurance(Insurance insurance) {
-		this.insurance = insurance;
-	}
-
 	public Part getPart() {
 		return part;
 	}
@@ -89,6 +81,22 @@ public class Patient {
 
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Billing getBilling() {
+		return billing;
+	}
+
+	public void setBilling(Billing billing) {
+		this.billing = billing;
 	}
 
 }
