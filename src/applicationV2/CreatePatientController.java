@@ -31,33 +31,10 @@ public class CreatePatientController implements Initializable {
 
 	// form variables
 	@FXML
-	private TextField lastName;
-	@FXML
-	private TextField zipCode;
-	@FXML
-	private TextField mInitial;
-	@FXML
-	private ChoiceBox<String> gender;
-	@FXML
-	private TextField city;
-	@FXML
-	private TextField homePhone;
-	@FXML
-	private ChoiceBox<String> monthOfBirth;
-	@FXML
-	private TextField ssn;
-	@FXML
-	private TextField firstName;
-	@FXML
-	private TextField dayOfBirth;
-	@FXML
-	private TextField cellPhone;
-	@FXML
-	private TextField yearOfBirth;
-	@FXML
-	private ChoiceBox<String> state;
-	@FXML
-	private TextField address;
+	private TextField lastName, zipCode, mInitial, homePhone, dayOfBirth,
+			ssn, firstName, cellPhone, yearOfBirth, address, city;
+	
+	private ChoiceBox<String> gender, monthOfBirth, state;
 
 	/**
 	 * 
