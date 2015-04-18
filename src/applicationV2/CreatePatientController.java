@@ -31,9 +31,9 @@ public class CreatePatientController implements Initializable {
 
 	// form variables
 	@FXML
-	private TextField lastName, zipCode, mInitial, homePhone, dayOfBirth,
-			ssn, firstName, cellPhone, yearOfBirth, address, city;
-	
+	private TextField lastName, zipCode, mInitial, homePhone, dayOfBirth, ssn,
+			firstName, cellPhone, yearOfBirth, address, city;
+
 	private ChoiceBox<String> gender, monthOfBirth, state;
 
 	/**
@@ -51,21 +51,21 @@ public class CreatePatientController implements Initializable {
 		// User clicks save button
 		if (click.getSource() == saveButton) {
 
-			if (!makeNewPatient()) {
-				// ERROR HERE (INVALID INPUT)
-			} else {
-				// finding reference for button's stage
-				stage = (Stage) saveButton.getScene().getWindow();
-				// now loading PatientProfile as parent
-				root = FXMLLoader.load(getClass().getResource(
-						"/applicationV2/PatientProfile.fxml"));
+			// if (!makeNewPatient()) {
+			// ERROR HERE (INVALID INPUT)
+			// } else {
+			// finding reference for button's stage
+			stage = (Stage) saveButton.getScene().getWindow();
+			// now loading PatientProfile as parent
+			root = FXMLLoader.load(getClass().getResource(
+					"/applicationV2/PatientProfile.fxml"));
 
-				// makes PatientProfile scene and show it on the stage
-				Scene patientProfile = new Scene(root);
-				stage.setScene(patientProfile);
-				stage.setTitle("Patient Profile");
-				stage.show();
-			}
+			// makes PatientProfile scene and show it on the stage
+			Scene patientProfile = new Scene(root);
+			stage.setScene(patientProfile);
+			stage.setTitle("Patient Profile");
+			stage.show();
+			// }
 		}
 	}
 
@@ -80,30 +80,52 @@ public class CreatePatientController implements Initializable {
 		Patient newPatient = new Patient();
 
 		// Name
-		Name newName = new Name();
-		newName.setFirstName(firstName.getText());
-		newName.setmInitial(mInitial.getText());
-		newName.setLastName(lastName.getText());
+		Name newName = null;
+		if (!newName(newName))
+			return false;
 		newPatient.setName(newName);
 
 		// BirthDate (month/day/year)
-		String tempDate = String.format("%s %d, %s", monthOfBirth.getValue(),
-				dayOfBirth.getText(), yearOfBirth.getText());
-		Date strToDate = null;
+		Date toDate = null;
+		if (!toDate(toDate))
+			return false;
+		newPatient.setBirthDate(toDate);
 
-		try {
-			strToDate = DateFormat.getDateInstance().parse(tempDate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Problem with the Date");
-			e.printStackTrace();
-		}
+		// Billing & insurance
+		Billing newBilling = null;
+		if (newBilling(newBilling))
+			return false;
+		newPatient.setBilling(newBilling);
 
-		newPatient.setBirthDate(strToDate);
+		// Gender
+		if (gender.getValue() == null)
+			return false;
+		newPatient.setGender(gender.getValue());
 
-		// Billing
-		Billing newBilling = new Billing();
+		// SSN
+		if (ssnValid())
+			newPatient.setSSN(ssn.getText());
 
+		return true;
+	}
+
+	/**
+	 * Verifies the Social Security Number
+	 * 
+	 * @return
+	 */
+	private boolean ssnValid() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	/**
+	 * Verifies and sets billing and insurance
+	 * 
+	 * @param newBilling
+	 * @return
+	 */
+	private boolean newBilling(Billing newBilling) {
 		newBilling.setZipCode(zipCode.getText());
 		newBilling.setState(state.getValue());
 
@@ -115,13 +137,37 @@ public class CreatePatientController implements Initializable {
 		Insurance newInsurance = new Insurance();
 		newBilling.setInsurance(newInsurance);
 
-		newPatient.setBilling(newBilling);
+		return true;
+	}
 
-		newPatient.setGender(gender.getValue());
+	/**
+	 * Validates the Date
+	 * 
+	 * @param toDate
+	 * @return
+	 */
+	private boolean toDate(Date toDate) {
+		String tempDate = String.format("%s %d, %s", monthOfBirth.getValue(),
+				dayOfBirth.getText(), yearOfBirth.getText());
+		try {
+			toDate = DateFormat.getDateInstance().parse(tempDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Problem with the Date");
+			e.printStackTrace();
+		}
+		return true;
+	}
 
-		// SSN
-		newPatient.setSSN(ssn.getText());
-
+	/**
+	 * validates and returns a Name
+	 * 
+	 * @return
+	 */
+	private Boolean newName(Name newName) {
+		newName.setFirstName(firstName.getText());
+		newName.setmInitial(mInitial.getText());
+		newName.setLastName(lastName.getText());
 		return true;
 	}
 
