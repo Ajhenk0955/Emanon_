@@ -11,7 +11,7 @@
    <center>
       <AnchorPane prefHeight="0.0" prefWidth="100.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="468.0" layoutY="518.0" mnemonicParsing="false" text="SAVE" />
+            <Button fx:id="saveButton" layoutX="468.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleSaveButton" text="SAVE" />
             <TextField blendMode="SOFT_LIGHT" layoutX="118.0" layoutY="233.0" prefHeight="25.0" prefWidth="35.0" />
             <TextField blendMode="SOFT_LIGHT" layoutX="394.0" layoutY="166.0" prefHeight="25.0" prefWidth="168.0" />
             <TextField blendMode="SOFT_LIGHT" layoutX="115.0" layoutY="166.0" prefHeight="25.0" prefWidth="185.0" />
