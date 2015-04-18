@@ -43,13 +43,13 @@ public class CreatePatientController implements Initializable {
 	@FXML
 	private TextField homePhone;
 	@FXML
-	private TextField monthOfBirth;
+	private ChoiceBox<String> monthOfBirth;
 	@FXML
 	private TextField ssn;
 	@FXML
 	private TextField firstName;
 	@FXML
-	private ChoiceBox<String> dayOfBirth;
+	private TextField dayOfBirth;
 	@FXML
 	private TextField cellPhone;
 	@FXML
@@ -60,7 +60,7 @@ public class CreatePatientController implements Initializable {
 	private TextField address;
 
 	/**
-
+	 * 
 	 * Method for when user clicks the save button in CreatePatient
 	 * 
 	 * @Author M
@@ -110,8 +110,8 @@ public class CreatePatientController implements Initializable {
 		newPatient.setName(newName);
 
 		// BirthDate (month/day/year)
-		String tempDate = String.format("%s %d, %s", monthOfBirth.getText(),
-				dayOfBirth.getValue(), yearOfBirth.getText());
+		String tempDate = String.format("%s %d, %s", monthOfBirth.getValue(),
+				dayOfBirth.getText(), yearOfBirth.getText());
 		Date strToDate = null;
 
 		try {
@@ -147,7 +147,7 @@ public class CreatePatientController implements Initializable {
 
 		return true;
 	}
-	
+
 	@FXML
 	private void handleBackButton(ActionEvent e1) throws IOException {
 		Stage stage;
@@ -165,7 +165,7 @@ public class CreatePatientController implements Initializable {
 			stage.show();
 		}
 	}
-	
+
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 

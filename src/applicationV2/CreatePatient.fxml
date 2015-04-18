@@ -8,46 +8,46 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane prefHeight="602.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.CreatePatientController">
-   <center>
-      <AnchorPane prefHeight="0.0" prefWidth="100.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="saveButton" layoutX="468.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleSaveButton" text="SAVE" />
-            <TextField fx:id="MInitial" blendMode="SOFT_LIGHT" layoutX="118.0" layoutY="233.0" prefHeight="25.0" prefWidth="35.0" />
-            <TextField fx:id="lastName" blendMode="SOFT_LIGHT" layoutX="394.0" layoutY="166.0" prefHeight="25.0" prefWidth="168.0" />
-            <TextField fx:id="firstName" blendMode="SOFT_LIGHT" layoutX="115.0" layoutY="166.0" prefHeight="25.0" prefWidth="185.0" />
-            <TextField fx:id="dayOfBirth" blendMode="SOFT_LIGHT" layoutX="377.0" layoutY="233.0" prefHeight="25.0" prefWidth="54.0" promptText="Day" />
-            <TextField fx:id="ssn" blendMode="SOFT_LIGHT" layoutX="369.0" layoutY="278.0" />
-            <TextField fx:id="homePhone" blendMode="SOFT_LIGHT" layoutX="135.0" layoutY="332.0" promptText="(000) 000-0000" />
-            <TextField fx:id="cellPhone" blendMode="SOFT_LIGHT" layoutX="394.0" layoutY="332.0" promptText="(000) 000-0000" />
-            <TextField blendMode="SOFT_LIGHT" layoutX="98.0" layoutY="393.0" prefHeight="25.0" prefWidth="324.0" />
-            <TextField fx:id="city" blendMode="SOFT_LIGHT" layoutX="77.0" layoutY="452.0" prefHeight="25.0" prefWidth="116.0" />
-            <TextField fx:id="zipCode" blendMode="SOFT_LIGHT" layoutX="388.0" layoutY="452.0" prefHeight="25.0" prefWidth="77.0" />
-            <Label layoutX="47.0" layoutY="170.0" styleClass="main_column_section" text="First Name" textFill="#d3c7c7" />
-            <Label layoutX="332.0" layoutY="170.0" styleClass="main_column_section" text="Last Name" textFill="#d3c7c7" />
-            <Label layoutX="77.0" layoutY="237.0" text="M.I." textFill="#d3c7c7" />
-            <Label layoutX="91.0" layoutY="282.0" text="M/F" textFill="#d3c7c7" />
-            <Label layoutX="205.0" layoutY="237.0" styleClass="main_column_section" text="Day of Birth" textFill="#d3c7c7" />
-            <Label layoutX="254.0" layoutY="282.0" text="Social Security     " textFill="#d3c7c7" />
-            <Label layoutX="32.0" layoutY="336.0" text="Home Phone" textFill="#d3c7c7" />
-            <Label layoutX="320.0" layoutY="336.0" text="Cell Phone" textFill="#d3c7c7" />
-            <Label layoutX="37.0" layoutY="397.0" text="Address     " textFill="#d3c7c7" />
-            <Label layoutX="47.0" layoutY="456.0" text="City" textFill="#d3c7c7" />
-            <Label layoutX="223.0" layoutY="456.0" text="State" textFill="#d3c7c7" />
-            <Label layoutX="360.0" layoutY="456.0" text="Zip" textFill="#d3c7c7" />
-            <ChoiceBox fx:id="state" blendMode="SOFT_LIGHT" layoutX="263.0" layoutY="452.0" prefHeight="25.0" prefWidth="76.0" />
-            <ChoiceBox fx:id="gender" blendMode="SOFT_LIGHT" layoutX="134.0" layoutY="278.0" prefHeight="25.0" prefWidth="58.0" />
-            <Text fill="#fffd77" fontSmoothingType="LCD" layoutX="163.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Patient" textAlignment="CENTER" wrappingWidth="262.13671875">
-               <font>
-                  <Font size="43.0" />
-               </font>
-            </Text>
-            
-            <TextField blendMode="SOFT_LIGHT" layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="76.0" promptText="Year" />
-            <ChoiceBox blendMode="SOFT_LIGHT" layoutX="296.0" layoutY="233.0" prefHeight="25.0" prefWidth="58.0" />
-            <Button fx:id="backButton" layoutX="1.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" text="&lt;&lt;" />
-            <TextField fx:id="yearOfBirth" blendMode="SOFT_LIGHT" layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="76.0" promptText="Year" />
-            <ChoiceBox fx:id="monthOfBirth" blendMode="SOFT_LIGHT" layoutX="296.0" layoutY="233.0" prefHeight="25.0" prefWidth="58.0" />
-         </children>
-      </AnchorPane>
-   </center>
+	<center>
+		<AnchorPane prefHeight="0.0" prefWidth="100.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" BorderPane.alignment="CENTER">
+			<children>
+				<Button fx:id="saveButton" layoutX="468.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleSaveButton" text="SAVE" />
+				<TextField fx:id="MInitial" blendMode="SOFT_LIGHT" layoutX="118.0" layoutY="233.0" prefHeight="25.0" prefWidth="35.0" />
+				<TextField fx:id="lastName" blendMode="SOFT_LIGHT" layoutX="394.0" layoutY="166.0" prefHeight="25.0" prefWidth="168.0" />
+				<TextField fx:id="firstName" blendMode="SOFT_LIGHT" layoutX="115.0" layoutY="166.0" prefHeight="25.0" prefWidth="185.0" />
+				<TextField fx:id="dayOfBirth" blendMode="SOFT_LIGHT" layoutX="377.0" layoutY="233.0" prefHeight="25.0" prefWidth="54.0" promptText="Day" />
+				<TextField fx:id="ssn" blendMode="SOFT_LIGHT" layoutX="369.0" layoutY="278.0" />
+				<TextField fx:id="homePhone" blendMode="SOFT_LIGHT" layoutX="135.0" layoutY="332.0" promptText="(000) 000-0000" />
+				<TextField fx:id="cellPhone" blendMode="SOFT_LIGHT" layoutX="394.0" layoutY="332.0" promptText="(000) 000-0000" />
+				<TextField fx:id="address" blendMode="SOFT_LIGHT" layoutX="98.0" layoutY="393.0" prefHeight="25.0" prefWidth="324.0" />
+				<TextField fx:id="city" blendMode="SOFT_LIGHT" layoutX="77.0" layoutY="452.0" prefHeight="25.0" prefWidth="116.0" />
+				<TextField fx:id="zipCode" blendMode="SOFT_LIGHT" layoutX="388.0" layoutY="452.0" prefHeight="25.0" prefWidth="77.0" />
+				<Label layoutX="47.0" layoutY="170.0" styleClass="main_column_section" text="First Name" textFill="#d3c7c7" />
+				<Label layoutX="332.0" layoutY="170.0" styleClass="main_column_section" text="Last Name" textFill="#d3c7c7" />
+				<Label layoutX="77.0" layoutY="237.0" text="M.I." textFill="#d3c7c7" />
+				<Label layoutX="91.0" layoutY="282.0" text="M/F" textFill="#d3c7c7" />
+				<Label layoutX="205.0" layoutY="237.0" styleClass="main_column_section" text="Day of Birth" textFill="#d3c7c7" />
+				<Label layoutX="254.0" layoutY="282.0" text="Social Security     " textFill="#d3c7c7" />
+				<Label layoutX="32.0" layoutY="336.0" text="Home Phone" textFill="#d3c7c7" />
+				<Label layoutX="320.0" layoutY="336.0" text="Cell Phone" textFill="#d3c7c7" />
+				<Label layoutX="37.0" layoutY="397.0" text="Address     " textFill="#d3c7c7" />
+				<Label layoutX="47.0" layoutY="456.0" text="City" textFill="#d3c7c7" />
+				<Label layoutX="223.0" layoutY="456.0" text="State" textFill="#d3c7c7" />
+				<Label layoutX="360.0" layoutY="456.0" text="Zip" textFill="#d3c7c7" />
+				<ChoiceBox fx:id="state" blendMode="SOFT_LIGHT" layoutX="263.0" layoutY="452.0" prefHeight="25.0" prefWidth="76.0" />
+				<ChoiceBox fx:id="gender" blendMode="SOFT_LIGHT" layoutX="134.0" layoutY="278.0" prefHeight="25.0" prefWidth="58.0" />
+				<Text fill="#fffd77" fontSmoothingType="LCD" layoutX="163.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Patient" textAlignment="CENTER" wrappingWidth="262.13671875">
+					<font>
+						<Font size="43.0" />
+					</font>
+				</Text>
+
+				<TextField blendMode="SOFT_LIGHT" layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="76.0" promptText="Year" />
+				<ChoiceBox blendMode="SOFT_LIGHT" layoutX="296.0" layoutY="233.0" prefHeight="25.0" prefWidth="58.0" />
+				<Button fx:id="backButton" layoutX="1.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" text="&lt;&lt;" />
+				<TextField fx:id="yearOfBirth" blendMode="SOFT_LIGHT" layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="76.0" promptText="Year" />
+				<ChoiceBox fx:id="monthOfBirth" blendMode="SOFT_LIGHT" layoutX="296.0" layoutY="233.0" prefHeight="25.0" prefWidth="58.0" />
+			</children>
+		</AnchorPane>
+	</center>
 </BorderPane>
