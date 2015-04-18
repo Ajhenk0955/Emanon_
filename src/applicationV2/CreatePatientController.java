@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class CreatePatientController implements Initializable {
 
 	@FXML
-	private Button saveButton;
+	private Button saveButton, backButton;
 	
 	/** 
 	 * Method for when user clicks the save button in CreatePatient
@@ -41,6 +41,24 @@ public class CreatePatientController implements Initializable {
 			Scene patientProfile = new Scene(root);
 			stage.setScene(patientProfile);
 			stage.setTitle("Patient Profile");
+			stage.show();
+		}
+	}
+	
+	@FXML
+	private void handleBackButton(ActionEvent e1) throws IOException {
+		Stage stage;
+		Parent root;
+		if (e1.getSource() == backButton) {
+			// finding reference for button's stage
+			stage = (Stage) backButton.getScene().getWindow();
+			// now loading SearchResults as parent
+			root = FXMLLoader.load(getClass().getResource(
+					"/applicationV2/MainMenu.fxml"));
+			// makes SearchResults scene and show it on the stage
+			Scene MainMenu = new Scene(root);
+			stage.setScene(MainMenu);
+			stage.setTitle("Emanon File System - Main Menu");
 			stage.show();
 		}
 	}

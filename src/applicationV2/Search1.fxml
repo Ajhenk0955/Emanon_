@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -97,5 +98,9 @@
          </effect></TextField>
       <Label layoutX="238.0" layoutY="236.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css" text="Advanced Search:" />
       <Button fx:id="Search1_goButton" layoutX="439.0" layoutY="149.0" mnemonicParsing="false" onAction="#search1_buttons" prefHeight="33.0" prefWidth="74.0" text="Go!" />
+      <Button fx:id="backButton" layoutX="4.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;&lt;">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font></Button>
    </children>
 </AnchorPane>

@@ -23,7 +23,7 @@ private void handleLogoutPopup(ActionEvent e){
 	//Parent root;
 }	
 	
-	@Override
+	
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
