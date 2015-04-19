@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="304.0" prefWidth="554.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="WHITE" layoutX="161.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To continue pleas enter administrator’s Username and Password. " textAlignment="CENTER" wrappingWidth="245.13671875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Label layoutX="154.0" layoutY="24.0" text="Administrator Validation" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="440.0" layoutY="248.0" mnemonicParsing="false" text="Confirm" />
+      <Button layoutX="337.0" layoutY="248.0" mnemonicParsing="false" text="Cancel" />
+      <Label layoutX="140.0" layoutY="156.0" text="Username" textFill="WHITE" />
+      <Label layoutX="142.0" layoutY="194.0" text="Password" textFill="WHITE" />
+      <TextField blendMode="HARD_LIGHT" layoutX="215.0" layoutY="152.0" />
+      <PasswordField layoutX="215.0" layoutY="190.0" />
+   </children>
+</AnchorPane>

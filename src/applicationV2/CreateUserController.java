@@ -13,43 +13,38 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class Logout_PopupController implements Initializable {
-
+public class CreateUserController implements Initializable {
 	@FXML
-	private Button logout_Cancel, logout_Yes;
+	private Button cancelButton, submitButton;
 
-
-	/**TODO
-	 * Method to exit out of the program with Logout pop up
-	 * Author M
-	 * 
-	 */	
-	@FXML
-	private void handleLogoutPopup(ActionEvent e) throws IOException {
-		Stage stage;
-		Parent root;
-		if (e.getSource() == logout_Yes) {
-			// finding reference for button stage
-			stage = (Stage) logout_Yes.getScene().getWindow();
-			stage.close();
-			// now loading CreatePatientScreen as parent
-			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/Login.fxml"));
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
-		else{
-			 stage=(Stage)logout_Cancel.getScene().getWindow();
-			   stage.close();
-		}
-		
-
-	}
-
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
 	}
+	
+	/**
+	 * Method to handle the buttons in the createUser screen
+	 * @Author M
+	 */
+	@FXML
+	private void handleCancelButton(ActionEvent e0) throws IOException {
+		Stage stage;
+		Parent root;
+		
+		if (e0.getSource() == submitButton) {
+			// finding reference for button stage
+			stage = (Stage) submitButton.getScene().getWindow();
+			stage.close();
+			// now loading CreatePatientScreen as parent
+			root = FXMLLoader.load(getClass().getResource(
+					"/applicationV2/Warning.fxml")); //ha ha
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} else {
+			stage = (Stage) cancelButton.getScene().getWindow();
+			stage.close();
+		}
 
+	}
 }

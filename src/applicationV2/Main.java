@@ -12,7 +12,6 @@ import javafx.scene.image.Image;
 public class Main extends Application {
 	
 	@Override
-	// needs a throw
 	public void start(Stage primaryStage) throws IOException {
 		
 		// loads the login FXML

@@ -17,11 +17,10 @@ public class MainMenuController implements Initializable {
 	@FXML
 	private Button searchButton, createPatientButton, logoutButton,
 			quickSearch;
-	
-	//Menu bar variables
-	@FXML
-	private MenuItem logOutItem; //<--
 
+	// Menu bar variables
+	@FXML
+	private MenuItem logOutItem, edit_UserProfile;
 
 	/**
 	 * Method to handle the log out button in the Main Menu
@@ -46,7 +45,7 @@ public class MainMenuController implements Initializable {
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.initOwner(logoutButton.getScene().getWindow());
 			stage.showAndWait();// forces program to focus on pop up window
-			
+
 		}
 		/*
 		 * TODO if below commented out, logout pop up X button works. but
@@ -57,11 +56,11 @@ public class MainMenuController implements Initializable {
 		// Scene scene = new Scene(root);
 		// stage.setScene(scene);
 		// stage.show();
-		
 
 	}
+
 	/**
-	 *  Method to take care of the search buttons
+	 * Method to take care of the search buttons
 	 * 
 	 * @Author M
 	 * 
@@ -89,7 +88,7 @@ public class MainMenuController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	/**
 	 * Method to take care of the add patient button
 	 * 
@@ -112,31 +111,58 @@ public class MainMenuController implements Initializable {
 			stage.show();
 		}
 	}
+
 	/**
-	 *  Method to handle menu bar
+	 * Method to handle menu bar log out
 	 * 
 	 * @Author M
 	 * 
 	 */
 	@FXML
-	private void handleMenuBar(ActionEvent e2) throws IOException{
+	private void handleMenuBar(ActionEvent e2) throws IOException {
+		Stage stage;
+		Parent root;
+
+		if (e2.getSource() == logOutItem) {
+			stage = new Stage();// makes a new stage
+			// root is being linked to the pop up FXML
+			root = FXMLLoader.load(getClass().getResource("Logout_Popup.fxml"));
+			stage.setScene(new Scene(root)); // making a new scene
+			stage.setTitle("Log out?");
+
+			// modality tells it to pop over another window
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.initOwner(logoutButton.getScene().getWindow());
+			stage.showAndWait();// forces program to focus on pop up window
+		}
+	}
+	
+	/**
+	 * Method to handle menu bar for EditUserProfile
+	 * 
+	 * @Author M
+	 * 
+	 */
+	@FXML
+	private void handleUserProfile(ActionEvent e3) throws IOException{
 		Stage stage;
 		Parent root;
 		
-		if(e2.getSource()==logOutItem){
-		stage = new Stage();// makes a new stage
-		// root is being linked to the pop up FXML
-		root = FXMLLoader.load(getClass().getResource("Logout_Popup.fxml"));
-		stage.setScene(new Scene(root)); // making a new scene
-		stage.setTitle("Log out?");
+		if (e3.getSource() == edit_UserProfile) {
+			stage = new Stage();// makes a new stage
+			// root is being linked to the pop up FXML
+			root = FXMLLoader.load(getClass().getResource("EditUserProfile.fxml"));
+			stage.setScene(new Scene(root)); // making a new scene
+			stage.setTitle("Emanon File System - User Profile");
 
-		// modality tells it to pop over another window
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.initOwner(logoutButton.getScene().getWindow());
-		stage.showAndWait();// forces program to focus on pop up window
+			// modality tells it to pop over another window
+			stage.initModality(Modality.APPLICATION_MODAL);
+			//stage.initOwner(edit_UserProfile.getScene().getWindow());
+			stage.showAndWait();// forces program to focus on pop up window
 		}
 	}
 
-	public void initialize(URL arg0, ResourceBundle arg1) {}
+	public void initialize(URL arg0, ResourceBundle arg1) {
+	}
 
 }

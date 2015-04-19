@@ -13,18 +13,18 @@ import javafx.scene.control.*;
 import javafx.stage.*;
 
 public class LoginController implements Initializable {
-	
-	//login variables
+
+	// login variables
 	@FXML
 	private TextField login_userName;
 	@FXML
 	private PasswordField login_Password;
 	@FXML
-	private Button login_Button;
+	private Button login_Button, signUpButton;
 	@FXML
 	private Hyperlink login_Hyperlink;
-	
-	//pop up window variables
+
+	// pop up window variables
 	private Button submitLoginRecovery;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -49,7 +49,27 @@ public class LoginController implements Initializable {
 			stage.setScene(MainMenuScene);
 			stage.setTitle("Emanon File System");
 			stage.show();
+		}
+	}
 
+	// method when sign up button is clicked
+	@FXML
+	private void handleSignUpButton(ActionEvent signUpClicked)
+			throws IOException {
+		Stage stage;
+		Parent root;
+
+		if (signUpClicked.getSource() == signUpButton) {
+			stage = new Stage();// makes a new stage
+			// root is being linked to the pop up FXML
+			root = FXMLLoader.load(getClass().getResource("CreateUser.fxml"));
+			stage.setScene(new Scene(root)); // making a new scene
+			stage.setTitle("Create a New User");
+
+			// modality tells it to pop over another window
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.initOwner(signUpButton.getScene().getWindow());
+			stage.showAndWait();// forces program to focus on pop up window
 		}
 	}
 
@@ -62,16 +82,16 @@ public class LoginController implements Initializable {
 
 		if (hyperlinkClicked.getSource() == login_Hyperlink) {
 			stage = new Stage();// makes a new stage
-			//root is being linked to the pop up FXML
-			root = FXMLLoader.load(getClass().getResource("LoginPopup.fxml")); 
-			stage.setScene(new Scene(root)); //making a new scene
+			// root is being linked to the pop up FXML
+			root = FXMLLoader.load(getClass().getResource("LoginPopup.fxml"));
+			stage.setScene(new Scene(root)); // making a new scene
 			stage.setTitle("Login Help");
-			
-			//modality tells it to pop over another window
+
+			// modality tells it to pop over another window
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.initOwner(login_Hyperlink.getScene().getWindow());
-			stage.showAndWait();//forces program to focus on pop up window
-		} 
+			stage.showAndWait();// forces program to focus on pop up window
+		}
 	}
 
 }
