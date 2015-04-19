@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import backdoor_.UserAccount;
 import backdoor_.Verification;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,20 +43,20 @@ public class CreateUserController implements Initializable {
 		Parent root;
 
 		if (e0.getSource() == submitButton) {
-			if (validate()) {
-				// ERROR HERE
-			} else {
-				//TODO need to get admin credentials
-				// finding reference for button stage
-				stage = (Stage) submitButton.getScene().getWindow();
-				stage.close();
-				// now loading CreatePatientScreen as parent
-				root = FXMLLoader.load(getClass().getResource(
-						"/applicationV2/AdminClearance.fxml")); // ha ha
-				Scene scene = new Scene(root);
-				stage.setScene(scene);
-				stage.show();
-			}
+			// if (validate()) {
+			// ERROR HERE
+			// } else {
+			// TODO need to get admin credentials
+			// finding reference for button stage
+			stage = (Stage) submitButton.getScene().getWindow();
+			stage.close();
+			// now loading CreatePatientScreen as parent
+			root = FXMLLoader.load(getClass().getResource(
+					"/applicationV2/AdminClearance.fxml")); // ha ha
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+			// }
 		} else {
 			stage = (Stage) cancelButton.getScene().getWindow();
 			stage.close();
@@ -82,6 +83,12 @@ public class CreateUserController implements Initializable {
 				|| !(password.getText().equals(password_.getText())))
 			return false;
 
+		UserAccount newUser = new UserAccount();
+		newUser.setEmail(eMail.getText());
+		newUser.setFirstName(firstName.getText());
+		newUser.setLastName(lastName.getText());
+		newUser.setPassword(password.getText().toCharArray());
+		// TODO GET PASSWORD FOR ACCOUNT CREATION
 		return true;
 	}
 }

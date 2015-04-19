@@ -24,8 +24,6 @@ import com.mongodb.client.MongoDatabase;
 public class DataBase {
 
 	private MongoClient mongoClient;
-	private MongoDatabase database;
-	private MongoCollection<Document> collection;
 	private Datastore ds;
 	private Boolean wasCreated;
 
@@ -48,19 +46,17 @@ public class DataBase {
 	 * @param password
 	 */
 	public void login(String userName, String databaseName, char[] password) {
-		if(!wasCreated)
+		if (!wasCreated)
 			return;
 		MongoCredential credential = MongoCredential.createCredential(userName,
 				databaseName, password);
 		mongoClient = new MongoClient(new ServerAddress("localHost"),
 				Arrays.asList(credential));
-		database = mongoClient.getDatabase("Emanon");
-
-		collection = database.getCollection("users");
 
 		// initiallizing morphia
 		Morphia morphia = new Morphia();
-		morphia.map(Patient.class).map(Insurance.class).map(Part.class);
+		morphia.map(Patient.class).map(Insurance.class).map(Part.class)
+				.map(PatientFiles.class);
 		ds = morphia.createDatastore(mongoClient, "users");
 	}
 
@@ -76,13 +72,17 @@ public class DataBase {
 	public void addAccount(String userName, String databaseName,
 			char[] password, String userUsername, char[] userPassword) {
 
-		if(!wasCreated)
+		if (!wasCreated)
 			return;
 		MongoCredential credential = MongoCredential.createCredential(userName,
 				databaseName, password);
 		MongoClient mcAdmin = new MongoClient(new ServerAddress("localHost"),
 				Arrays.asList(credential));
 		try {
+			Morphia morphia = new Morphia();
+			morphia.map(UserAccount.class);
+			Datastore temp = morphia.createDatastore(mcAdmin, "userData");
+
 			mcAdmin.setWriteConcern(WriteConcern.JOURNALED);
 			MongoDatabase userBase = mongoClient.getDatabase("Emanon");
 
@@ -103,7 +103,7 @@ public class DataBase {
 	 * Uploads data from Patient objects
 	 */
 	private void UpdateData(Patient[] Patients) {
-		if(!wasCreated)
+		if (!wasCreated)
 			return;
 		// upload patients via morphia
 		ds.save(Patients);
@@ -119,7 +119,7 @@ public class DataBase {
 	 * @return Patient Files as Document
 	 */
 	private Patient PullPatientProfile(int PatientID) {
-		if(!wasCreated)
+		if (!wasCreated)
 			return null;
 		// BasicDBObject temp = new BasicDBObject("_ID", UID);
 		// collection.findOneAndUpdate(temp, temp);
@@ -136,7 +136,7 @@ public class DataBase {
 	 * Returns list of most Recent Patients
 	 */
 	private List<Patient> GetMostRecent() {
-		if(!wasCreated)
+		if (!wasCreated)
 			return null;
 		// return collection.find().sort(new BasicDBObject("lastUpdated", -1))
 		// .into(new ArrayList<Document>());
@@ -150,7 +150,7 @@ public class DataBase {
 	 * @return
 	 */
 	private List<Patient> GetInsurer(String Insurer) {
-		if(!wasCreated)
+		if (!wasCreated)
 			return null;
 		// return collection.find(new BasicDBObject("insurance", Insurer)).into(
 		// new ArrayList<Document>());
@@ -165,7 +165,7 @@ public class DataBase {
 	 * @return
 	 */
 	private List<Patient> GetPart(String Part) {
-		if(!wasCreated)
+		if (!wasCreated)
 			return null;
 		// return collection.find(new BasicDBObject("part", Part)).into(
 		// new ArrayList<Document>());
@@ -180,7 +180,7 @@ public class DataBase {
 	 * @return
 	 */
 	private List<Patient> GetName(String SearchTerm) {
-		if(!wasCreated)
+		if (!wasCreated)
 			return null;
 		// return collection.find(new BasicDBObject("name", SearchTerm)).into(
 		// new ArrayList<Document>());
@@ -194,7 +194,7 @@ public class DataBase {
 	 * @return TODO make return list ordered by date
 	 */
 	private List<Patient> GetAllPatients() {
-		if(!wasCreated)
+		if (!wasCreated)
 			return null;
 		// return collection.find().into(new ArrayList<Document>());
 		// TODO try/catch/throw/ and potential flaw with insurance =
@@ -202,13 +202,13 @@ public class DataBase {
 	}
 
 	private void RemovePatient() {
-		if(!wasCreated)
+		if (!wasCreated)
 			return;
 		// TODO
 	}
 
 	public void addPatient(Patient newPatient) {
-		if(!wasCreated)
+		if (!wasCreated)
 			return;
 		// TODO Auto-generated method stub
 

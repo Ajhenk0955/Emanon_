@@ -18,6 +18,10 @@ import org.mongodb.morphia.annotations.Id;
  */
 @Entity
 public class Patient {
+	public ObjectId getId() {
+		return id;
+	}
+
 	// ID
 	@Id
 	private ObjectId id;
@@ -42,7 +46,7 @@ public class Patient {
 
 	// Social security
 	private String SSN;
-	
+
 	// Files
 	@Embedded
 	private PatientFiles patientFiles;
