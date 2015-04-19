@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="171.0" prefWidth="246.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.MainMenuController">
+<AnchorPane prefHeight="171.0" prefWidth="246.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.Logout_PopupController">
    <children>
       <Label layoutX="51.0" layoutY="36.0" text="Ready to log out?" textFill="WHITE">
          <font>
@@ -14,6 +14,6 @@
          </font>
       </Label>
       <Button layoutX="26.0" layoutY="86.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="96.0" text="Cancel" />
-      <Button layoutX="129.0" layoutY="86.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="96.0" text="Yes" />
+      <Button fx:id="logout_Yes" layoutX="129.0" layoutY="86.0" mnemonicParsing="false" onAction="#handleLogoutPopup" prefHeight="33.0" prefWidth="96.0" text="Yes" />
    </children>
 </AnchorPane>

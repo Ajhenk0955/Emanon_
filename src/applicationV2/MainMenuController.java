@@ -17,6 +17,10 @@ public class MainMenuController implements Initializable {
 	@FXML
 	private Button searchButton, createPatientButton, logoutButton,
 			quickSearch;
+	
+	//Menu bar variables
+	@FXML
+	private MenuItem logOutItem; //<--
 
 
 	/**
@@ -106,6 +110,30 @@ public class MainMenuController implements Initializable {
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
+		}
+	}
+	/**
+	 *  Method to handle menu bar
+	 * 
+	 * @Author M
+	 * 
+	 */
+	@FXML
+	private void handleMenuBar(ActionEvent e2) throws IOException{
+		Stage stage;
+		Parent root;
+		
+		if(e2.getSource()==logOutItem){
+		stage = new Stage();// makes a new stage
+		// root is being linked to the pop up FXML
+		root = FXMLLoader.load(getClass().getResource("Logout_Popup.fxml"));
+		stage.setScene(new Scene(root)); // making a new scene
+		stage.setTitle("Log out?");
+
+		// modality tells it to pop over another window
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.initOwner(logoutButton.getScene().getWindow());
+		stage.showAndWait();// forces program to focus on pop up window
 		}
 	}
 
