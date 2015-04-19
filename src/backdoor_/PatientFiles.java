@@ -1,5 +1,6 @@
 package backdoor_;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -8,7 +9,7 @@ import org.mongodb.morphia.annotations.Embedded;
 @Embedded
 public class PatientFiles {
 
-	private List<PDDocument> pictures;
+	private List<BufferedImage> pictures;
 
 	private List<PDDocument> claimForms;
 	
@@ -18,11 +19,11 @@ public class PatientFiles {
 	
 	private List<PDDocument> insuranceClaims;
 
-	public List<PDDocument> getPictures() {
+	public List<BufferedImage> getPictures() {
 		return pictures;
 	}
 
-	public void setPictures(List<PDDocument> pictures) {
+	public void setPictures(List<BufferedImage> pictures) {
 		this.pictures = pictures;
 	}
 

@@ -2,13 +2,16 @@ package backdoor_;
 
 import java.util.Arrays;
 import java.util.List;
+
 import org.bson.Document;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import com.mongodb.WriteConcern;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
@@ -24,6 +27,7 @@ public class DataBase {
 	private MongoDatabase database;
 	private MongoCollection<Document> collection;
 	private Datastore ds;
+	private Boolean wasCreated;
 
 	/**
 	 * sets up connection and collection TODO make close connection on end.
@@ -32,7 +36,18 @@ public class DataBase {
 	 * @param databaseName
 	 * @param password
 	 */
-	public DataBase(String userName, String databaseName, char[] password) {
+	public DataBase() {
+		wasCreated = true;
+	}
+
+	/**
+	 * login and initialize database
+	 * 
+	 * @param userName
+	 * @param databaseName
+	 * @param password
+	 */
+	private void login(String userName, String databaseName, char[] password) {
 		MongoCredential credential = MongoCredential.createCredential(userName,
 				databaseName, password);
 		mongoClient = new MongoClient(new ServerAddress("localHost"),
@@ -45,6 +60,39 @@ public class DataBase {
 		Morphia morphia = new Morphia();
 		morphia.map(Patient.class).map(Insurance.class).map(Part.class);
 		ds = morphia.createDatastore(mongoClient, "users");
+	}
+
+	/**
+	 * adds a user account, requires admin credentials
+	 * 
+	 * @param userName
+	 * @param databaseName
+	 * @param password
+	 * @param userUsername
+	 * @param userPassword
+	 */
+	public void addAccount(String userName, String databaseName,
+			char[] password, String userUsername, char[] userPassword) {
+
+		MongoCredential credential = MongoCredential.createCredential(userName,
+				databaseName, password);
+		MongoClient mcAdmin = new MongoClient(new ServerAddress("localHost"),
+				Arrays.asList(credential));
+		try {
+			mcAdmin.setWriteConcern(WriteConcern.JOURNALED);
+			MongoDatabase userBase = mongoClient.getDatabase("Emanon");
+
+			BasicDBObject commandArguments = new BasicDBObject();
+			commandArguments.put("user", userUsername);
+			commandArguments.put("pwd", userPassword);
+			String[] roles = { "readWrite" };
+			commandArguments.put("roles", roles);
+			BasicDBObject command = new BasicDBObject("createUser",
+					commandArguments);
+			userBase.runCommand(command);
+		} finally {
+			mcAdmin.close();
+		}
 	}
 
 	/**
@@ -141,7 +189,7 @@ public class DataBase {
 
 	public void addPatient(Patient newPatient) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
