@@ -129,6 +129,17 @@ public class CreatePatientController implements Initializable {
 		REGEX.put("PHONE-FORMAT",
 				"^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$");
 		REGEX.put("DATE", "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$");
+		REGEX.put("LASTNAME", "[a-zA-z]+([ '-][a-zA-Z]+)*");
+		REGEX.put("FIRSTNAME", "[A-Z][a-zA-Z]*");
+		REGEX.put("MINITIAL", "[A-Z][a-zA-Z]*");
+		REGEX.put("CITY", "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
+		REGEX.put("STATE", "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
+		REGEX.put("ADDRESS", "\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
+		REGEX.put("EMAILADDRESS", "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+		// TODO PASSWORD STUFF IS HERE
+		REGEX.put("PASSWORD",
+				"((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})");
 
 		Pattern pattern = Pattern.compile(REGEX.get(type));
 
@@ -171,9 +182,10 @@ public class CreatePatientController implements Initializable {
 			newBilling.setHomePhone(tempPhone);
 		}
 
-		// TODO VERIFY CITY/STATE
-
+		if(!Verify("CITY",city.getText()))
+			return false;
 		newBilling.setCity(city.getText());
+		
 		newBilling.setState(state.getValue());
 
 		// When insurance is added just link TODO
@@ -203,9 +215,18 @@ public class CreatePatientController implements Initializable {
 	 * @return
 	 */
 	private Boolean newName(Name newName) {
+		if (!Verify("FIRSTNAME", firstName.getText()))
+			return false;
 		newName.setFirstName(firstName.getText());
+
+		if (!Verify("MINITIAL", mInitial.getText()))
+			return false;
 		newName.setmInitial(mInitial.getText());
+
+		if (!Verify("LASTNAME", lastName.getText()))
+			return false;
 		newName.setLastName(lastName.getText());
+
 		return true;
 	}
 
