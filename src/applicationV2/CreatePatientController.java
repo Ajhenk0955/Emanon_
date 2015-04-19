@@ -110,8 +110,8 @@ public class CreatePatientController implements Initializable {
 		newPatient.setSSN(ssn.getText());
 
 		char[] Password = null;
-		DataBase PatientLoader = new DataBase("Username", "DataBaseName",
-				Password);
+		DataBase PatientLoader = new DataBase();
+		PatientLoader.login("Username", "DataBaseName", Password);
 		PatientLoader.addPatient(newPatient);
 
 		return true;

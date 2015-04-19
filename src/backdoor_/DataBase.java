@@ -47,7 +47,9 @@ public class DataBase {
 	 * @param databaseName
 	 * @param password
 	 */
-	private void login(String userName, String databaseName, char[] password) {
+	public void login(String userName, String databaseName, char[] password) {
+		if(!wasCreated)
+			return;
 		MongoCredential credential = MongoCredential.createCredential(userName,
 				databaseName, password);
 		mongoClient = new MongoClient(new ServerAddress("localHost"),
@@ -74,6 +76,8 @@ public class DataBase {
 	public void addAccount(String userName, String databaseName,
 			char[] password, String userUsername, char[] userPassword) {
 
+		if(!wasCreated)
+			return;
 		MongoCredential credential = MongoCredential.createCredential(userName,
 				databaseName, password);
 		MongoClient mcAdmin = new MongoClient(new ServerAddress("localHost"),
@@ -99,6 +103,8 @@ public class DataBase {
 	 * Uploads data from Patient objects
 	 */
 	private void UpdateData(Patient[] Patients) {
+		if(!wasCreated)
+			return;
 		// upload patients via morphia
 		ds.save(Patients);
 
@@ -113,6 +119,8 @@ public class DataBase {
 	 * @return Patient Files as Document
 	 */
 	private Patient PullPatientProfile(int PatientID) {
+		if(!wasCreated)
+			return null;
 		// BasicDBObject temp = new BasicDBObject("_ID", UID);
 		// collection.findOneAndUpdate(temp, temp);
 		// MongoIterable<Document> cursor = collection.find(temp);
@@ -128,6 +136,8 @@ public class DataBase {
 	 * Returns list of most Recent Patients
 	 */
 	private List<Patient> GetMostRecent() {
+		if(!wasCreated)
+			return null;
 		// return collection.find().sort(new BasicDBObject("lastUpdated", -1))
 		// .into(new ArrayList<Document>());
 		// TODO try/catch/throw
@@ -140,6 +150,8 @@ public class DataBase {
 	 * @return
 	 */
 	private List<Patient> GetInsurer(String Insurer) {
+		if(!wasCreated)
+			return null;
 		// return collection.find(new BasicDBObject("insurance", Insurer)).into(
 		// new ArrayList<Document>());
 		// TODO try/catch/throw/ and potential flaw with insurance =
@@ -153,6 +165,8 @@ public class DataBase {
 	 * @return
 	 */
 	private List<Patient> GetPart(String Part) {
+		if(!wasCreated)
+			return null;
 		// return collection.find(new BasicDBObject("part", Part)).into(
 		// new ArrayList<Document>());
 		// TODO try/catch/throw/ and potential flaw with part =
@@ -166,6 +180,8 @@ public class DataBase {
 	 * @return
 	 */
 	private List<Patient> GetName(String SearchTerm) {
+		if(!wasCreated)
+			return null;
 		// return collection.find(new BasicDBObject("name", SearchTerm)).into(
 		// new ArrayList<Document>());
 		// TODO try/catch/throw/ and potential flaw with insurance =
@@ -178,16 +194,22 @@ public class DataBase {
 	 * @return TODO make return list ordered by date
 	 */
 	private List<Patient> GetAllPatients() {
+		if(!wasCreated)
+			return null;
 		// return collection.find().into(new ArrayList<Document>());
 		// TODO try/catch/throw/ and potential flaw with insurance =
 		return ds.find(Patient.class).asList();
 	}
 
 	private void RemovePatient() {
+		if(!wasCreated)
+			return;
 		// TODO
 	}
 
 	public void addPatient(Patient newPatient) {
+		if(!wasCreated)
+			return;
 		// TODO Auto-generated method stub
 
 	}
