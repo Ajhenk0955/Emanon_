@@ -45,7 +45,7 @@ public class CreateUserController implements Initializable {
 			stage.close();
 			// now loading CreatePatientScreen as parent
 			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/Warning.fxml")); //ha ha
+					"/applicationV2/AdminClearance.fxml")); //ha ha
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
