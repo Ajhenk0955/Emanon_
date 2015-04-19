@@ -53,12 +53,12 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="firstName" GridPane.columnIndex="1" />
+            <TextField fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="eMail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="eMail_" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <PasswordField fx:id="password_" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
          <effect>
             <DropShadow />

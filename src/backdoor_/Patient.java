@@ -42,6 +42,10 @@ public class Patient {
 
 	// Social security
 	private String SSN;
+	
+	// Files
+	@Embedded
+	private PatientFiles patientFiles;
 
 	public String getSSN() {
 		return SSN;
@@ -97,6 +101,14 @@ public class Patient {
 
 	public void setBilling(Billing billing) {
 		this.billing = billing;
+	}
+
+	public PatientFiles getPatientFiles() {
+		return patientFiles;
+	}
+
+	public void setPatientFiles(PatientFiles patientFiles) {
+		this.patientFiles = patientFiles;
 	}
 
 }

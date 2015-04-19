@@ -26,8 +26,7 @@ public class DataBase {
 	private Datastore ds;
 
 	/**
-	 * sets up connection and collection TODO make close connection on end. TODO
-	 * FIX TO NON-DEPRICATED METHOD
+	 * sets up connection and collection TODO make close connection on end.
 	 * 
 	 * @param userName
 	 * @param databaseName

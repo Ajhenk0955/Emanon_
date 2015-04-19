@@ -12,6 +12,7 @@ import backdoor_.DataBase;
 import backdoor_.Insurance;
 import backdoor_.Name;
 import backdoor_.Patient;
+import backdoor_.Verification;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class CreatePatientController implements Initializable {
+
+	private Verification checker;
 
 	@FXML
 	private Button saveButton, backButton;
@@ -75,8 +78,8 @@ public class CreatePatientController implements Initializable {
 	 * @return
 	 */
 	private boolean makeNewPatient() {
-		// TODO VERIFY INPUTS
 		Patient newPatient = new Patient();
+		checker = new Verification();
 
 		// Name TODO VERIFY NAME
 		Name newName = null;
@@ -102,7 +105,7 @@ public class CreatePatientController implements Initializable {
 		newPatient.setGender(gender.getValue());
 
 		// SSN
-		if (!Verify("SSN", ssn.getText()))
+		if (!checker.Verify("SSN", ssn.getText()))
 			return false;
 		newPatient.setSSN(ssn.getText());
 
@@ -115,43 +118,6 @@ public class CreatePatientController implements Initializable {
 	}
 
 	/**
-	 * Verifies the Social Security Number
-	 * 
-	 * @return
-	 */
-	private boolean Verify(String type, String value) {
-		HashMap<String, String> REGEX = new HashMap<String, String>();
-		REGEX.put("SSN",
-				"^(?!000|666)[0-8][0-9]{2}-(?!00)[0-9]{2}-(?!0000)[0-9]{4}$");
-		REGEX.put("US-ZIP", "^[0-9]{5}(?:-[0-9]{4})?$");
-		REGEX.put("PHONE",
-				"^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$");
-		REGEX.put("PHONE-FORMAT",
-				"^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$");
-		REGEX.put("DATE", "^[0-3]?[0-9]/[0-3]?[0-9]/(?:[0-9]{2})?[0-9]{2}$");
-		REGEX.put("LASTNAME", "[a-zA-z]+([ '-][a-zA-Z]+)*");
-		REGEX.put("FIRSTNAME", "[A-Z][a-zA-Z]*");
-		REGEX.put("MINITIAL", "[A-Z][a-zA-Z]*");
-		REGEX.put("CITY", "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
-		REGEX.put("STATE", "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
-		REGEX.put("ADDRESS", "\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
-		REGEX.put("EMAILADDRESS", "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-		// TODO PASSWORD STUFF IS HERE
-		REGEX.put("PASSWORD",
-				"((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})");
-
-		Pattern pattern = Pattern.compile(REGEX.get(type));
-
-		Matcher matcher = pattern.matcher(value);
-		if (!matcher.matches())
-			return false;
-		if (type == "PHONE")
-			value = matcher.replaceFirst("($1) $2-$3");
-		return true;
-	}
-
-	/**
 	 * Verifies and sets billing and insurance
 	 * 
 	 * @param newBilling
@@ -159,7 +125,7 @@ public class CreatePatientController implements Initializable {
 	 */
 	private boolean newBilling(Billing newBilling) {
 
-		if (!Verify("ZIP", zipCode.getText()))
+		if (!checker.Verify("ZIP", zipCode.getText()))
 			return false;
 
 		newBilling.setZipCode(zipCode.getText());
@@ -171,21 +137,21 @@ public class CreatePatientController implements Initializable {
 		String tempPhone;
 		if (cellPhone.getText() != null) {
 			tempPhone = cellPhone.getText();
-			if (!Verify("PHONE", tempPhone))
+			if (!checker.Verify("PHONE", tempPhone))
 				return false;
 			newBilling.setCellPhone(tempPhone);
 		}
 		if (homePhone.getText() != null) {
 			tempPhone = homePhone.getText();
-			if (!Verify("PHONE", tempPhone))
+			if (!checker.Verify("PHONE", tempPhone))
 				return false;
 			newBilling.setHomePhone(tempPhone);
 		}
 
-		if(!Verify("CITY",city.getText()))
+		if (!checker.Verify("CITY", city.getText()))
 			return false;
 		newBilling.setCity(city.getText());
-		
+
 		newBilling.setState(state.getValue());
 
 		// When insurance is added just link TODO
@@ -204,7 +170,7 @@ public class CreatePatientController implements Initializable {
 	private boolean toDate(String toDate) {
 		toDate = String.format("%s/%s/%s", monthOfBirth.getValue(),
 				dayOfBirth.getText(), yearOfBirth.getText());
-		if (!Verify("DATE", toDate))
+		if (!checker.Verify("DATE", toDate))
 			return false;
 		return true;
 	}
@@ -215,15 +181,15 @@ public class CreatePatientController implements Initializable {
 	 * @return
 	 */
 	private Boolean newName(Name newName) {
-		if (!Verify("FIRSTNAME", firstName.getText()))
+		if (!checker.Verify("FIRSTNAME", firstName.getText()))
 			return false;
 		newName.setFirstName(firstName.getText());
 
-		if (!Verify("MINITIAL", mInitial.getText()))
+		if (!checker.Verify("MINITIAL", mInitial.getText()))
 			return false;
 		newName.setmInitial(mInitial.getText());
 
-		if (!Verify("LASTNAME", lastName.getText()))
+		if (!checker.Verify("LASTNAME", lastName.getText()))
 			return false;
 		newName.setLastName(lastName.getText());
 
