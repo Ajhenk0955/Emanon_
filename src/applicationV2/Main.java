@@ -27,7 +27,7 @@ public class Main extends Application {
 		primaryStage.getIcons().add(
 				new Image("file:resources/images/medical_record_logo.png"));
 		primaryStage.show(); // show end product
-		primaryStage.setResizable(false); //disables resizing except for pop ups
+		//primaryStage.setResizable(false); //disables resizing except for pop ups
 	}
 
 	public static void main(String[] args) {

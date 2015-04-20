@@ -8,104 +8,37 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.Search1Controller">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.Search1Controller">
    <children>
-      <Pane layoutX="73.0" layoutY="274.0" prefHeight="111.0" prefWidth="473.0">
+      <Pane layoutX="114.0" layoutY="313.0" prefHeight="111.0" prefWidth="473.0">
          <children>
-            <CheckBox layoutX="24.0" layoutY="16.0" mnemonicParsing="false" text="Medicare">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect></CheckBox>
-            <CheckBox layoutX="24.0" layoutY="65.0" mnemonicParsing="false" text="VA">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect></CheckBox>
-            <CheckBox layoutX="170.0" layoutY="16.0" mnemonicParsing="false" text="Eye">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect></CheckBox>
-            <CheckBox layoutX="170.0" layoutY="65.0" mnemonicParsing="false" text="Nose">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect></CheckBox>
-            <CheckBox layoutX="304.0" layoutY="65.0" mnemonicParsing="false" text="Other Insurance">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect></CheckBox>
-            <CheckBox layoutX="304.0" layoutY="16.0" mnemonicParsing="false" stylesheets="@JMetroDarkTheme.css" text="Ear">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect></CheckBox>
+            <CheckBox layoutX="24.0" layoutY="16.0" mnemonicParsing="false" text="Medicare" />
+            <CheckBox layoutX="24.0" layoutY="65.0" mnemonicParsing="false" text="VA" />
+            <CheckBox layoutX="170.0" layoutY="16.0" mnemonicParsing="false" text="Eye" />
+            <CheckBox layoutX="170.0" layoutY="65.0" mnemonicParsing="false" text="Nose" />
+            <CheckBox layoutX="304.0" layoutY="65.0" mnemonicParsing="false" text="Other Insurance" />
+            <CheckBox layoutX="304.0" layoutY="16.0" mnemonicParsing="false" stylesheets="@JMetroDarkTheme.css" text="Ear" />
          </children>
       </Pane>
-      <Label layoutX="211.0" layoutY="66.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="Search ">
+      <Label layoutX="252.0" layoutY="82.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="Search ">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
-      <TextField layoutX="101.0" layoutY="149.0" prefHeight="33.0" prefWidth="331.0" promptText="What are you looking for?" stylesheets="@JMetroDarkTheme.css">
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect></TextField>
-      <Label layoutX="238.0" layoutY="236.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css" text="Advanced Search:" />
-      <Button fx:id="Search1_goButton" layoutX="439.0" layoutY="149.0" mnemonicParsing="false" onAction="#search1_buttons" prefHeight="33.0" prefWidth="74.0" text="Go!" />
-      <Button fx:id="backButton" layoutX="4.0" layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="44.0">
+      <TextField layoutX="140.0" layoutY="190.0" prefHeight="33.0" prefWidth="331.0" promptText="What are you looking for?" stylesheets="@JMetroDarkTheme.css">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
+      <Label layoutX="279.0" layoutY="275.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css" text="Advanced Search:" textFill="WHITE" />
+      <Button fx:id="Search1_goButton" layoutX="478.0" layoutY="190.0" mnemonicParsing="false" onAction="#search1_buttons" prefHeight="38.0" prefWidth="83.0" text="Go!" />
+      <Button fx:id="backButton" layoutX="13.0" layoutY="32.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="50.0" prefWidth="60.0">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="98.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="61.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/images/Back%20Arrow.png" />
+                  <Image url="@../applicationV2_IMAGES/blueBackArrow.png" />
                </image>
             </ImageView>
          </graphic></Button>
