@@ -206,6 +206,11 @@ public class DataBase {
 			return;
 		// TODO
 	}
+	
+	public boolean removeFile(String userUsername, char[] userPassword){
+		return wasCreated;
+		//TODO
+	}
 
 	public void addPatient(Patient newPatient) {
 		if (!wasCreated)

@@ -15,8 +15,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <ScrollBar layoutX="579.0" layoutY="87.0" orientation="VERTICAL" prefHeight="298.0" prefWidth="12.0" />
-      <SplitMenuButton layoutX="446.0" layoutY="43.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="139.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css" text="Change View">
+      <SplitMenuButton fx:id="viewButton" layoutX="446.0" layoutY="43.0" mnemonicParsing="false" onAction="#viewStyleChanged" prefHeight="31.0" prefWidth="139.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css" text="Change View">
         <items>
           <MenuItem mnemonicParsing="false" text="List" />
           <MenuItem mnemonicParsing="false" text="Thumbnails" />
@@ -35,5 +34,16 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Pane layoutX="4.0" layoutY="91.0" prefHeight="298.0" prefWidth="592.0">
+         <children>
+            <TableView prefHeight="298.0" prefWidth="592.0">
+              <columns>
+                <TableColumn fx:id="resultNames" prefWidth="192.0" text="Name" />
+                <TableColumn fx:id="resultService" prefWidth="192.0" text="Service" />
+                  <TableColumn fx:id="resultInsurance" prefWidth="192.0" text="Insurance" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
