@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import backdoor_.Flags;
 import backdoor_.UserAccount;
 import backdoor_.Verification;
 import javafx.event.ActionEvent;
@@ -88,7 +89,11 @@ public class CreateUserController implements Initializable {
 		newUser.setFirstName(firstName.getText());
 		newUser.setLastName(lastName.getText());
 		newUser.setPassword(password.getText().toCharArray());
-		// TODO GET PASSWORD FOR ACCOUNT CREATION
+		//setting flags
+		Flags temp = Main.getFlags();
+		temp.setCreateUser(true);
+		temp.setTempUser(newUser);
+		Main.setFlags(temp);
 		return true;
 	}
 }

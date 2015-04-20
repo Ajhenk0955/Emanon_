@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
@@ -26,15 +27,25 @@ public class DataBase {
 	private MongoClient mongoClient;
 	private Datastore ds;
 	private Boolean wasCreated;
+	private Morphia morphia;
 
 	/**
-	 * sets up connection and collection TODO make close connection on end.
+	 * login and initialize database
 	 * 
 	 * @param userName
-	 * @param databaseName
 	 * @param password
+	 * @param write
+	 *            (read or write)
 	 */
-	public DataBase() {
+	public DataBase(String userName, char[] password, boolean read) {
+		MongoCredential credential = MongoCredential.createCredential(userName,
+				"Emanon", password);
+		mongoClient = new MongoClient(new ServerAddress("localHost"),
+				Arrays.asList(credential));
+		if (read)
+			initializeMorphiaPatients();
+		else
+			initializeMorphiaUser();
 		wasCreated = true;
 	}
 
@@ -42,21 +53,34 @@ public class DataBase {
 	 * login and initialize database
 	 * 
 	 * @param userName
-	 * @param databaseName
 	 * @param password
+	 * @param write
+	 *            (read or write)
 	 */
-	public void login(String userName, String databaseName, char[] password) {
+	public void login(String userName, char[] password) {
 		if (!wasCreated)
 			return;
-		MongoCredential credential = MongoCredential.createCredential(userName,
-				databaseName, password);
-		mongoClient = new MongoClient(new ServerAddress("localHost"),
-				Arrays.asList(credential));
 
 		// initiallizing morphia
-		Morphia morphia = new Morphia();
+
+		// perform method calls here:
+
+	}
+
+	public void finalize() {
+		mongoClient.close();
+	}
+
+	private void initializeMorphiaPatients() {
+		morphia = new Morphia();
 		morphia.map(Patient.class).map(Insurance.class).map(Part.class)
 				.map(PatientFiles.class);
+		ds = morphia.createDatastore(mongoClient, "users");
+	}
+
+	private void initializeMorphiaUser() {
+		morphia = new Morphia();
+		morphia.map(UserAccount.class);
 		ds = morphia.createDatastore(mongoClient, "users");
 	}
 
@@ -69,44 +93,45 @@ public class DataBase {
 	 * @param userUsername
 	 * @param userPassword
 	 */
-	public void addAccount(String userName, String databaseName,
-			char[] password, String userUsername, char[] userPassword) {
-
+	public boolean addAccount(UserAccount tempUser) {
 		if (!wasCreated)
-			return;
-		MongoCredential credential = MongoCredential.createCredential(userName,
-				databaseName, password);
-		MongoClient mcAdmin = new MongoClient(new ServerAddress("localHost"),
-				Arrays.asList(credential));
+			System.exit(0);
 		try {
-			Morphia morphia = new Morphia();
-			morphia.map(UserAccount.class);
-			Datastore temp = morphia.createDatastore(mcAdmin, "userData");
+			// Saving userData
+			ds.save(tempUser);
 
-			mcAdmin.setWriteConcern(WriteConcern.JOURNALED);
+			mongoClient.setWriteConcern(WriteConcern.JOURNALED);
 			MongoDatabase userBase = mongoClient.getDatabase("Emanon");
 
 			BasicDBObject commandArguments = new BasicDBObject();
-			commandArguments.put("user", userUsername);
-			commandArguments.put("pwd", userPassword);
-			String[] roles = { "readWrite" };
+			commandArguments.put("user", tempUser.getEmail());
+			commandArguments.put("pwd", tempUser.getPassword());
+			String[] roles = { "read" };
 			commandArguments.put("roles", roles);
 			BasicDBObject command = new BasicDBObject("createUser",
 					commandArguments);
+
 			userBase.runCommand(command);
-		} finally {
-			mcAdmin.close();
+		} catch (Exception e) {
+			return false;
 		}
+		return true;
+
 	}
 
 	/**
-	 * Uploads data from Patient objects
+	 * Uploads data from Patient object
 	 */
-	private void UpdateData(Patient[] Patients) {
+	public boolean UpdateData(Patient patient) {
 		if (!wasCreated)
-			return;
+			System.exit(0);
 		// upload patients via morphia
-		ds.save(Patients);
+		try {
+			ds.save(patient);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 
 	}
 
@@ -118,7 +143,7 @@ public class DataBase {
 	 * @return
 	 * @return Patient Files as Document
 	 */
-	private Patient PullPatientProfile(int PatientID) {
+	public Patient PullPatientProfile(int PatientID) {
 		if (!wasCreated)
 			return null;
 		// BasicDBObject temp = new BasicDBObject("_ID", UID);
@@ -127,21 +152,27 @@ public class DataBase {
 		// return cursor.first();
 
 		// TODO insert try catches/throws
-
-		return ds.get(Patient.class, PatientID);
-
+		try {
+			return ds.get(Patient.class, PatientID);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
 	 * Returns list of most Recent Patients
 	 */
-	private List<Patient> GetMostRecent() {
+	public List<Patient> GetMostRecent() {
 		if (!wasCreated)
 			return null;
 		// return collection.find().sort(new BasicDBObject("lastUpdated", -1))
 		// .into(new ArrayList<Document>());
 		// TODO try/catch/throw
-		return ds.find(Patient.class).order("-lastUpdated").asList();
+		try {
+			return ds.find(Patient.class).order("-lastUpdated").asList();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -149,13 +180,18 @@ public class DataBase {
 	 * 
 	 * @return
 	 */
-	private List<Patient> GetInsurer(String Insurer) {
+	public List<Patient> GetInsurer(String Insurer) {
 		if (!wasCreated)
 			return null;
 		// return collection.find(new BasicDBObject("insurance", Insurer)).into(
 		// new ArrayList<Document>());
 		// TODO try/catch/throw/ and potential flaw with insurance =
-		return ds.find(Patient.class).filter("insurance =", Insurer).asList();
+		try {
+			return ds.find(Patient.class).filter("insurance =", Insurer)
+					.asList();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -164,13 +200,17 @@ public class DataBase {
 	 * @param Part
 	 * @return
 	 */
-	private List<Patient> GetPart(String Part) {
+	public List<Patient> GetPart(String Part) {
 		if (!wasCreated)
 			return null;
 		// return collection.find(new BasicDBObject("part", Part)).into(
 		// new ArrayList<Document>());
 		// TODO try/catch/throw/ and potential flaw with part =
-		return ds.find(Patient.class).filter("part =", Part).asList();
+		try {
+			return ds.find(Patient.class).filter("part =", Part).asList();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -185,7 +225,12 @@ public class DataBase {
 		// return collection.find(new BasicDBObject("name", SearchTerm)).into(
 		// new ArrayList<Document>());
 		// TODO try/catch/throw/ and potential flaw with insurance =
-		return ds.find(Patient.class).filter("Name $in", SearchTerm).asList();
+		try {
+			return ds.find(Patient.class).filter("Name $in", SearchTerm)
+					.asList();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**
@@ -198,7 +243,11 @@ public class DataBase {
 			return null;
 		// return collection.find().into(new ArrayList<Document>());
 		// TODO try/catch/throw/ and potential flaw with insurance =
-		return ds.find(Patient.class).asList();
+		try {
+			return ds.find(Patient.class).asList();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	private void RemovePatient() {
@@ -206,10 +255,10 @@ public class DataBase {
 			return;
 		// TODO
 	}
-	
-	public boolean removeFile(String userUsername, char[] userPassword){
+
+	public boolean removeFile(String userUsername, char[] userPassword) {
 		return wasCreated;
-		//TODO
+		// TODO
 	}
 
 	public void addPatient(Patient newPatient) {
@@ -217,6 +266,16 @@ public class DataBase {
 			return;
 		// TODO Auto-generated method stub
 
+	}
+
+	public void deletePatient(ObjectId id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void UpdateUser(UserAccount tempUser) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
