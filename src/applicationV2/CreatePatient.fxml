@@ -78,11 +78,11 @@
 						<Font size="43.0" />
 					</font>
 				</Text>
-				<Button fx:id="backButton" contentDisplay="CENTER" depthTest="ENABLE" graphicTextGap="0.0" layoutX="38.0" layoutY="40.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="55.0" prefWidth="60.0">
+				<Button fx:id="backButton" contentDisplay="CENTER" depthTest="ENABLE" graphicTextGap="0.0" layoutX="38.0" layoutY="40.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="65.0" prefWidth="65.0">
                <graphic>
-                  <ImageView fitHeight="135.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="51.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../applicationV2_IMAGES/BLUE_ARROW_PLZ.png" />
+                        <Image url="@../applicationV2_IMAGES/black-white-arrow.PNG" />
                      </image>
                   </ImageView>
                </graphic></Button>

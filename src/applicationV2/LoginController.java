@@ -47,7 +47,7 @@ public class LoginController implements Initializable {
 			// makes MainMenu scene and show it on the stage
 			Scene MainMenuScene = new Scene(root);
 			stage.setScene(MainMenuScene);
-			stage.setTitle("Emanon File System");
+			stage.setTitle("Emanon File System - Main Menu");
 			stage.show();
 		}
 	}

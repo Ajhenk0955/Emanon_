@@ -72,7 +72,7 @@ public class Search1Controller implements Initializable {
 			// makes SearchResults scene and show it on the stage
 			Scene MainMenu = new Scene(root);
 			stage.setScene(MainMenu);
-			stage.setTitle("Emanon File System");
+			stage.setTitle("Emanon File System - Main Menu");
 			stage.show();
 		}
 	}
