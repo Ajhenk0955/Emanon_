@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import backdoor_.Flags;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,7 +29,7 @@ public class SearchResultsController implements Initializable {
 
 	@FXML
 	private TableColumn<?, ?> resultNames;
-	private ObservableList observableList = FXCollections.observableArrayList();
+	//private ObservableList observableList = FXCollections.observableArrayList();
 
 	@FXML
 	private void handleBackButton(ActionEvent e1) throws IOException {
@@ -50,6 +51,8 @@ public class SearchResultsController implements Initializable {
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		//Flags flag = Main.getFlags();
+		//String search = flag.getSearchTerms();
 
 	}
 

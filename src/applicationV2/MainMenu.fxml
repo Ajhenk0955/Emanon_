@@ -16,7 +16,7 @@
          </font>
       </Label>
       <VBox layoutX="14.0" layoutY="123.0" prefHeight="118.0" prefWidth="161.0" />
-      <TextField layoutX="382.0" layoutY="63.0" prefHeight="33.0" prefWidth="225.0" promptText="........" />
+      <TextField fx:id="searchTerm" layoutX="382.0" layoutY="63.0" prefHeight="33.0" prefWidth="225.0" promptText="........" />
       <Label layoutX="407.0" layoutY="27.0" text="Quick Search" textFill="#fcf6f6">
          <font>
             <Font size="25.0" />

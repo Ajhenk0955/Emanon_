@@ -17,6 +17,8 @@ public class MainMenuController implements Initializable {
 	@FXML
 	private Button searchButton, createPatientButton, logoutButton,
 			quickSearch, edit_UserProfile;
+	@FXML
+	private TextField searchTerm;
 
 
 	/**

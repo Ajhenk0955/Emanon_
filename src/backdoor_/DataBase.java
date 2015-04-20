@@ -2,6 +2,7 @@ package backdoor_;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -219,7 +220,7 @@ public class DataBase {
 	 * @param SearchTerm
 	 * @return
 	 */
-	private List<Patient> GetName(String SearchTerm) {
+	public List<Patient> GetName(String SearchTerm) {
 		if (!wasCreated)
 			return null;
 		// return collection.find(new BasicDBObject("name", SearchTerm)).into(
@@ -270,12 +271,12 @@ public class DataBase {
 
 	public void deletePatient(ObjectId id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void UpdateUser(UserAccount tempUser) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
