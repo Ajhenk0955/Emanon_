@@ -32,7 +32,6 @@ public class Logout_PopupController implements Initializable {
 			// finding reference for button stage
 			stage = (Stage) logout_Yes.getScene().getWindow();
 			stage.close();
-			// now loading CreatePatientScreen as parent
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/Login.fxml"));
 			Scene scene = new Scene(root);

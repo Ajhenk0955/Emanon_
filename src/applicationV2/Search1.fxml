@@ -80,12 +80,12 @@
                </effect></CheckBox>
          </children>
       </Pane>
-      <Label layoutX="223.0" layoutY="66.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="Search ">
+      <Label layoutX="211.0" layoutY="66.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="Search ">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
-      <TextField layoutX="161.0" layoutY="149.0" prefHeight="33.0" prefWidth="271.0" promptText="What are you looking for?" stylesheets="@JMetroDarkTheme.css">
+      <TextField layoutX="101.0" layoutY="149.0" prefHeight="33.0" prefWidth="331.0" promptText="What are you looking for?" stylesheets="@JMetroDarkTheme.css">
          <effect>
             <Lighting>
                <bumpInput>
@@ -98,9 +98,16 @@
          </effect></TextField>
       <Label layoutX="238.0" layoutY="236.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css" text="Advanced Search:" />
       <Button fx:id="Search1_goButton" layoutX="439.0" layoutY="149.0" mnemonicParsing="false" onAction="#search1_buttons" prefHeight="33.0" prefWidth="74.0" text="Go!" />
-      <Button fx:id="backButton" layoutX="4.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleBackButton" text="&lt;&lt;">
+      <Button fx:id="backButton" layoutX="4.0" layoutY="8.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="44.0">
          <font>
             <Font name="System Bold Italic" size="17.0" />
-         </font></Button>
+         </font>
+         <graphic>
+            <ImageView fitHeight="98.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/Back%20Arrow.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>

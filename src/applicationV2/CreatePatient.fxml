@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.net.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -44,7 +45,14 @@
 
 				<TextField blendMode="SOFT_LIGHT" layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="76.0" promptText="Year" />
 				<ChoiceBox blendMode="SOFT_LIGHT" layoutX="296.0" layoutY="233.0" prefHeight="25.0" prefWidth="58.0" />
-				<Button fx:id="backButton" layoutX="1.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="33.0" prefWidth="76.0" text="&lt;&lt;" />
+				<Button fx:id="backButton" contentDisplay="CENTER" depthTest="ENABLE" graphicTextGap="0.0" layoutX="1.0" layoutY="2.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="44.0">
+               <graphic>
+                  <ImageView fitHeight="47.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/images/Back%20Arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
 				<TextField fx:id="yearOfBirth" blendMode="SOFT_LIGHT" layoutX="444.0" layoutY="233.0" prefHeight="25.0" prefWidth="76.0" promptText="Year" />
 				<ChoiceBox fx:id="monthOfBirth" blendMode="SOFT_LIGHT" layoutX="296.0" layoutY="233.0" prefHeight="25.0" prefWidth="58.0" />
 			</children>
