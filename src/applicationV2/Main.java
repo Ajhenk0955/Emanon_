@@ -10,9 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class Main extends Application {
-	
+
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+		
 		
 		// loads the login FXML
 		Parent root = FXMLLoader.load(getClass().getResource(
@@ -26,6 +27,7 @@ public class Main extends Application {
 		primaryStage.getIcons().add(
 				new Image("file:resources/images/medical_record_logo.png"));
 		primaryStage.show(); // show end product
+		primaryStage.setResizable(false); //disables resizing except for pop ups
 	}
 
 	public static void main(String[] args) {
