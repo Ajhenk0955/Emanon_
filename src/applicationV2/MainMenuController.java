@@ -3,6 +3,8 @@ package applicationV2;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import backdoor_.Flags;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +21,6 @@ public class MainMenuController implements Initializable {
 			quickSearch, edit_UserProfile;
 	@FXML
 	private TextField searchTerm;
-
 
 	/**
 	 * Method to handle the log out button in the Main Menu
@@ -79,6 +80,9 @@ public class MainMenuController implements Initializable {
 		} else {
 			stage = (Stage) quickSearch.getScene().getWindow();
 			// now loading SearchingScreen as parent
+			// setting flags search term
+			Flags flags = Main.getFlags();
+			flags.setSearchTerms(searchTerm.getText());
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/SearchResults.fxml"));
 		}
@@ -110,7 +114,7 @@ public class MainMenuController implements Initializable {
 			stage.show();
 		}
 	}
-	
+
 	/**
 	 * Method to handle menu bar for EditUserProfile
 	 * 
@@ -118,20 +122,21 @@ public class MainMenuController implements Initializable {
 	 * 
 	 */
 	@FXML
-	private void handleUserProfile(ActionEvent e3) throws IOException{
+	private void handleUserProfile(ActionEvent e3) throws IOException {
 		Stage stage;
 		Parent root;
-		
+
 		if (e3.getSource() == edit_UserProfile) {
 			stage = new Stage();// makes a new stage
 			// root is being linked to the pop up FXML
-			root = FXMLLoader.load(getClass().getResource("EditUserProfile.fxml"));
+			root = FXMLLoader.load(getClass().getResource(
+					"EditUserProfile.fxml"));
 			stage.setScene(new Scene(root)); // making a new scene
 			stage.setTitle("Emanon File System - User Profile");
 
 			// modality tells it to pop over another window
 			stage.initModality(Modality.APPLICATION_MODAL);
-			//stage.initOwner(edit_UserProfile.getScene().getWindow());
+			// stage.initOwner(edit_UserProfile.getScene().getWindow());
 			stage.showAndWait();// forces program to focus on pop up window
 		}
 	}

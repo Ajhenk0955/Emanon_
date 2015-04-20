@@ -21,7 +21,7 @@ public class SearchResultsController implements Initializable {
 	@FXML
 	private Button backButton;
 
-	@FXML
+	/*@FXML
 	private TableColumn<?, ?> resultService;
 
 	@FXML
@@ -30,7 +30,7 @@ public class SearchResultsController implements Initializable {
 	@FXML
 	private TableColumn<?, ?> resultNames;
 	//private ObservableList observableList = FXCollections.observableArrayList();
-
+*/
 	@FXML
 	private void handleBackButton(ActionEvent e1) throws IOException {
 		Stage stage;

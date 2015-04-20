@@ -15,7 +15,7 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <TextField layoutX="140.0" layoutY="190.0" prefHeight="33.0" prefWidth="331.0" promptText="What are you looking for?" stylesheets="@JMetroDarkTheme.css">
+      <TextField fx:id="searchTerm" layoutX="140.0" layoutY="190.0" prefHeight="33.0" prefWidth="331.0" promptText="What are you looking for?" stylesheets="@JMetroDarkTheme.css">
          <font>
             <Font size="17.0" />
          </font></TextField>

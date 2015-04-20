@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import backdoor_.Flags;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,12 +12,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Search1Controller implements Initializable {
 
 	@FXML
 	private Button Search1_goButton, backButton;
+	@FXML
+	private TextField searchTerm;
 
 	/**
 	 * Method to handle Search1_goButton event
@@ -31,6 +35,10 @@ public class Search1Controller implements Initializable {
 
 		// User clicks Go! Button
 		if (ButtonClick.getSource() == Search1_goButton) {
+
+			// setting flags search term
+			Flags flags = Main.getFlags();
+			flags.setSearchTerms(searchTerm.getText());
 
 			// finding reference for button's stage
 			stage = (Stage) Search1_goButton.getScene().getWindow();
