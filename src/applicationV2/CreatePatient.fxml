@@ -23,15 +23,12 @@
 				<TextField fx:id="firstName" blendMode="SOFT_LIGHT" layoutX="148.0" layoutY="146.0" prefHeight="25.0" prefWidth="185.0" />
 				<TextField fx:id="lastName" blendMode="SOFT_LIGHT" layoutX="443.0" layoutY="146.0" prefHeight="25.0" prefWidth="176.0" />
 				<TextField fx:id="MInitial" blendMode="SOFT_LIGHT" layoutX="148.0" layoutY="209.0" prefHeight="25.0" prefWidth="35.0" />
-				<ChoiceBox fx:id="monthOfBirth" blendMode="SOFT_LIGHT" layoutX="397.0" layoutY="209.0" prefHeight="25.0" prefWidth="58.0" />
-				<TextField fx:id="ssn" blendMode="SOFT_LIGHT" layoutX="467.0" layoutY="254.0" />
+				<TextField fx:id="ssn" blendMode="SOFT_LIGHT" layoutX="467.0" layoutY="254.0" promptText="XXX-XX-XXXX" />
 				<TextField fx:id="homePhone" blendMode="SOFT_LIGHT" layoutX="148.0" layoutY="308.0" promptText="(000) 000-0000" />
 				<TextField fx:id="cellPhone" blendMode="SOFT_LIGHT" layoutX="467.0" layoutY="308.0" promptText="(000) 000-0000" />
 				<TextField fx:id="address" blendMode="SOFT_LIGHT" layoutX="148.0" layoutY="367.0" prefHeight="25.0" prefWidth="324.0" />
 				<TextField fx:id="city" blendMode="SOFT_LIGHT" layoutX="148.0" layoutY="432.0" prefHeight="25.0" prefWidth="146.0" />
 				<TextField fx:id="zipCode" blendMode="SOFT_LIGHT" layoutX="535.0" layoutY="428.0" prefHeight="25.0" prefWidth="77.0" />
-				<ChoiceBox fx:id="state" blendMode="SOFT_LIGHT" layoutX="373.0" layoutY="428.0" prefHeight="25.0" prefWidth="76.0" />
-				<ChoiceBox fx:id="gender" blendMode="SOFT_LIGHT" layoutX="148.0" layoutY="254.0" prefHeight="25.0" prefWidth="58.0" />
 				<Label layoutX="59.0" layoutY="146.0" styleClass="main_column_section" text="First Name" textFill="WHITE">
                <font>
                   <Font size="16.0" />
@@ -98,6 +95,26 @@
                   <Font size="16.0" />
                </font>
             </Label>
+            <TextField fx:id="firstName1" blendMode="SOFT_LIGHT" layoutX="399.0" layoutY="209.0" prefHeight="25.0" prefWidth="68.0" promptText="00" />
+            <TextField fx:id="firstName11" blendMode="SOFT_LIGHT" layoutX="475.0" layoutY="209.0" prefHeight="25.0" prefWidth="68.0" promptText="00" />
+            <TextField fx:id="firstName12" blendMode="SOFT_LIGHT" layoutX="551.0" layoutY="209.0" prefHeight="25.0" prefWidth="68.0" promptText="0000" />
+            <Label layoutX="426.0" layoutY="188.0" styleClass="main_column_section" text="M" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="501.0" layoutY="188.0" styleClass="main_column_section" text="D" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="577.0" layoutY="188.0" styleClass="main_column_section" text="Y" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="MInitial1" blendMode="SOFT_LIGHT" layoutX="148.0" layoutY="258.0" prefHeight="25.0" prefWidth="35.0" />
+            <TextField fx:id="MInitial11" blendMode="SOFT_LIGHT" layoutX="366.0" layoutY="432.0" prefHeight="25.0" prefWidth="35.0" />
 			</children>
 		</AnchorPane>
 	</center>

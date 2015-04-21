@@ -17,7 +17,7 @@
          </font>
       </Label>
       <Label layoutX="89.0" layoutY="103.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="File System" />
-      <Hyperlink fx:id="login_Hyperlink" layoutX="141.0" layoutY="283.0" onAction="#handleLoginHyperlink" text="Forgot Username/Password?" />
+      <Hyperlink fx:id="login_Hyperlink" layoutX="161.0" layoutY="284.0" onAction="#handleLoginHyperlink" text="Forgot Password?" />
       <HBox layoutX="201.0" layoutY="358.0" prefHeight="33.0" prefWidth="213.0">
          <children>
             <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="33.0" prefWidth="99.0" text="Sign up" />

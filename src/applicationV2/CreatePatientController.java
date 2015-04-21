@@ -29,7 +29,7 @@ public class CreatePatientController implements Initializable {
 	private Verification checker;
 
 	@FXML
-	private Button saveButton, backButton;
+	private Button saveButton, backButton, DomoButton;
 
 	// form variables
 	@FXML
@@ -213,6 +213,7 @@ public class CreatePatientController implements Initializable {
 			stage.show();
 		}
 	}
+
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
