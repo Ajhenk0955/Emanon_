@@ -76,11 +76,14 @@ public class MainMenuController implements Initializable {
 			// now loading SearchingScreen as parent
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/Search1.fxml"));
+			stage.setTitle("Emanon File System - Search");
+			
 		} else {
 			stage = (Stage) quickSearch.getScene().getWindow();
 			// now loading SearchingScreen as parent
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/SearchResults.fxml"));
+			stage.setTitle("Emanon File System - Search Results");
 		}
 		// after either branch was selected
 		Scene scene = new Scene(root);
