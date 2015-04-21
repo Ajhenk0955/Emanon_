@@ -35,7 +35,7 @@ public class SearchResultsController implements Initializable {
 	
 	ObservableList<Patient> data = FXCollections.observableArrayList();
 	
-	data.add(new Patient("resultName_", "resultService_", "resultInsurance_"));
+	//data.add(new Patient("resultName_", "resultService_", "resultInsurance_"));
 //TODO FINISH TABLE DATA BINDING DO LOOP ABOVE
 	/**
 	 * Method to go back to the search screen Author M
@@ -82,11 +82,13 @@ public class SearchResultsController implements Initializable {
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		/*
 		resultName.setCellValueFactory(new PropertyValueFactory<Patient,String>("resultName"));
 		resultService.setCellValueFactory(new PropertyValueFactory<Patient,String>("resultService"));
 		resultInsurance.setCellValueFactory(new PropertyValueFactory<Patient,String>("resultInsurance"));
 
 		resultTable.setItems(data);
+		*/
 	}
 
 }

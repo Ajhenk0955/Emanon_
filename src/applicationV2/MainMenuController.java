@@ -80,11 +80,12 @@ public class MainMenuController implements Initializable {
 			stage.setTitle("Emanon File System - Search");
 			
 		} else {
+		/*
 			// setting flags search term
 			Flags flags = Main.getFlags();
 			if(searchTerm.getText() != null)
 				flags.setSearchTerms(searchTerm.getText());
-			
+			*/
 			stage = (Stage) quickSearch.getScene().getWindow();
 			// now loading SearchingScreen as parent
 			root = FXMLLoader.load(getClass().getResource(

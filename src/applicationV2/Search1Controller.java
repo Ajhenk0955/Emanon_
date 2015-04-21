@@ -40,9 +40,9 @@ public class Search1Controller implements Initializable {
 		if (ButtonClick.getSource() == Search1_goButton) {
 
 			// setting flags search term
-			Flags flags = Main.getFlags();
-			flags.setSearchTerms(searchTerm.getText());
-			Main.setFlags(flags);
+			//Flags flags = Main.getFlags();
+			//flags.setSearchTerms(searchTerm.getText());
+			//Main.setFlags(flags);
 
 			// finding reference for button's stage
 			stage = (Stage) Search1_goButton.getScene().getWindow();
