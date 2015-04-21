@@ -8,18 +8,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.Search1Controller">
+<AnchorPane prefHeight="550.0" prefWidth="700.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.Search1Controller">
    <children>
-      <Pane layoutX="114.0" layoutY="313.0" prefHeight="111.0" prefWidth="473.0">
-         <children>
-            <CheckBox layoutX="24.0" layoutY="16.0" mnemonicParsing="false" text="Medicare" />
-            <CheckBox layoutX="24.0" layoutY="65.0" mnemonicParsing="false" text="VA" />
-            <CheckBox layoutX="170.0" layoutY="16.0" mnemonicParsing="false" text="Eye" />
-            <CheckBox layoutX="170.0" layoutY="65.0" mnemonicParsing="false" text="Nose" />
-            <CheckBox layoutX="304.0" layoutY="65.0" mnemonicParsing="false" text="Other Insurance" />
-            <CheckBox layoutX="304.0" layoutY="16.0" mnemonicParsing="false" stylesheets="@JMetroDarkTheme.css" text="Ear" />
-         </children>
-      </Pane>
       <Label layoutX="252.0" layoutY="82.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="Search ">
          <font>
             <Font size="50.0" />
@@ -29,7 +19,6 @@
          <font>
             <Font size="17.0" />
          </font></TextField>
-      <Label layoutX="279.0" layoutY="275.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css" text="Advanced Search:" textFill="WHITE" />
       <Button fx:id="Search1_goButton" layoutX="478.0" layoutY="190.0" mnemonicParsing="false" onAction="#search1_buttons" prefHeight="38.0" prefWidth="83.0" text="Go!" />
       <Button fx:id="backButton" layoutX="13.0" layoutY="32.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="50.0" prefWidth="60.0">
          <font>
@@ -42,5 +31,53 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <GridPane layoutX="130.0" layoutY="359.0" prefHeight="101.0" prefWidth="479.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="123.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="118.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="110.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <CheckBox mnemonicParsing="false" text="VA" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="Eye">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="Medicare" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="Nose" GridPane.columnIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="Other Insurance" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" stylesheets="@JMetroDarkTheme.css" text="Ear" GridPane.columnIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </GridPane>
+      <Label layoutX="255.0" layoutY="312.0" text="Advanced Search" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
