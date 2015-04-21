@@ -26,7 +26,7 @@
          </graphic></Button>
       <Pane layoutX="11.0" layoutY="150.0" prefHeight="399.0" prefWidth="677.0" stylesheets="@JMetroDarkTheme.css">
          <children>
-            <TableView opacity="0.52" prefHeight="399.0" prefWidth="677.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css">
+            <TableView fx:id="resultTable" opacity="0.52" prefHeight="399.0" prefWidth="677.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css">
               <columns>
                 <TableColumn fx:id="resultNames" prefWidth="233.0" text="Name" />
                 <TableColumn fx:id="resultService" prefWidth="233.0" text="Service" />

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import backdoor_.Flags;
+import backdoor_.Patient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,20 +16,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class SearchResultsController implements Initializable {
 	@FXML
 	private Button backButton, mainMenuButton;
-
-	/*
-	 * @FXML private TableColumn<?, ?> resultService;
-	 * 
-	 * @FXML private TableColumn<?, ?> resultInsrance;
-	 * 
-	 * @FXML private TableColumn<?, ?> resultNames; //private ObservableList
-	 * observableList = FXCollections.observableArrayList();
-	 */
+	
+	@FXML
+	private TableView<Patient> resultTable;
+	@FXML
+	private TableColumn<Patient, String> resultName;
+	@FXML
+	private TableColumn<Patient, String> resultService;
+	@FXML
+	private TableColumn<Patient, String> resultInsurance;
+	
+	ObservableList data = FXCollections.observableArrayList();
+	
+	data.add(new Patient("resultName_", "resultService_", "resultInsurance_"));
+//TODO FINISH TABLE DATA BINDING DO LOOP ABOVE
 	/**
 	 * Method to go back to the search screen Author M
 	 * 
@@ -74,9 +82,11 @@ public class SearchResultsController implements Initializable {
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		// Flags flag = Main.getFlags();
-		// String search = flag.getSearchTerms();
+		resultName.setCellValueFactory(new PropertyValueFactory<Patient,String>("resultName"));
+		resultService.setCellValueFactory(new PropertyValueFactory<Patient,String>("resultService"));
+		resultInsurance.setCellValueFactory(new PropertyValueFactory<Patient,String>("resultInsurance"));
 
+		resultTable.setItems(data);
 	}
 
 }

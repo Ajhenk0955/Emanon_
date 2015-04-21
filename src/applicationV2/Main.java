@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
 public class Main extends Application {
 
 	// flags may not be in the most secure location
-	private static Flags flags;
+	static Flags flags; //TODO broken
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {

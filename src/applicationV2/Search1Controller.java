@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,6 +22,8 @@ public class Search1Controller implements Initializable {
 	private Button Search1_goButton, backButton;
 	@FXML
 	private TextField searchTerm;
+	@FXML
+	private TableColumn<?, ?> resultName, resultService, resultInsurance;
 
 	/**
 	 * Method to handle Search1_goButton event
@@ -39,6 +42,7 @@ public class Search1Controller implements Initializable {
 			// setting flags search term
 			Flags flags = Main.getFlags();
 			flags.setSearchTerms(searchTerm.getText());
+			Main.setFlags(flags);
 
 			// finding reference for button's stage
 			stage = (Stage) Search1_goButton.getScene().getWindow();
