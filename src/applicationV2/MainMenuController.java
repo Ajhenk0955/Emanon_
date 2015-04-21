@@ -45,7 +45,7 @@ public class MainMenuController implements Initializable {
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.initOwner(logoutButton.getScene().getWindow());
 			stage.showAndWait();// forces program to focus on pop up window
-
+			
 		}
 		/*
 		 * TODO if below commented out, logout pop up X button works. but
