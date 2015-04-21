@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.net.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="657.0" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.PatientProfileController">
+   <children>
+      <SplitPane dividerPositions="0.20710059171597633" prefHeight="589.0" prefWidth="551.0">
+         <items>
+            <AnchorPane prefHeight="586.0" prefWidth="141.0" styleClass="background" stylesheets="@JMetroDarkTheme.css">
+               <children>
+                  <Label layoutX="18.0" layoutY="108.0" prefHeight="35.0" prefWidth="101.0" stylesheets="@JMetroDarkTheme.css" text="Categories" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Label>
+                  <VBox layoutY="151.0" prefHeight="200.0" prefWidth="137.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="137.0" text="Patient Hx" />
+                        <Button fx:id="pictureButton" mnemonicParsing="false" onAction="#handlePictureButton" prefHeight="33.0" prefWidth="166.0" text="Pictures" />
+                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="163.0" text="Insurance" />
+                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="140.0" text="Claim Forms" />
+                     </children>
+                  </VBox>
+                  <VBox layoutY="401.0" prefHeight="101.0" prefWidth="137.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="142.0" text="Share File(s)" />
+                        <Button fx:id="deleteFileButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="165.0" text="Delete File(s)" />
+                        <Button fx:id="addFileButton2" mnemonicParsing="false" onAction="#handleAddFileButton" prefHeight="33.0" prefWidth="176.0" text="Add File(s)" />
+                        <Button fx:id="deleteProfileButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" text="Delete Profile" />
+                     </children>
+                  </VBox>
+                  <Label layoutX="31.0" layoutY="351.0" prefHeight="35.0" prefWidth="76.0" text="Actions" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Label>
+                  <Button fx:id="mainMenuButton" layoutX="18.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleMainMenuButton" prefHeight="85.0" prefWidth="85.0" text="Back to Main" underline="true">
+                     <graphic>
+                        <ImageView fitHeight="70.0" pickOnBounds="true" preserveRatio="true" translateX="-18.0" translateY="-1.0">
+                           <image>
+                              <Image url="@../applicationV2_IMAGES/house.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="587.0" prefWidth="530.0" styleClass="background" stylesheets="@JMetroDarkTheme.css">
+               <children>
+                  <Label fx:id="patientNameLabel" layoutX="140.0" layoutY="25.0" text="&lt;Gingerbread Man&gt;" textFill="WHITE">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="452.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" text="SAVE">
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-15.0">
+                           <image>
+                              <Image url="@../applicationV2_IMAGES/mono-save.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <GridPane layoutX="60.0" layoutY="108.0" prefHeight="186.0" prefWidth="340.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Date of Birth" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="48.0" text="Label" />
+                        <Label layoutX="10.0" layoutY="17.0" text="Label" />
+                        <Label layoutX="10.0" layoutY="17.0" text="Label" />
+                        <Label layoutX="10.0" layoutY="17.0" text="Label" />
+                        <Label layoutX="10.0" layoutY="17.0" text="Label" />
+                        <Label layoutX="10.0" layoutY="17.0" text="Name" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="44.0" text="Sex" textFill="WHITE" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="44.0" text="SSN" textFill="WHITE" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="106.0" text="Home Phone" textFill="WHITE" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="137.0" text="Cell Phone" textFill="WHITE" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="143.0" text="Home Address" textFill="WHITE" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="148.0" text="City" textFill="WHITE" GridPane.rowIndex="7">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="172.0" text="Zip code" textFill="WHITE" GridPane.rowIndex="9">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="136.0" text="State" textFill="WHITE" GridPane.rowIndex="8">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="6.0" text="Gingerbread C Man" textFill="WHITE" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="167.0" layoutY="6.0" text="12/25/2008" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="167.0" layoutY="22.0" text="M" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="167.0" layoutY="39.0" text="658-54-8764" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="167.0" layoutY="56.0" text="269-548-4658" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="167.0" layoutY="73.0" text="23658 Seven Isles Ln" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="180.0" layoutY="107.0" text="Narnia" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="180.0" layoutY="124.0" text="FL" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="180.0" layoutY="141.0" text="36587" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

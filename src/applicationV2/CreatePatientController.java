@@ -52,14 +52,14 @@ public class CreatePatientController implements Initializable {
 		// User clicks save button
 		if (click.getSource() == saveButton) {
 
-			if (!makeNewPatient()) {
+			if (makeNewPatient()) {
 				// ERROR HERE (INVALID INPUT)
 			} else {
 				// finding reference for button's stage
 				stage = (Stage) saveButton.getScene().getWindow();
 				// now loading PatientProfile as parent
 				root = FXMLLoader.load(getClass().getResource(
-						"/applicationV2/PatientProfile.fxml"));
+						"/applicationV2/Copy of PatientProfile(1) - Copy.fxml")); //change this to PatientProfile
 
 				// makes PatientProfile scene and show it on the stage
 				Scene patientProfile = new Scene(root);
