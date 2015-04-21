@@ -33,7 +33,7 @@ public class SearchResultsController implements Initializable {
 	@FXML
 	private TableColumn<Patient, String> resultInsurance;
 	
-	ObservableList data = FXCollections.observableArrayList();
+	ObservableList<Patient> data = FXCollections.observableArrayList();
 	
 	data.add(new Patient("resultName_", "resultService_", "resultInsurance_"));
 //TODO FINISH TABLE DATA BINDING DO LOOP ABOVE

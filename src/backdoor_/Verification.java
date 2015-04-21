@@ -35,6 +35,9 @@ public class Verification {
 	 * @return
 	 */
 	public boolean Verify(String type, String value) {
+		if(value == null){
+			return false;
+		}
 		Pattern pattern = Pattern.compile(REGEX.get(type));
 
 		Matcher matcher = pattern.matcher(value);

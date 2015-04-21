@@ -33,10 +33,9 @@ public class CreatePatientController implements Initializable {
 
 	// form variables
 	@FXML
-	private TextField lastName, zipCode, mInitial, homePhone, dayOfBirth, ssn,
-			firstName, cellPhone, yearOfBirth, address, city;
-
-	private ChoiceBox<String> gender, monthOfBirth, state;
+	private TextField lastName, zipCode, MInitial, homePhone, dayOfBirth, ssn,
+			firstName, cellPhone, yearOfBirth, address, city, monthOfBirth,
+			state, gender;
 
 	/**
 	 * 
@@ -82,27 +81,27 @@ public class CreatePatientController implements Initializable {
 		checker = new Verification();
 
 		// Name TODO VERIFY NAME
-		Name newName = null;
+		Name newName = new Name();
 		if (!newName(newName))
 			return false;
 		newPatient.setName(newName);
 
 		// BirthDate (month/day/year)
-		String toDate = null;
+		String toDate = "";
 		if (!toDate(toDate))
 			return false;
 		newPatient.setBirthDate(toDate);
 
 		// Billing & insurance
-		Billing newBilling = null;
+		Billing newBilling = new Billing();
 		if (newBilling(newBilling))
 			return false;
 		newPatient.setBilling(newBilling);
 
 		// Gender
-		if (gender.getValue() == null)
+		if (gender.getText() == null)
 			return false;
-		newPatient.setGender(gender.getValue());
+		newPatient.setGender(gender.getText());
 
 		// SSN
 		if (!checker.Verify("SSN", ssn.getText()))
@@ -111,8 +110,8 @@ public class CreatePatientController implements Initializable {
 
 		char[] Password = null;
 		// TODO LOGIN VERIFICATION
-		DataBase PatientLoader = new DataBase("Username", Password, true);
-		PatientLoader.addPatient(newPatient);
+		// DataBase PatientLoader = new DataBase("Username", Password, true);
+		// PatientLoader.addPatient(newPatient);
 
 		return true;
 	}
@@ -125,7 +124,7 @@ public class CreatePatientController implements Initializable {
 	 */
 	private boolean newBilling(Billing newBilling) {
 
-		if (!checker.Verify("ZIP", zipCode.getText()))
+		if (!checker.Verify("US-ZIP", zipCode.getText()))
 			return false;
 
 		newBilling.setZipCode(zipCode.getText());
@@ -152,7 +151,9 @@ public class CreatePatientController implements Initializable {
 			return false;
 		newBilling.setCity(city.getText());
 
-		newBilling.setState(state.getValue());
+		if (!checker.Verify("STATE", state.getText()))
+			return false;
+		newBilling.setState(state.getText());
 
 		// When insurance is added just link TODO
 		Insurance newInsurance = new Insurance();
@@ -168,7 +169,7 @@ public class CreatePatientController implements Initializable {
 	 * @return
 	 */
 	private boolean toDate(String toDate) {
-		toDate = String.format("%s/%s/%s", monthOfBirth.getValue(),
+		toDate = String.format("%s/%s/%s", monthOfBirth.getText(),
 				dayOfBirth.getText(), yearOfBirth.getText());
 		if (!checker.Verify("DATE", toDate))
 			return false;
@@ -185,9 +186,9 @@ public class CreatePatientController implements Initializable {
 			return false;
 		newName.setFirstName(firstName.getText());
 
-		if (!checker.Verify("MINITIAL", mInitial.getText()))
+		if (!checker.Verify("MINITIAL", MInitial.getText()))
 			return false;
-		newName.setmInitial(mInitial.getText());
+		newName.setmInitial(MInitial.getText());
 
 		if (!checker.Verify("LASTNAME", lastName.getText()))
 			return false;
@@ -213,7 +214,6 @@ public class CreatePatientController implements Initializable {
 			stage.show();
 		}
 	}
-
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
