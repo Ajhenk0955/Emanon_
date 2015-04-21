@@ -74,7 +74,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="510.0" layoutY="338.0" text="Log Out" textFill="WHITE">
+      <Label layoutX="528.0" layoutY="338.0" text="Exit" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

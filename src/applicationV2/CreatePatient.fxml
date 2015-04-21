@@ -12,7 +12,14 @@
 	<center>
 		<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" BorderPane.alignment="CENTER">
 			<children>
-				<Button fx:id="saveButton" layoutX="534.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleSaveButton" text="SAVE" />
+				<Button fx:id="saveButton" layoutX="542.0" layoutY="488.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="85.0" prefWidth="85.0">
+               <graphic>
+                  <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../applicationV2_IMAGES/mono-save.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
 				<TextField fx:id="firstName" blendMode="SOFT_LIGHT" layoutX="148.0" layoutY="146.0" prefHeight="25.0" prefWidth="185.0" />
 				<TextField fx:id="lastName" blendMode="SOFT_LIGHT" layoutX="443.0" layoutY="146.0" prefHeight="25.0" prefWidth="176.0" />
 				<TextField fx:id="MInitial" blendMode="SOFT_LIGHT" layoutX="148.0" layoutY="209.0" prefHeight="25.0" prefWidth="35.0" />
@@ -86,6 +93,11 @@
                      </image>
                   </ImageView>
                </graphic></Button>
+            <Label layoutX="566.0" layoutY="572.0" text="SAVE" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
 			</children>
 		</AnchorPane>
 	</center>

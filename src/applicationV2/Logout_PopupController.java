@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,11 +33,13 @@ public class Logout_PopupController implements Initializable {
 			// finding reference for button stage
 			stage = (Stage) logout_Yes.getScene().getWindow();
 			stage.close();
-			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/Login.fxml"));
+			/*root = FXMLLoader.load(getClass().getResource(
+			"/applicationV2/Login.fxml"));
 			Scene scene = new Scene(root);
-			stage.setScene(scene);
+			stage.setScene(scene);*/
+			
 			stage.show();
+			Platform.exit();
 		}
 		else{
 			 stage=(Stage)logout_Cancel.getScene().getWindow();

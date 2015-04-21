@@ -41,12 +41,19 @@
                      <font>
                         <Font size="21.0" />
                      </font></Label>
-                  <Button fx:id="mainMenuButton" layoutX="1.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleMainMenuButton" prefHeight="33.0" prefWidth="137.0" text="Back to Main" underline="true" />
+                  <Button fx:id="mainMenuButton" layoutX="18.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleMainMenuButton" prefHeight="85.0" prefWidth="85.0" text="Back to Main" underline="true">
+                     <graphic>
+                        <ImageView fitHeight="70.0" pickOnBounds="true" preserveRatio="true" translateX="-18.0" translateY="-1.0">
+                           <image>
+                              <Image url="@../applicationV2_IMAGES/house.PNG" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="587.0" prefWidth="532.0" styleClass="background" stylesheets="@JMetroDarkTheme.css">
                <children>
-                  <ScrollPane layoutY="79.0" prefHeight="508.0" prefWidth="527.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css">
+                  <ScrollPane layoutY="79.0" prefHeight="508.0" prefWidth="533.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css">
                      <content>
                         <ScrollBar nodeOrientation="RIGHT_TO_LEFT" orientation="VERTICAL" prefHeight="504.0" prefWidth="16.0" />
                      </content>
@@ -56,7 +63,14 @@
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Button layoutX="421.0" layoutY="17.0" mnemonicParsing="false" text="SAVE" />
+                  <Button layoutX="452.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" text="SAVE">
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateX="-15.0">
+                           <image>
+                              <Image url="@../applicationV2_IMAGES/mono-save.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </AnchorPane>
          </items>

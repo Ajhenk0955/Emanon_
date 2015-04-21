@@ -34,11 +34,16 @@ public class LoginController implements Initializable {
 		// TODO Auto-generated method stub
 	}
 
-	// method when login button is clicked
+	/**
+	 * method when login button is clicked
+	 * 
+	 * @param loginClicked
+	 * @stage2 is invisible window
+	 */
 	@FXML
 	private void handleLoginButton(ActionEvent loginClicked) throws IOException {
 		Stage stage;
-		Parent root;
+		Parent root, root2;
 
 		if (loginClicked.getSource() == login_Button) {
 
@@ -60,13 +65,23 @@ public class LoginController implements Initializable {
 			 * login_Password.getText().equals("test")) { openWindow = true; } }
 			 */// }
 				// if (openWindow) {
-			System.out.println("TESSTTTTT");
-			// finding reference for button's stage
+
 			stage = (Stage) login_Button.getScene().getWindow();
-			// now loading MainMenuScreen as parent
+			Stage stage2 = new Stage(); // will be invisible stage
+
+			// now loading respective screens for windows
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/MainMenu.fxml"));
-			// makes MainMenu scene and show it on the stage
+			root2 = FXMLLoader.load(getClass().getResource(
+					"/applicationV2/InvisibleWindow.fxml"));
+
+			// Invisible window that gets hidden
+			Scene invisibleWindow = new Scene(root2);
+			stage2.setScene(invisibleWindow);
+			stage2.setTitle("Emanon File System - Invisible Window");
+			stage2.hide();
+
+			// Main Menu window 
 			Scene MainMenuScene = new Scene(root);
 			stage.setScene(MainMenuScene);
 			stage.setTitle("Emanon File System - Main Menu");
@@ -76,6 +91,7 @@ public class LoginController implements Initializable {
 			// failedLogin();
 			// }
 		}
+
 	}
 
 	private void failedLogin() throws IOException {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="250.0" prefWidth="183.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Label layoutX="20.0" layoutY="47.0" text="Hi, I'm an invisible Window" />
+      <ImageView fitHeight="132.0" fitWidth="172.0" layoutX="10.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../applicationV2_IMAGES/DomoDrinkingSlurpee_640.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
