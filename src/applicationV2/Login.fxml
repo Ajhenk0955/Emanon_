@@ -10,11 +10,6 @@
    <children>
       <TextField fx:id="login_Username" alignment="CENTER" layoutX="109.0" layoutY="218.0" prefHeight="25.0" prefWidth="206.0" promptText="Username" stylesheets="@JMetroDarkTheme.css" />
       <PasswordField fx:id="login_Password" alignment="CENTER" layoutX="109.0" layoutY="251.0" prefHeight="25.0" prefWidth="206.0" promptText="Password" />
-      <Button fx:id="login_Button" layoutX="332.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="33.0" prefWidth="99.0" stylesheets="@JMetroDarkTheme.css" text="Login" textAlignment="CENTER" AnchorPane.bottomAnchor="76.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Button>
       <Label fx:id="login_Label" layoutX="79.0" layoutY="50.0" prefHeight="17.0" prefWidth="141.0" textAlignment="CENTER" />
       <Label contentDisplay="CENTER" layoutX="109.0" layoutY="30.0" prefHeight="77.0" prefWidth="223.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="Emanon: ">
          <font>
@@ -23,6 +18,15 @@
       </Label>
       <Label layoutX="89.0" layoutY="103.0" styleClass="header" stylesheets="@JMetroDarkTheme.css" text="File System" />
       <Hyperlink fx:id="login_Hyperlink" layoutX="141.0" layoutY="283.0" onAction="#handleLoginHyperlink" text="Forgot Username/Password?" />
-      <Button fx:id="signUpButton" layoutX="231.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="33.0" prefWidth="99.0" text="Sign up" />
+      <HBox layoutX="201.0" layoutY="358.0" prefHeight="33.0" prefWidth="213.0">
+         <children>
+            <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#handleSignUpButton" prefHeight="33.0" prefWidth="99.0" text="Sign up" />
+            <Button fx:id="login_Button" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="33.0" prefWidth="99.0" stylesheets="@JMetroDarkTheme.css" text="Login" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
