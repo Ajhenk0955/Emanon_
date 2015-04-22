@@ -26,9 +26,14 @@
          </graphic></Button>
       <Pane layoutX="11.0" layoutY="150.0" prefHeight="399.0" prefWidth="677.0" stylesheets="@JMetroDarkTheme.css">
          <children>
-            <Separator layoutX="3.0" layoutY="19.0" prefHeight="0.0" prefWidth="670.0" />
-            <Separator layoutX="3.0" layoutY="59.0" prefHeight="0.0" prefWidth="670.0" />
-            <Label layoutX="288.0" layoutY="17.0" text="Patients" textFill="WHITE">
+            <Separator layoutX="21.0" layoutY="13.0" prefHeight="1.0" prefWidth="636.0" />
+            <Label layoutX="281.0" layoutY="13.0" text="Patients" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <Separator layoutX="21.0" layoutY="55.0" prefHeight="1.0" prefWidth="636.0" />
+            <Label fx:id="gingerLabel" layoutX="34.0" layoutY="90.0" onMouseClicked="#handleClickProfile" text="Gingerbread Man" textFill="WHITE">
                <font>
                   <Font size="29.0" />
                </font>

@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public class PatientProfileController implements Initializable{
 
 	@FXML
-	private Button mainMenuButton,mainMenuButton3, DomoButton, DomoButton2, addFileButton, addFileButton2, patientHxButton, pictureButton;
+	private Button mainMenuButton,mainMenuButton3, DomoButton, DomoButton2, addFileButton, addFileButton2, patientHxButton, pictureButton, saveButton;
 	
 	@FXML
 	private Label patientNameLabel;

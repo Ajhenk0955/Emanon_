@@ -45,7 +45,7 @@ public class MainMenuController implements Initializable {
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.initOwner(logoutButton.getScene().getWindow());
 			stage.showAndWait();// forces program to focus on pop up window
-			
+
 		}
 		/*
 		 * TODO if below commented out, logout pop up X button works. but
@@ -78,24 +78,46 @@ public class MainMenuController implements Initializable {
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/Search1.fxml"));
 			stage.setTitle("Emanon File System - Search");
-			
+
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+
 		} else {
-		/*
-			// setting flags search term
-			Flags flags = Main.getFlags();
-			if(searchTerm.getText() != null)
-				flags.setSearchTerms(searchTerm.getText());
-			*/
-			stage = (Stage) quickSearch.getScene().getWindow();
-			// now loading SearchingScreen as parent
-			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/SearchResults.fxml"));
-			stage.setTitle("Emanon File System - Search Results");
+			/*
+			 * // setting flags search term Flags flags = Main.getFlags();
+			 * if(searchTerm.getText() != null)
+			 * flags.setSearchTerms(searchTerm.getText());
+			 */
+
+			// when searching for gingerbread man
+			if (e0.getSource() == quickSearch
+					&& searchTerm.getText().equals("Gingerbread")) {
+				Stage stage2;
+				Parent root2;
+				stage2 = (Stage) quickSearch.getScene().getWindow();
+				root2 = FXMLLoader.load(getClass().getResource(
+						"/applicationV2/SearchResults - Copy.fxml"));
+				
+				Scene scene = new Scene(root2);
+				stage2.setScene(scene);
+				stage2.show();
+			}
+			// when search is nothing
+			else {
+				stage = (Stage) quickSearch.getScene().getWindow();
+				// now loading SearchingScreen as parent
+				root = FXMLLoader.load(getClass().getResource(
+						"/applicationV2/SearchResults.fxml"));
+				stage.setTitle("Emanon File System - Search Results");
+				Scene scene = new Scene(root);
+				stage.setTitle("Testing!!!");
+				System.out.println("testing search results");
+			stage.setScene(scene);
+			stage.show();
+			}
+			
 		}
-		// after either branch was selected
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
 	}
 
 	/**
