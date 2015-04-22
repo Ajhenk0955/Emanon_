@@ -2,13 +2,9 @@ package applicationV2;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import backdoor_.Billing;
-import backdoor_.DataBase;
+import backdoor_.Flags;
 import backdoor_.Insurance;
 import backdoor_.Name;
 import backdoor_.Patient;
@@ -20,10 +16,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Checks user inputs, pushes to database via database class TO DO: address,
+ * insurance, and database pushing
+ * 
+ * @author Andrew
+ *
+ */
 public class CreatePatientController implements Initializable {
 
 	private Verification checker;
@@ -36,6 +39,8 @@ public class CreatePatientController implements Initializable {
 	private TextField lastName, zipCode, MInitial, homePhone, dayOfBirth, ssn,
 			firstName, cellPhone, yearOfBirth, address, city, monthOfBirth,
 			state, gender;
+	private Patient newPatient;
+	private Flags flags;
 
 	/**
 	 * 
@@ -54,12 +59,19 @@ public class CreatePatientController implements Initializable {
 
 			if (makeNewPatient()) {
 				// ERROR HERE (INVALID INPUT)
+				// TODO bad input popup
 			} else {
+				// TODO pass information to PATIENT PROFILE SCREEN
 				// finding reference for button's stage
 				stage = (Stage) saveButton.getScene().getWindow();
 				// now loading PatientProfile as parent
-				root = FXMLLoader.load(getClass().getResource(
-						"/applicationV2/Copy of PatientProfile(1) - Copy.fxml")); //change this to PatientProfile
+				root = FXMLLoader
+						.load(getClass()
+								.getResource(
+										"/applicationV2/Copy of PatientProfile(1) - Copy.fxml")); // change
+																									// this
+																									// to
+																									// PatientProfile
 
 				// makes PatientProfile scene and show it on the stage
 				Scene patientProfile = new Scene(root);
@@ -70,6 +82,26 @@ public class CreatePatientController implements Initializable {
 		}
 	}
 
+	private void popupAuth() throws IOException {
+		Stage stage = new Stage();// makes a new stage
+		Parent root;
+
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+				"/applicationV2/AdminClearance.fxml"));
+		root = (Parent) fxmlLoader.load();
+		stage.setScene(new Scene(root)); // making a new scene
+		stage.setTitle("Authorize");
+
+		AdminClearanceController controller = fxmlLoader
+				.<AdminClearanceController> getController();
+		controller.setFlags(flags);
+
+		// modality tells it to pop over another window
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.initOwner(saveButton.getScene().getWindow());
+		stage.showAndWait();// forces program to focus on pop up window
+	}
+
 	/**
 	 * AHenk Verifies user inputs Puts new data into a Patient POJO Requests
 	 * database to put data
@@ -77,10 +109,10 @@ public class CreatePatientController implements Initializable {
 	 * @return
 	 */
 	private boolean makeNewPatient() {
-		Patient newPatient = new Patient();
+		newPatient = new Patient();
 		checker = new Verification();
 
-		// Name TODO VERIFY NAME
+		// Name
 		Name newName = new Name();
 		if (!newName(newName))
 			return false;
@@ -108,11 +140,14 @@ public class CreatePatientController implements Initializable {
 			return false;
 		newPatient.setSSN(ssn.getText());
 
-		char[] Password = null;
-		// TODO LOGIN VERIFICATION
-		// DataBase PatientLoader = new DataBase("Username", Password, true);
-		// PatientLoader.addPatient(newPatient);
-
+		try {
+			popupAuth();
+		} catch (IOException e) {
+			return false;
+		}
+		// put data to flags
+		flags.setPatient(newPatient);
+		flags.setAddPatient(true);
 		return true;
 	}
 
@@ -216,7 +251,6 @@ public class CreatePatientController implements Initializable {
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 
 	}
 

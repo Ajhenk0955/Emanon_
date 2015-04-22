@@ -33,7 +33,8 @@ public class SearchResultsController implements Initializable {
 	@FXML
 	private TableColumn<Patient, String> resultInsurance;
 	
-	ObservableList<Patient> data = FXCollections.observableArrayList();
+	private ObservableList<Patient> data = FXCollections.observableArrayList();
+	private Flags flags;
 	
 	//data.add(new Patient("resultName_", "resultService_", "resultInsurance_"));
 //TODO FINISH TABLE DATA BINDING DO LOOP ABOVE
@@ -70,6 +71,7 @@ public class SearchResultsController implements Initializable {
 		Parent root;
 
 		if (e2.getSource() == mainMenuButton) {
+			
 			stage = (Stage) mainMenuButton.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/MainMenu.fxml"));
@@ -89,6 +91,14 @@ public class SearchResultsController implements Initializable {
 
 		resultTable.setItems(data);
 		*/
+	}
+
+	public Flags getFlags() {
+		return flags;
+	}
+
+	public void setFlags(Flags flags) {
+		this.flags = flags;
 	}
 
 }

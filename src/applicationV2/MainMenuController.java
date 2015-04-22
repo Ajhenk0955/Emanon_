@@ -21,6 +21,8 @@ public class MainMenuController implements Initializable {
 			quickSearch, edit_UserProfile;
 	@FXML
 	private TextField searchTerm;
+	
+	private Flags flags;
 
 	/**
 	 * Method to handle the log out button in the Main Menu
@@ -77,20 +79,23 @@ public class MainMenuController implements Initializable {
 			// now loading SearchingScreen as parent
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/Search1.fxml"));
+
 			stage.setTitle("Emanon File System - Search");
 			
 		} else {
-		
-			// setting flags search term
-			//TODO test FLAGS
-			Flags flags = FlagController.getFlag();
-			if(searchTerm.getText() != null)
-				flags.setSearchTerms(searchTerm.getText());
+			
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+					"/applicationV2/SearchResults.fxml"));     
+
+			root = (Parent)fxmlLoader.load(); 
+			
+			//sets the flag variable 
+			SearchResultsController controller = fxmlLoader.<SearchResultsController>getController();
+			flags.setSearchTerms(searchTerm.getText());
+			controller.setFlags(flags);
 
 			stage = (Stage) quickSearch.getScene().getWindow();
 			// now loading SearchingScreen as parent
-			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/SearchResults.fxml"));
 			stage.setTitle("Emanon File System - Search Results");
 		}
 		// after either branch was selected
@@ -98,6 +103,7 @@ public class MainMenuController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
+
 
 	/**
 	 * Method to take care of the add patient button

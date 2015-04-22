@@ -26,6 +26,16 @@ public class AdminClearanceController {
 
 	@FXML
 	private Button confirmButton;
+	
+	private Flags flags;
+
+	public Flags getFlags() {
+		return flags;
+	}
+
+	public void setFlags(Flags flags) {
+		this.flags = flags;
+	}
 
 	/**
 	 * should probably be a switch Checks flags, and resets flags
@@ -38,8 +48,6 @@ public class AdminClearanceController {
 		DataBase database = new DataBase(userName.getText(), password.getText()
 				.toCharArray(), false);
 
-		// Getting Flags
-		Flags flags = Main.getFlags();
 
 		// create user account
 		if (flags.isCreateUser()) {
@@ -74,8 +82,6 @@ public class AdminClearanceController {
 		// add file
 		// delete file
 		// edit file
-
-		Main.setFlags(flags);
 	}
 
 }

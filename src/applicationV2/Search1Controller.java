@@ -24,6 +24,8 @@ public class Search1Controller implements Initializable {
 	private TextField searchTerm;
 	@FXML
 	private TableColumn<?, ?> resultName, resultService, resultInsurance;
+	
+	private Flags flags;
 
 	/**
 	 * Method to handle Search1_goButton event
@@ -39,16 +41,19 @@ public class Search1Controller implements Initializable {
 		// User clicks Go! Button
 		if (ButtonClick.getSource() == Search1_goButton) {
 
-			// setting flags search term
-			//Flags flags = Main.getFlags();
-			//flags.setSearchTerms(searchTerm.getText());
-			//Main.setFlags(flags);
-
 			// finding reference for button's stage
 			stage = (Stage) Search1_goButton.getScene().getWindow();
 			// now loading SearchResults as parent
-			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/SearchResults.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+					"/applicationV2/SearchResults.fxml"));     
+
+			root = (Parent)fxmlLoader.load(); 
+			
+			//Sets variables for search page
+			SearchResultsController controller = fxmlLoader.<SearchResultsController>getController();
+			updateFlags();
+			controller.setFlags(flags);
+			
 			// makes SearchResults scene and show it on the stage
 			Scene searchResults = new Scene(root);
 			stage.setScene(searchResults);
@@ -80,10 +85,18 @@ public class Search1Controller implements Initializable {
 			stage.show();
 		}
 	}
+	
+
+	/*
+	 * should update a flags variable with checkboxes and searchTerms
+	 * @author Henk
+	 */
+	private void updateFlags() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

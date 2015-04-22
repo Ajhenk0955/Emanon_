@@ -31,7 +31,6 @@ public class LoginController implements Initializable {
 	private Button submitLoginRecovery;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 	}
 
 	/**

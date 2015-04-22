@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="250.0" prefWidth="183.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="250.0" prefWidth="183.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.FlagController">
    <children>
       <Label layoutX="20.0" layoutY="47.0" />
       <ImageView fitHeight="325.0" fitWidth="384.0" pickOnBounds="true" preserveRatio="true">
