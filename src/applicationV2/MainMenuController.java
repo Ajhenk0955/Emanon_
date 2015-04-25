@@ -84,6 +84,7 @@ public class MainMenuController implements Initializable {
 			stage.show();
 
 		} else {
+<<<<<<< HEAD
 			/*
 			 * // setting flags search term Flags flags = Main.getFlags();
 			 * if(searchTerm.getText() != null)
@@ -117,6 +118,20 @@ public class MainMenuController implements Initializable {
 			stage.show();
 			}
 			
+=======
+		
+			// setting flags search term
+			//TODO test FLAGS
+			Flags flags = FlagController.getFlag();
+			if(searchTerm.getText() != null)
+				flags.setSearchTerms(searchTerm.getText());
+
+			stage = (Stage) quickSearch.getScene().getWindow();
+			// now loading SearchingScreen as parent
+			root = FXMLLoader.load(getClass().getResource(
+					"/applicationV2/SearchResults.fxml"));
+			stage.setTitle("Emanon File System - Search Results");
+>>>>>>> origin/Working
 		}
 	}
 
