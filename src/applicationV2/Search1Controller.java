@@ -12,19 +12,38 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Search1Controller implements Initializable {
 
 	@FXML
-	private Button Search1_goButton, backButton;
+	private CheckBox earBox;
+
+	@FXML
+	private Button Search1_goButton;
+
+	@FXML
+	private CheckBox noseBox;
+
 	@FXML
 	private TextField searchTerm;
+
 	@FXML
-	private TableColumn<?, ?> resultName, resultService, resultInsurance;
-	
+	private Button backButton;
+
+	@FXML
+	private CheckBox medicareBox;
+
+	@FXML
+	private CheckBox vaBox;
+
+	@FXML
+	private CheckBox eyeBox;
+
+	@FXML
+	private CheckBox insuranceBox;
 	private Flags flags;
 
 	/**
@@ -45,15 +64,16 @@ public class Search1Controller implements Initializable {
 			stage = (Stage) Search1_goButton.getScene().getWindow();
 			// now loading SearchResults as parent
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-					"/applicationV2/SearchResults.fxml"));     
+					"/applicationV2/SearchResults.fxml"));
 
-			root = (Parent)fxmlLoader.load(); 
-			
-			//Sets variables for search page
-			SearchResultsController controller = fxmlLoader.<SearchResultsController>getController();
+			root = (Parent) fxmlLoader.load();
+
+			// Sets variables for search page
+			SearchResultsController controller = fxmlLoader
+					.<SearchResultsController> getController();
 			updateFlags();
 			controller.setFlags(flags);
-			
+
 			// makes SearchResults scene and show it on the stage
 			Scene searchResults = new Scene(root);
 			stage.setScene(searchResults);
@@ -85,15 +105,21 @@ public class Search1Controller implements Initializable {
 			stage.show();
 		}
 	}
-	
 
 	/*
 	 * should update a flags variable with checkboxes and searchTerms
+	 * 
 	 * @author Henk
 	 */
 	private void updateFlags() {
-		// TODO Auto-generated method stub
-		
+		flags = new Flags();
+		flags.setEar(earBox.isPressed());
+		flags.setEye(eyeBox.isPressed());
+		flags.setNose(noseBox.isPressed());
+		flags.setMedicare(medicareBox.isPressed());
+		flags.setVa(vaBox.isPressed());
+		flags.setInsurance(insuranceBox.isPressed());
+		flags.setSearchTerms(searchTerm.getText());
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {

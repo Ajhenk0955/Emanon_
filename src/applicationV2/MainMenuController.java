@@ -91,7 +91,7 @@ public class MainMenuController implements Initializable {
 			
 			//sets the flag variable 
 			SearchResultsController controller = fxmlLoader.<SearchResultsController>getController();
-			flags.setSearchTerms(searchTerm.getText());
+			updateFlags();
 			controller.setFlags(flags);
 
 			stage = (Stage) quickSearch.getScene().getWindow();
@@ -104,6 +104,11 @@ public class MainMenuController implements Initializable {
 		stage.show();
 	}
 
+
+	private void updateFlags() {
+		flags = new Flags();
+		flags.setSearchTerms(searchTerm.getText());		
+	}
 
 	/**
 	 * Method to take care of the add patient button
