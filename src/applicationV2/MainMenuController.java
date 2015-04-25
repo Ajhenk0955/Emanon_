@@ -21,6 +21,8 @@ public class MainMenuController implements Initializable {
 			quickSearch, edit_UserProfile;
 	@FXML
 	private TextField searchTerm;
+	
+	private Flags flags;
 
 	/**
 	 * Method to handle the log out button in the Main Menu
@@ -77,6 +79,7 @@ public class MainMenuController implements Initializable {
 			// now loading SearchingScreen as parent
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/Search1.fxml"));
+
 			stage.setTitle("Emanon File System - Search");
 
 			Scene scene = new Scene(root);
@@ -84,55 +87,40 @@ public class MainMenuController implements Initializable {
 			stage.show();
 
 		} else {
-<<<<<<< HEAD
+
 			/*
 			 * // setting flags search term Flags flags = Main.getFlags();
 			 * if(searchTerm.getText() != null)
 			 * flags.setSearchTerms(searchTerm.getText());
 			 */
 
-			// when searching for gingerbread man
-			if (e0.getSource() == quickSearch
-					&& searchTerm.getText().equals("Gingerbread")) {
-				Stage stage2;
-				Parent root2;
-				stage2 = (Stage) quickSearch.getScene().getWindow();
-				root2 = FXMLLoader.load(getClass().getResource(
-						"/applicationV2/SearchResults - Copy.fxml"));
-				
-				Scene scene = new Scene(root2);
-				stage2.setScene(scene);
-				stage2.show();
-			}
-			// when search is nothing
-			else {
-				stage = (Stage) quickSearch.getScene().getWindow();
-				// now loading SearchingScreen as parent
-				root = FXMLLoader.load(getClass().getResource(
-						"/applicationV2/SearchResults.fxml"));
-				stage.setTitle("Emanon File System - Search Results");
-				Scene scene = new Scene(root);
-				stage.setTitle("Testing!!!");
-				System.out.println("testing search results");
-			stage.setScene(scene);
-			stage.show();
-			}
-			
-=======
-		
 			// setting flags search term
 			//TODO test FLAGS
 			Flags flags = FlagController.getFlag();
 			if(searchTerm.getText() != null)
 				flags.setSearchTerms(searchTerm.getText());
+			
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+					"/applicationV2/SearchResults.fxml"));     
+
+			root = (Parent)fxmlLoader.load(); 
+			
+			//sets the flag variable 
+			SearchResultsController controller = fxmlLoader.<SearchResultsController>getController();
+			updateFlags();
+			controller.setFlags(flags);
+
 
 			stage = (Stage) quickSearch.getScene().getWindow();
 			// now loading SearchingScreen as parent
-			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/SearchResults.fxml"));
 			stage.setTitle("Emanon File System - Search Results");
->>>>>>> origin/Working
 		}
+	}
+
+
+	private void updateFlags() {
+		flags = new Flags();
+		flags.setSearchTerms(searchTerm.getText());		
 	}
 
 	/**

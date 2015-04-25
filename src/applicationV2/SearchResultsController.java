@@ -2,6 +2,7 @@ package applicationV2;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import backdoor_.Flags;
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
 public class SearchResultsController implements Initializable {
 	@FXML
 	private Button backButton, mainMenuButton;
-	
+
 	@FXML
 	private Label gingerLabel;
 	
@@ -37,11 +38,10 @@ public class SearchResultsController implements Initializable {
 	private TableColumn<Patient, String> resultService;
 	@FXML
 	private TableColumn<Patient, String> resultInsurance;
-	
-	ObservableList<Patient> data = FXCollections.observableArrayList();
-	
-	//data.add(new Patient("resultName_", "resultService_", "resultInsurance_"));
-//TODO FINISH TABLE DATA BINDING DO LOOP ABOVE
+
+	private ObservableList<Patient> data;
+	private Flags flags;
+
 	/**
 	 * Method to go back to the search screen Author M
 	 * 
@@ -75,6 +75,7 @@ public class SearchResultsController implements Initializable {
 		Parent root;
 
 		if (e2.getSource() == mainMenuButton) {
+
 			stage = (Stage) mainMenuButton.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource(
 					"/applicationV2/MainMenu.fxml"));
@@ -105,13 +106,70 @@ public class SearchResultsController implements Initializable {
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		/*
-		resultName.setCellValueFactory(new PropertyValueFactory<Patient,String>("resultName"));
-		resultService.setCellValueFactory(new PropertyValueFactory<Patient,String>("resultService"));
-		resultInsurance.setCellValueFactory(new PropertyValueFactory<Patient,String>("resultInsurance"));
 
+		resultName
+				.setCellValueFactory(new PropertyValueFactory<Patient, String>(
+						"resultName"));
+		resultService
+				.setCellValueFactory(new PropertyValueFactory<Patient, String>(
+						"resultService"));
+		resultInsurance
+				.setCellValueFactory(new PropertyValueFactory<Patient, String>(
+						"resultInsurance"));
+
+		buildData();
+
+	}
+
+	/**
+	 * puts search results to the set
+	 */
+	private void buildData() {
+		List<Patient> results = getResults();
+		for (Patient patient : results) {
+			data.add(patient);
+		}
 		resultTable.setItems(data);
-		*/
+	}
+
+	/**
+	 * controller for retrieving search results calls DataBase
+	 * 
+	 * @return
+	 */
+	private List<Patient> getResults() {
+		int settings = flags.toFinalString();
+		
+		// eye, ear, nose, va, insurance, medicare, search
+		switch (settings) {
+        case 1:  settings = 11; // eye
+                 break;
+        case 2:  settings = 101; // ear
+                 break;
+        case 3:  settings = 1001; // nose
+                 break;
+        case 4:  settings = 10001; // va
+                 break;
+        case 5:  settings = 100001; // other insurance
+                 break;
+        case 6:  settings = 1000001; // medicare
+                 break;
+        case 7:  settings = 10000001; // search term
+                 break;
+
+    }
+		
+		
+			
+		return null;
+	}
+
+	public Flags getFlags() {
+		return flags;
+	}
+
+	public void setFlags(Flags flags) {
+		this.flags = flags;
 	}
 
 }

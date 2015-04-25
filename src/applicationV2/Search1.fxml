@@ -45,32 +45,32 @@
 				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<CheckBox mnemonicParsing="false" text="VA" GridPane.rowIndex="1">
+				<CheckBox fx:id="vaBox" mnemonicParsing="false" text="VA" GridPane.rowIndex="1">
 					<font>
 						<Font size="16.0" />
 					</font>
 				</CheckBox>
-				<CheckBox mnemonicParsing="false" text="Eye">
+				<CheckBox fx:id="eyeBox" mnemonicParsing="false" text="Eye">
 					<font>
 						<Font size="16.0" />
 					</font>
 				</CheckBox>
-				<CheckBox mnemonicParsing="false" text="Medicare" GridPane.columnIndex="1" GridPane.rowIndex="1">
+				<CheckBox fx:id="medicareBox" mnemonicParsing="false" text="Medicare" GridPane.columnIndex="1" GridPane.rowIndex="1">
 					<font>
 						<Font size="16.0" />
 					</font>
 				</CheckBox>
-				<CheckBox mnemonicParsing="false" text="Nose" GridPane.columnIndex="2">
+				<CheckBox fx:id="noseBox" mnemonicParsing="false" text="Nose" GridPane.columnIndex="2">
 					<font>
 						<Font size="16.0" />
 					</font>
 				</CheckBox>
-				<CheckBox mnemonicParsing="false" text="Other Insurance" GridPane.columnIndex="2" GridPane.rowIndex="1">
+				<CheckBox fx:id="insuranceBox" mnemonicParsing="false" text="Other Insurance" GridPane.columnIndex="2" GridPane.rowIndex="1">
 					<font>
 						<Font size="16.0" />
 					</font>
 				</CheckBox>
-				<CheckBox mnemonicParsing="false" stylesheets="@JMetroDarkTheme.css" text="Ear" GridPane.columnIndex="1">
+				<CheckBox fx:id="earBox" mnemonicParsing="false" stylesheets="@JMetroDarkTheme.css" text="Ear" GridPane.columnIndex="1">
 					<font>
 						<Font size="16.0" />
 					</font>

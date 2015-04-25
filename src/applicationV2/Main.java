@@ -12,9 +12,6 @@ import javafx.scene.image.Image;
 
 public class Main extends Application {
 
-	// flags may not be in the most secure location
-	static Flags flags; //TODO broken
-
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		// loads the login FXML
@@ -37,12 +34,5 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	public static Flags getFlags() {
-		return flags;
-	}
-
-	public static void setFlags(Flags flags) {
-		Main.flags = flags;
-	}
 
 }
