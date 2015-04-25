@@ -68,10 +68,7 @@ public class CreatePatientController implements Initializable {
 				root = FXMLLoader
 						.load(getClass()
 								.getResource(
-										"/applicationV2/Copy of PatientProfile(1) - Copy.fxml")); // change
-																									// this
-																									// to
-																									// PatientProfile
+										"/applicationV2/PatientProfile.fxml")); 
 
 				// makes PatientProfile scene and show it on the stage
 				Scene patientProfile = new Scene(root);

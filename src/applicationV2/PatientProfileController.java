@@ -142,7 +142,7 @@ public class PatientProfileController implements Initializable{
 			stage = new Stage() ;
 			// now loading CreatePatientScreen as parent
 			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/AdminClearance.fxml"));
+					"/applicationV2/DeleteFWarning.fxml"));
 			stage.setScene(new Scene(root)); // making a new scene
 			stage.setTitle("Administrator Confirmation");
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -171,7 +171,7 @@ public class PatientProfileController implements Initializable{
 			stage = new Stage() ;
 			// now loading CreatePatientScreen as parent
 			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/AdminClearance.fxml"));
+					"/applicationV2/DeleteWarning.fxml"));
 			stage.setScene(new Scene(root)); // making a new scene
 			stage.setTitle("Administrator Confirmation");
 			stage.initModality(Modality.APPLICATION_MODAL);

@@ -14,11 +14,6 @@
             <Font size="54.0" />
          </font>
       </Label>
-      <Text fill="WHITE" layoutX="63.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure you want to delete the profile?       Press DELETE to permanently delete the profile. Press CANCEL to go back. " wrappingWidth="358.13671875">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
       <Button fx:id="deleteButton" layoutX="128.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="DELETE" />
       <Button fx:id="cancelButton" layoutX="256.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="CANCEL" />
       <ImageView fitHeight="51.0" fitWidth="63.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
@@ -31,5 +26,10 @@
             <Image url="@../applicationV2_IMAGES/warning%20sign.png" />
          </image>
       </ImageView>
+      <Text fill="WHITE" layoutX="77.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure you want to delete the file?            Press DELETE to permanently delete the file.        Press CANCEL to go back. " wrappingWidth="358.13671875">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

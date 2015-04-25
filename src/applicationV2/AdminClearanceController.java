@@ -7,12 +7,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * appropriately responds to flags
  * 
  * @author Andrew
  *
+ */
+/**
+ * 
+ * @Author Sam
+ * Handle buttons 
  */
 public class AdminClearanceController {
 
@@ -23,7 +29,7 @@ public class AdminClearanceController {
 	private TextField userName;
 
 	@FXML
-	private Button confirmButton;
+	private Button confirmButton, cancelButton;
 
 	private Flags flags;
 
@@ -43,8 +49,10 @@ public class AdminClearanceController {
 	 */
 	@FXML
 	private void adminVerifyAction(ActionEvent event) {
+		Stage stage;
 		if (event.getSource() == confirmButton) {
-
+			stage = (Stage) confirmButton.getScene().getWindow();
+			
 			DataBase database = new DataBase(userName.getText(), password
 					.getText().toCharArray(), false);
 
@@ -78,9 +86,17 @@ public class AdminClearanceController {
 				flags.setDeletePatient(false);
 				flags.setId(null);
 			}
+			stage.close();
 			// add file
 			// delete file
 			// edit file
 		}
+		else {
+			stage = (Stage) cancelButton.getScene().getWindow();
+			stage.close();
+		}
 	}
+	
+	
+	
 }
