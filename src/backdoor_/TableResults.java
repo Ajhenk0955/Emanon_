@@ -11,24 +11,12 @@ public class TableResults {
 		return patientName;
 	}
 
-	public void setPatientName(SimpleStringProperty patientName) {
-		this.patientName = patientName;
-	}
-
 	public SimpleStringProperty getInsurance() {
 		return insurance;
 	}
 
-	public void setInsurance(SimpleStringProperty insurance) {
-		this.insurance = insurance;
-	}
-
 	public SimpleStringProperty getService() {
 		return service;
-	}
-
-	public void setService(SimpleStringProperty service) {
-		this.service = service;
 	}
 
 }
