@@ -122,4 +122,65 @@ public class PatientProfileController implements Initializable{
 			stage.show();
 		}
 	}
+	
+	/////////////////////
+
+	/**
+	 * 
+	 * @Author Sam
+	 * Method to handle the delete files button 
+	 */
+	@FXML
+	private Button deleteFileButton;
+	
+	@FXML
+	private void handleDeleteFileButton(ActionEvent e1) throws IOException {
+		Stage stage;
+		Parent root;
+		if (e1.getSource() == deleteFileButton) {
+			// finding reference for button stage
+			stage = new Stage() ;
+			// now loading CreatePatientScreen as parent
+			root = FXMLLoader.load(getClass().getResource(
+					"/applicationV2/AdminClearance.fxml"));
+			stage.setScene(new Scene(root)); // making a new scene
+			stage.setTitle("Administrator Confirmation");
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.initOwner(deleteFileButton.getScene().getWindow());
+			stage.showAndWait();// forces program to focus on pop up window
+
+		}
+	}	
+
+
+	//////
+	
+	/**
+	 * 
+	 * @Author Sam
+	 * Method to handle the delete profiles button 
+	 */
+	@FXML
+	private Button deleteProfileButton;
+	@FXML
+	private void handleDeleteProfileButton(ActionEvent e1) throws IOException {
+		Stage stage;
+		Parent root;
+		if (e1.getSource() == deleteProfileButton) {
+			// finding reference for button stage
+			stage = new Stage() ;
+			// now loading CreatePatientScreen as parent
+			root = FXMLLoader.load(getClass().getResource(
+					"/applicationV2/AdminClearance.fxml"));
+			stage.setScene(new Scene(root)); // making a new scene
+			stage.setTitle("Administrator Confirmation");
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.initOwner(deleteProfileButton.getScene().getWindow());
+			stage.showAndWait();// forces program to focus on pop up window
+
+		}
+	}	
+
+	////////////////////
+	
 }
