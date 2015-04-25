@@ -49,8 +49,8 @@ public class LoginController implements Initializable {
 			Boolean openWindow = false;
 			Verification checkInputs = new Verification();
 
-			if (login_Username.getText().equals("test")
-					&& login_Password.getText().equals("test")) {
+			if (login_Username.getText().equals("l")
+					&& login_Password.getText().equals("l")) {
 				openWindow = true;
 			}else{
 				if ((checkInputs.Verify("EMAILADDRESS", login_Username.getText()) && checkInputs

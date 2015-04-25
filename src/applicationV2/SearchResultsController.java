@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import backdoor_.DataBase;
 import backdoor_.Flags;
 import backdoor_.Patient;
 import javafx.collections.FXCollections;
@@ -105,8 +106,6 @@ public class SearchResultsController implements Initializable {
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-
 		resultName
 				.setCellValueFactory(new PropertyValueFactory<Patient, String>(
 						"resultName"));
@@ -139,28 +138,41 @@ public class SearchResultsController implements Initializable {
 	 */
 	private List<Patient> getResults() {
 		int settings = flags.toFinalString();
-		
+		DataBase data = new DataBase(null, null, false);
+
 		// eye, ear, nose, va, insurance, medicare, search
 		switch (settings) {
-        case 1:  settings = 11; // eye
-                 break;
-        case 2:  settings = 101; // ear
-                 break;
-        case 3:  settings = 1001; // nose
-                 break;
-        case 4:  settings = 10001; // va
-                 break;
-        case 5:  settings = 100001; // other insurance
-                 break;
-        case 6:  settings = 1000001; // medicare
-                 break;
-        case 7:  settings = 10000001; // search term
-                 break;
+		case 1:
+			settings = 11; // eye
+			return data.GetPart("eye");
 
-    }
-		
-		
-			
+		case 2:
+			settings = 101; // ear
+			return data.GetPart("ear");
+
+		case 3:
+			settings = 1001; // nose
+			return data.GetPart("nose");
+
+		case 4:
+			settings = 10001; // va
+			return data.GetInsurer("va");
+
+		case 5:
+			// TODO finish this db method
+			settings = 100001; // other insurance
+			return data.GetName("eye");
+
+		case 6:
+			settings = 1000001; // medicare
+			return data.GetInsurer("medicare");
+
+		case 7:
+			settings = 10000001; // search term
+			return data.GetName(flags.getSearchTerms());
+
+		}
+
 		return null;
 	}
 
