@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -30,6 +31,9 @@ public class CreateUserController implements Initializable {
 	private PasswordField password, password_;
 
 	private Flags flags;
+	
+	@FXML
+	private ComboBox securityComboBox;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	}

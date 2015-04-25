@@ -96,7 +96,7 @@ public class LoginController implements Initializable {
 		root = FXMLLoader.load(getClass().getResource(
 				"/applicationV2/LoginError.fxml"));
 		stage.setScene(new Scene(root)); // making a new scene
-		stage.setTitle("Log out?");
+		stage.setTitle("Invalid Login Attempt");
 
 		// modality tells it to pop over another window
 		stage.initModality(Modality.APPLICATION_MODAL);

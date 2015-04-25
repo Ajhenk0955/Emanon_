@@ -12,16 +12,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainMenuController implements Initializable {
+
 	@FXML
 	private Button searchButton, createPatientButton, logoutButton,
 			quickSearch, edit_UserProfile;
 	@FXML
 	private TextField searchTerm;
-	
+
 	private Flags flags;
 
 	/**
@@ -41,7 +43,7 @@ public class MainMenuController implements Initializable {
 			// root is being linked to the pop up FXML
 			root = FXMLLoader.load(getClass().getResource("Logout_Popup.fxml"));
 			stage.setScene(new Scene(root)); // making a new scene
-			stage.setTitle("Log out?");
+			stage.setResizable(false);
 
 			// modality tells it to pop over another window
 			stage.initModality(Modality.APPLICATION_MODAL);
@@ -49,15 +51,6 @@ public class MainMenuController implements Initializable {
 			stage.showAndWait();// forces program to focus on pop up window
 
 		}
-		/*
-		 * TODO if below commented out, logout pop up X button works. but
-		 * disconnects other buttons in the process. Maybe go with dialog boxes?
-		 */
-
-		// creates a new scene depending on which branch was clicked
-		// Scene scene = new Scene(root);
-		// stage.setScene(scene);
-		// stage.show();
 
 	}
 
@@ -95,21 +88,21 @@ public class MainMenuController implements Initializable {
 			 */
 
 			// setting flags search term
-			//TODO test FLAGS
+			// TODO test FLAGS
 			Flags flags = FlagController.getFlag();
-			if(searchTerm.getText() != null)
+			if (searchTerm.getText() != null)
 				flags.setSearchTerms(searchTerm.getText());
-			
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-					"/applicationV2/SearchResults.fxml"));     
 
-			root = (Parent)fxmlLoader.load(); 
-			
-			//sets the flag variable 
-			SearchResultsController controller = fxmlLoader.<SearchResultsController>getController();
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+					"/applicationV2/SearchResults.fxml"));
+
+			root = (Parent) fxmlLoader.load();
+
+			// sets the flag variable
+			SearchResultsController controller = fxmlLoader
+					.<SearchResultsController> getController();
 			updateFlags();
 			controller.setFlags(flags);
-
 
 			stage = (Stage) quickSearch.getScene().getWindow();
 			// now loading SearchingScreen as parent
@@ -117,10 +110,9 @@ public class MainMenuController implements Initializable {
 		}
 	}
 
-
 	private void updateFlags() {
 		flags = new Flags();
-		flags.setSearchTerms(searchTerm.getText());		
+		flags.setSearchTerms(searchTerm.getText());
 	}
 
 	/**
@@ -148,7 +140,7 @@ public class MainMenuController implements Initializable {
 	}
 
 	/**
-	 * Method to handle menu bar for EditUserProfile
+	 * Method to handle userProfile screen popup
 	 * 
 	 * @Author M
 	 * 
@@ -165,6 +157,9 @@ public class MainMenuController implements Initializable {
 					"EditUserProfile.fxml"));
 			stage.setScene(new Scene(root)); // making a new scene
 			stage.setTitle("Emanon File System - User Profile");
+			stage.setResizable(false);
+			stage.getIcons().add(
+					new Image("file:resources/images/medical_record_logo.png"));
 
 			// modality tells it to pop over another window
 			stage.initModality(Modality.APPLICATION_MODAL);
