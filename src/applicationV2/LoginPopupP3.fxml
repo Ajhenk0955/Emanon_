@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.LoginPopupController">
+   <children>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="326.0" prefWidth="538.0" styleClass="background" stylesheets="@JMetroDarkTheme.css">
+         <children>
+            <Label layoutX="14.0" layoutY="8.0" styleClass="header" text="Login Recovery" />
+            <Label layoutX="99.0" layoutY="146.0" text="Enter New Password" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="115.0" layoutY="184.0" text="Confirm Password" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <PasswordField layoutX="262.0" layoutY="146.0" prefHeight="25.0" prefWidth="163.0" />
+            <PasswordField layoutX="262.0" layoutY="184.0" prefHeight="25.0" prefWidth="163.0" />
+            <Button fx:id="submitButton3" layoutX="411.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleSubmitButton3" text="Submit" />
+            <Label layoutX="458.0" layoutY="41.0" text="Label" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

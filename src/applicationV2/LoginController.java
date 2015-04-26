@@ -139,11 +139,12 @@ public class LoginController implements Initializable {
 			// root is being linked to the pop up FXML
 			root = FXMLLoader.load(getClass().getResource("LoginPopup.fxml"));
 			stage.setScene(new Scene(root)); // making a new scene
-			stage.setTitle("Login Help");
+			stage.setTitle("Emanon File System - Login Help");
 
 			// modality tells it to pop over another window
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.initOwner(login_Hyperlink.getScene().getWindow());
+			stage.setResizable(false);
 			stage.showAndWait();// forces program to focus on pop up window
 		}
 	}

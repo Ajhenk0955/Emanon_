@@ -19,13 +19,7 @@ import javafx.stage.Stage;
 public class Search1Controller implements Initializable {
 
 	@FXML
-	private CheckBox earBox;
-
-	@FXML
 	private Button Search1_goButton;
-
-	@FXML
-	private CheckBox noseBox;
 
 	@FXML
 	private TextField searchTerm;
@@ -34,16 +28,7 @@ public class Search1Controller implements Initializable {
 	private Button backButton;
 
 	@FXML
-	private CheckBox medicareBox;
-
-	@FXML
-	private CheckBox vaBox;
-
-	@FXML
-	private CheckBox eyeBox;
-
-	@FXML
-	private CheckBox insuranceBox;
+	private CheckBox medicareBox, vaBox, eyeBox, earBox, noseBox, insuranceBox;
 	private Flags flags;
 
 	/**
