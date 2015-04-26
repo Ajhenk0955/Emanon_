@@ -16,7 +16,6 @@ import javafx.stage.Stage;
  *
  */
 /**
- * 
  * @Author Sam
  * Handle buttons 
  */
