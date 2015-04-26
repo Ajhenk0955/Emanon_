@@ -1,5 +1,7 @@
 package applicationV2;
 
+import java.io.IOException;
+
 import backdoor_.DataBase;
 import backdoor_.Flags;
 import javafx.event.ActionEvent;
@@ -7,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * appropriately responds to flags
@@ -23,7 +26,7 @@ public class AdminClearanceController {
 	private TextField userName;
 
 	@FXML
-	private Button confirmButton;
+	private Button confirmButton, cancelButton;
 
 	private Flags flags;
 

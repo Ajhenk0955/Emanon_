@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 
 public class CreateUserController implements Initializable {
 	@FXML
-	private Button cancelButton, submitButton;
+	private Button cancelButton, submitButton, authorizationCancelButton;
 
 	@FXML
 	private TextField eMail, eMail_, firstName, lastName;
@@ -76,8 +76,12 @@ public class CreateUserController implements Initializable {
 		// modality tells it to pop over another window
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initOwner(submitButton.getScene().getWindow());
+		stage.setResizable(false);
 		stage.showAndWait();// forces program to focus on pop up window
-	}
+		
+		
+		}
+	
 
 	private boolean validate() {
 		Verification checker = new Verification();
