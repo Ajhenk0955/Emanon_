@@ -101,6 +101,7 @@ public class LoginController implements Initializable {
 		// modality tells it to pop over another window
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initOwner(login_Button.getScene().getWindow());
+		stage.setResizable(false);
 		stage.showAndWait();// forces program to focus on pop up window
 	}
 
@@ -116,11 +117,12 @@ public class LoginController implements Initializable {
 			// root is being linked to the pop up FXML
 			root = FXMLLoader.load(getClass().getResource("CreateUser.fxml"));
 			stage.setScene(new Scene(root)); // making a new scene
-			stage.setTitle("Create a New User");
+			stage.setTitle("Emanon File System - Create a New User");
 
 			// modality tells it to pop over another window
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.initOwner(signUpButton.getScene().getWindow());
+			stage.setResizable(false);
 			stage.showAndWait();// forces program to focus on pop up window
 		}
 	}
