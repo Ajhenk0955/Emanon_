@@ -32,9 +32,9 @@
                   <VBox layoutY="401.0" prefHeight="101.0" prefWidth="137.0">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="142.0" text="Share File(s)" />
-                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="165.0" text="Delete File(s)" />
+                        <Button fx:id="deleteFileButton" mnemonicParsing="false" onAction="#handleDeleteFileButton" prefHeight="33.0" prefWidth="165.0" text="Delete File(s)" />
                         <Button fx:id="addFileButton" mnemonicParsing="false" onAction="#handleAddFileButton" prefHeight="33.0" prefWidth="176.0" text="Add File(s)" />
-                        <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" text="Delete Profile" />
+                        <Button fx:id="deleteProfileButton" mnemonicParsing="false" onAction="#handleDeleteProfileButton" prefHeight="33.0" prefWidth="138.0" text="Delete Profile" />
                      </children>
                   </VBox>
                   <Label layoutX="31.0" layoutY="351.0" prefHeight="35.0" prefWidth="76.0" text="Actions" textFill="WHITE">

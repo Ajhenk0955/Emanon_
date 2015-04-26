@@ -14,6 +14,7 @@
          </font>
       </Text>
       <Button fx:id="confirmButton" layoutX="252.0" layoutY="286.0" mnemonicParsing="false" onAction="#adminVerifyAction" text="Confirm" />
+
       <Label layoutX="39.0" layoutY="181.0" text="Username" textFill="WHITE">
          <font>
             <Font size="16.0" />
