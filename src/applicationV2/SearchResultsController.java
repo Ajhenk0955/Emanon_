@@ -3,9 +3,12 @@ package applicationV2;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import com.mysql.jdbc.Statement;
 
 import backdoor_.DBClass;
 import backdoor_.Flags;
@@ -28,7 +31,7 @@ import javafx.stage.Stage;
 
 public class SearchResultsController implements Initializable {
 	@FXML
-	private Button backButton, mainMenuButton;
+	private Button backButton, mainMenuButton, loadResults;
 
 	@FXML
 	private Label gingerLabel;
@@ -46,6 +49,19 @@ public class SearchResultsController implements Initializable {
 
 	private ObservableList<TableResults> data;
 	private Flags flags;
+	
+	@FXML
+	private void refreshButton(ActionEvent refresh){
+		DBClass objDbClass = new DBClass();
+		try {
+			con = objDbClass.getConnection();
+			buildData();
+		} catch (ClassNotFoundException ce) {
+			// logger.info(ce.toString());
+		} catch (SQLException ce) {
+			// logger.info(ce.toString());
+		}
+	}
 
 	/**
 	 * Method to go back to the search screen Author M
@@ -110,7 +126,6 @@ public class SearchResultsController implements Initializable {
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		assert resultTable != null : "fx:id=\"tableview\" was not injected: check your FXML file 'SearchResults.fxml'.";
 		resultName
 				.setCellValueFactory(new PropertyValueFactory<TableResults, String>(
 						"patientName"));
@@ -120,26 +135,18 @@ public class SearchResultsController implements Initializable {
 		resultInsurance
 				.setCellValueFactory(new PropertyValueFactory<TableResults, String>(
 						"insurance"));
-		DBClass objDbClass = new DBClass();
-		try {
-			con = objDbClass.getConnection();
-			buildData();
-		} catch (ClassNotFoundException ce) {
-			// logger.info(ce.toString());
-		} catch (SQLException ce) {
-			// logger.info(ce.toString());
-		}
 	}
 
 	/**
 	 * puts search results to the set
 	 */
 	private void buildData() {
-	    data = FXCollections.observableArrayList();
-
+		data = FXCollections.observableArrayList();
 		try {
-			String SQL = getResults();
-			ResultSet rs = con.createStatement().executeQuery(SQL);
+			PreparedStatement statement = con.prepareStatement(getResults());
+			ResultSet rs = statement.executeQuery();
+
+			
 			while (rs.next()) {
 				TableResults cm = new TableResults();
 				cm.patientName.set(rs.getString("firstName")
@@ -160,66 +167,59 @@ public class SearchResultsController implements Initializable {
 	 * 
 	 * @return
 	 */
-	private String getResults() {
-		// int settings = flags.toFinalString();
-		int settings = 11;
+	private String getResults() throws SQLException {
+		int settings = flags.toFinalString();
 		// eye, ear, nose, va, insurance, medicare, search
-		switch (settings) {
-		case 1:
-			settings = 11; // eye
-			return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
-					+ " FROM `patients`"
-					+ "INNER JOIN patientinformation ON patients.PatientID=patientinformation.patientID"
-					+ " INNER JOIN patientinsurance ON patients.PatientID=patientinsurance.patientID"
-					+ " WHERE Service = 'eye'";
 
-		case 2:
-			settings = 101; // ear
+		switch (settings) {
+
+		case 11: //eye
 			return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
-					+ " FROM `patients`"
-					+ "INNER JOIN patientinformation ON patients.PatientID=patientinformation.patientID"
-					+ " INNER JOIN patientinsurance ON patients.PatientID=patientinsurance.patientID"
+					+ " FROM `patient`"
+					+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
+					+ " INNER JOIN patientinsurance ON patient.SSN=patientinsurance.SSN"
+					+ " WHERE Service = 'Test'";
+
+		case 101: // ear
+			return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
+					+ " FROM `patient`"
+					+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
+					+ " INNER JOIN patientinsurance ON patient.SSN=patientinsurance.SSN"
 					+ " WHERE Service = 'ear'";
 
-		case 3:
-			settings = 1001; // nose
+		case 1001: // nose
 			return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
-					+ " FROM `patients`"
-					+ "INNER JOIN patientinformation ON patients.PatientID=patientinformation.patientID"
-					+ " INNER JOIN patientinsurance ON patients.PatientID=patientinsurance.patientID"
+					+ " FROM `patient`"
+					+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
+					+ " INNER JOIN patientinsurance ON patient.SSN=patientinsurance.SSN"
 					+ " WHERE Service = 'nose'";
 
-		case 4:
-			settings = 10001; // va
+		case 10001: // va
 			return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
-					+ " FROM `patients`"
-					+ "INNER JOIN patientinformation ON patients.PatientID=patientinformation.patientID"
-					+ " INNER JOIN patientinsurance ON patients.PatientID=patientinsurance.patientID"
+					+ " FROM `patient`"
+					+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
+					+ " INNER JOIN patientinsurance ON patient.SSN=patientinsurance.SSN"
 					+ " WHERE Insurance = 'va'";
 
-		case 5:
-			// TODO finish this db method
-			settings = 100001; // other insurance
+		case 100001: // other insurance
 			return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
-					+ " FROM `patients`"
-					+ "INNER JOIN patientinformation ON patients.PatientID=patientinformation.patientID"
-					+ " INNER JOIN patientinsurance ON patients.PatientID=patientinsurance.patientID"
+					+ " FROM `patient`"
+					+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
+					+ " INNER JOIN patientinsurance ON patient.SSN=patientinsurance.SSN"
 					+ " WHERE Insurance != 'va' AND Insurance != 'medicare'";
 
-		case 6:
-			settings = 1000001; // medicare
-			return "SELECT Service, firstName, Insurance"
-					+ "FROM patientinformation"
-					+ "INNER JOIN patientinsurance ON patientinformation.patientID=patientinsurance.PatientID"
-					+ "INNER JOIN patients ON patientinformation.patientID=patients.PatientID"
+		case 1000001: // medicare
+			return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
+					+ " FROM `patient`"
+					+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
+					+ " INNER JOIN patientinsurance ON patient.SSN=patientinsurance.SSN"
 					+ "WHERE Insurance = 'medicare';";
 
-		case 7:
-			settings = 10000001; // search term
+		case 10000001: // search term
 			return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
-					+ " FROM `patients`"
-					+ "INNER JOIN patientinformation ON patients.PatientID=patientinformation.patientID"
-					+ " INNER JOIN patientinsurance ON patients.PatientID=patientinsurance.patientID"
+					+ " FROM `patient`"
+					+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
+					+ " INNER JOIN patientinsurance ON patient.SSN=patientinsurance.SSN"
 					+ " WHERE firstName LIKE '%"
 					+ flags.getSearchTerms()
 					+ "%' OR"
@@ -229,7 +229,11 @@ public class SearchResultsController implements Initializable {
 
 		}
 
-		return null;
+		return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
+				+ " FROM `patient`"
+				+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
+				+ " INNER JOIN patientinsurance ON patient.SSN=patientinsurance.SSN"
+				+ " WHERE Service = 'Test'";
 	}
 
 	public Flags getFlags() {

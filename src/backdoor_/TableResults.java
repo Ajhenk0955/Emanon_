@@ -7,16 +7,16 @@ public class TableResults {
 	public SimpleStringProperty insurance = new SimpleStringProperty();
 	public SimpleStringProperty service = new SimpleStringProperty();
 
-	public SimpleStringProperty getPatientName() {
-		return patientName;
+	public String getPatientName() {
+		return patientName.getValue();
 	}
 
-	public SimpleStringProperty getInsurance() {
-		return insurance;
+	public String getInsurance() {
+		return insurance.getValue();
 	}
 
-	public SimpleStringProperty getService() {
-		return service;
+	public String getService() {
+		return service.getValue();
 	}
 
 }

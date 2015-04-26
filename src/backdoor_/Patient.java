@@ -43,17 +43,17 @@ public class Patient {
 	private Billing billing;
 
 	// Social security
-	private String SSN;
+	private int SSN;
 
 	// Files
 	@Embedded
 	private PatientFiles patientFiles;
 
-	public String getSSN() {
+	public int getSSN() {
 		return SSN;
 	}
 
-	public void setSSN(String sSN) {
+	public void setSSN(int sSN) {
 		SSN = sSN;
 	}
 

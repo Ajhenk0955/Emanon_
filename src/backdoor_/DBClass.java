@@ -7,6 +7,6 @@ import java.sql.SQLException;
 public class DBClass{    
     public Connection getConnection() throws ClassNotFoundException, SQLException{       
           Class.forName("com.mysql.jdbc.Driver");
-          return DriverManager.getConnection("localHost"); 
+          return DriverManager.getConnection("jdbc:mysql://localhost/emanon","root","");
     }
 }

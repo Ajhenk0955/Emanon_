@@ -10,6 +10,7 @@ public class Billing {
 	private String homePhone;
 	private String cellPhone;
 	private String state;
+	private String address;
 
 	// Insurance type
 	@Embedded
@@ -61,6 +62,14 @@ public class Billing {
 
 	public void setInsurance(Insurance insurance) {
 		this.insurance = insurance;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

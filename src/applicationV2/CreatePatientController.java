@@ -2,12 +2,16 @@ package applicationV2;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
+
 import backdoor_.Billing;
+import backdoor_.DataBase;
 import backdoor_.Flags;
 import backdoor_.Insurance;
 import backdoor_.Name;
 import backdoor_.Patient;
+import backdoor_.TableResults;
 import backdoor_.Verification;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,7 +44,7 @@ public class CreatePatientController implements Initializable {
 			firstName, cellPhone, yearOfBirth, address, city, monthOfBirth,
 			state, gender;
 	private Patient newPatient;
-	private Flags flags;
+	private Flags flags = new Flags();
 
 	/**
 	 * 
@@ -57,7 +61,7 @@ public class CreatePatientController implements Initializable {
 		// User clicks save button
 		if (click.getSource() == saveButton) {
 
-			if (makeNewPatient()) {
+			if (!makeNewPatient()) {
 				// ERROR HERE (INVALID INPUT)
 				// TODO bad input popup
 			} else {
@@ -65,13 +69,11 @@ public class CreatePatientController implements Initializable {
 				// finding reference for button's stage
 				stage = (Stage) saveButton.getScene().getWindow();
 				// now loading PatientProfile as parent
-				root = FXMLLoader
-						.load(getClass()
-								.getResource(
-										"/applicationV2/Copy of PatientProfile(1) - Copy.fxml")); // change
-																									// this
-																									// to
-																									// PatientProfile
+				root = FXMLLoader.load(getClass().getResource(
+						"/applicationV2/PatientProfile.fxml")); // change
+																// this
+																// to
+																// PatientProfile
 
 				// makes PatientProfile scene and show it on the stage
 				Scene patientProfile = new Scene(root);
@@ -82,6 +84,12 @@ public class CreatePatientController implements Initializable {
 		}
 	}
 
+	/**
+	 * authenticates admin permission. Puts data to database via
+	 * adminclearancecontroller
+	 * 
+	 * @throws IOException
+	 */
 	private void popupAuth() throws IOException {
 		Stage stage = new Stage();// makes a new stage
 		Parent root;
@@ -117,37 +125,44 @@ public class CreatePatientController implements Initializable {
 		if (!newName(newName))
 			return false;
 		newPatient.setName(newName);
+		System.out.println("Name passed");
 
 		// BirthDate (month/day/year)
 		String toDate = "";
 		if (!toDate(toDate))
 			return false;
 		newPatient.setBirthDate(toDate);
+		System.out.println("Birthday passed");
 
 		// Billing & insurance
-		Billing newBilling = new Billing();
+		Billing newBilling = null;
 		if (newBilling(newBilling))
 			return false;
 		newPatient.setBilling(newBilling);
+		System.out.println("billing passed");
 
 		// Gender
 		if (gender.getText() == null)
 			return false;
 		newPatient.setGender(gender.getText());
+		System.out.println("Gender passed");
 
 		// SSN
 		if (!checker.Verify("SSN", ssn.getText()))
 			return false;
-		newPatient.setSSN(ssn.getText());
+		newPatient.setSSN(Integer.parseInt(ssn.getText()));
+		System.out.println("SSN passed");
+
+		// put data to flags
+		flags.setPatient(newPatient);
+		flags.setAddPatient(true);
 
 		try {
 			popupAuth();
 		} catch (IOException e) {
 			return false;
 		}
-		// put data to flags
-		flags.setPatient(newPatient);
-		flags.setAddPatient(true);
+
 		return true;
 	}
 
@@ -163,6 +178,7 @@ public class CreatePatientController implements Initializable {
 			return false;
 
 		newBilling.setZipCode(zipCode.getText());
+		System.out.println("ZIP passed");
 
 		// if no phone entered return false
 		if (homePhone.getText() == null && cellPhone.getText() == null)
@@ -181,19 +197,19 @@ public class CreatePatientController implements Initializable {
 				return false;
 			newBilling.setHomePhone(tempPhone);
 		}
+		System.out.println("Phone passed");
 
 		if (!checker.Verify("CITY", city.getText()))
 			return false;
 		newBilling.setCity(city.getText());
+		System.out.println("City passed");
 
 		if (!checker.Verify("STATE", state.getText()))
 			return false;
 		newBilling.setState(state.getText());
+		System.out.println("state passed");
 
-		// When insurance is added just link TODO
-		Insurance newInsurance = new Insurance();
-		newBilling.setInsurance(newInsurance);
-
+		newBilling.setAddress(address.getText());
 		return true;
 	}
 
