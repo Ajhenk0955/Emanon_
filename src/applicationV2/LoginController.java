@@ -2,9 +2,15 @@ package applicationV2;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.LoggingMXBean;
 
+import com.mysql.jdbc.Connection;
+
+import backdoor_.DBClass;
 import backdoor_.DataBase;
 import backdoor_.Verification;
 import javafx.event.ActionEvent;
@@ -45,6 +51,7 @@ public class LoginController implements Initializable {
 
 		if (loginClicked.getSource() == login_Button) {
 
+			// CHECKS USER PASSWORD
 			Boolean openWindow = false;
 			Verification checkInputs = new Verification();
 
@@ -55,10 +62,12 @@ public class LoginController implements Initializable {
 				if ((checkInputs.Verify("EMAILADDRESS",
 						login_Username.getText()) && checkInputs.Verify(
 						"PASSWORD", login_Password.getText()))) {
-					openWindow = false;
-					// log into database
+					// verifyPassword with db
+					if(verifyLogin())
+						openWindow = true;
 				}
 			}
+			
 			if (openWindow) {
 				stage = (Stage) login_Button.getScene().getWindow();
 
@@ -75,6 +84,37 @@ public class LoginController implements Initializable {
 				failedLogin();
 			}
 		}
+	}
+
+	/**
+	 * checks username & password on the db
+	 * @return
+	 */
+	private boolean verifyLogin() {
+		java.sql.Connection con;
+		DBClass objDbClass = new DBClass();
+		try {
+			con = objDbClass.getConnection();
+
+			PreparedStatement statement = con.prepareStatement(
+					"SELECT * FROM `users` WHERE `Email` = ? AND `Password` = ?");
+			statement.setString(1, login_Username.getText());
+			statement.setString(2, login_Password.getText());
+			ResultSet rs = statement.executeQuery();
+			if(rs.getString(2) == login_Username.getText() &&
+					rs.getString(3) == login_Password.getText()){
+				con.close();
+				return true;
+			}
+		} catch (ClassNotFoundException ce) {
+			// logger.info(ce.toString());
+		} catch (SQLException ce) {
+			// logger.info(ce.toString());
+		}
+
+		// TODO Auto-generated method stub
+		return false;
+		
 	}
 
 	private void failedLogin() throws IOException {

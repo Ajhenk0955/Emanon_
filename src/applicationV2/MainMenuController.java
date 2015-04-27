@@ -37,7 +37,6 @@ public class MainMenuController implements Initializable {
 		Stage stage;
 		Parent root;
 
-		// TODO -- reference from one controller to another?
 		if (e.getSource() == logoutButton) {
 			stage = new Stage();// makes a new stage
 			// root is being linked to the pop up FXML
@@ -81,32 +80,22 @@ public class MainMenuController implements Initializable {
 
 		} else {
 
-			/*
-			 * // setting flags search term Flags flags = Main.getFlags();
-			 * if(searchTerm.getText() != null)
-			 * flags.setSearchTerms(searchTerm.getText());
-			 */
+			if (searchTerm.getText() != null) {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+						"/applicationV2/SearchResults.fxml"));
 
-			// setting flags search term
-			// TODO test FLAGS
-			Flags flags = FlagController.getFlag();
-			if (searchTerm.getText() != null)
-				flags.setSearchTerms(searchTerm.getText());
+				root = (Parent) fxmlLoader.load();
 
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-					"/applicationV2/SearchResults.fxml"));
+				// sets the flag variable
+				SearchResultsController controller = fxmlLoader
+						.<SearchResultsController> getController();
+				updateFlags();
+				controller.setFlags(flags);
 
-			root = (Parent) fxmlLoader.load();
-
-			// sets the flag variable
-			SearchResultsController controller = fxmlLoader
-					.<SearchResultsController> getController();
-			updateFlags();
-			controller.setFlags(flags);
-
-			stage = (Stage) quickSearch.getScene().getWindow();
-			// now loading SearchingScreen as parent
-			stage.setTitle("Emanon File System - Search Results");
+				stage = (Stage) quickSearch.getScene().getWindow();
+				// now loading SearchingScreen as parent
+				stage.setTitle("Emanon File System - Search Results");
+			}
 		}
 	}
 

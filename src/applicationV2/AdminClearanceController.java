@@ -25,8 +25,7 @@ import javafx.stage.Stage;
  *
  */
 /**
- * @Author Sam
- * Handle buttons 
+ * @Author Sam Handle buttons
  */
 public class AdminClearanceController {
 
@@ -120,6 +119,8 @@ public class AdminClearanceController {
 			} catch (SQLException ce) {
 				// logger.info(ce.toString());
 			}
+			stage = (Stage) confirmButton.getScene().getWindow();
+
 			stage.close();
 			// add file
 			// delete file
@@ -140,7 +141,5 @@ public class AdminClearanceController {
 		return false;
 
 	}
-	
-	
-	
+
 }
