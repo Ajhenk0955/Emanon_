@@ -25,8 +25,7 @@ import javafx.stage.Stage;
  *
  */
 /**
- * @Author Sam
- * Handle buttons 
+ * @Author Sam Handle buttons
  */
 public class AdminClearanceController {
 
@@ -142,7 +141,5 @@ public class AdminClearanceController {
 		return false;
 
 	}
-	
-	
-	
+
 }
