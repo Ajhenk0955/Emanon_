@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -58,8 +59,14 @@
             <TextField fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="eMail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="eMail_" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <PasswordField fx:id="password_" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <tooltip>
+                  <Tooltip fx:id="toolTip1" text="Password must be at least 6 characters" />
+               </tooltip></PasswordField>
+            <PasswordField fx:id="password_" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <tooltip>
+                  <Tooltip text="Confirm your password" />
+               </tooltip></PasswordField>
          </children>
          <effect>
             <DropShadow />
@@ -83,7 +90,7 @@
          </font>
       </Label>
       <TextField fx:id="firstName1" layoutX="245.0" layoutY="431.0" prefHeight="25.0" prefWidth="211.0" />
-      <ComboBox fx:id="securityComboBox" layoutX="245.0" layoutY="379.0" prefHeight="29.0" prefWidth="299.0" promptText="Select a Question From Below" >
+      <ComboBox fx:id="securityComboBox" layoutX="245.0" layoutY="379.0" prefHeight="29.0" prefWidth="299.0" promptText="Select a Question From Below">
       <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="What was the make/model of your first car?" />

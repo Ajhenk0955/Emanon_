@@ -107,23 +107,6 @@ public class SearchResultsController implements Initializable {
 		}
 	}
 
-	@FXML
-	private void handleClickProfile(MouseEvent e1) throws IOException {
-		Stage stage;
-		Parent root;
-		if (MouseEvent.MOUSE_CLICKED != null) {
-			// finding reference for button stage
-			stage = (Stage) gingerLabel.getScene().getWindow();
-			// now loading CreatePatientScreen as parent
-			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/Copy of PatientProfile(1) - Copy.fxml"));
-
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.setTitle("Emanon File System - Gingerbread Man");
-			stage.show();
-		}
-	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		resultName
