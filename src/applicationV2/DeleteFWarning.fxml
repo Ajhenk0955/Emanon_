@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="484.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.DeleteWarningController">
+   <children>
+      <Label alignment="CENTER" layoutX="3.0" prefHeight="54.0" prefWidth="461.0" text="WARNING" textFill="#f8f6f6">
+         <font>
+            <Font size="54.0" />
+         </font>
+      </Label>
+      <Button fx:id="deleteButton" layoutX="128.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="DELETE" />
+      <Button fx:id="cancelButton" layoutX="256.0" layoutY="177.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="CANCEL" />
+      <ImageView fitHeight="51.0" fitWidth="63.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../applicationV2_IMAGES/warning%20sign.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="51.0" fitWidth="63.0" layoutX="421.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../applicationV2_IMAGES/warning%20sign.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="77.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure you want to delete the file?            Press DELETE to permanently delete the file.        Press CANCEL to go back. " wrappingWidth="358.13671875">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import backdoor_.Billing;
 import backdoor_.DBClass;
+
 import backdoor_.DataBase;
 import backdoor_.Flags;
 import backdoor_.Patient;
@@ -23,6 +24,10 @@ import javafx.stage.Stage;
  * @author Andrew
  *
  */
+/**
+ * @Author Sam
+ * Handle buttons 
+ */
 public class AdminClearanceController {
 
 	@FXML
@@ -32,7 +37,7 @@ public class AdminClearanceController {
 	private TextField userName;
 
 	@FXML
-	private Button confirmButton;
+	private Button confirmButton, cancelButton;
 
 	private Flags flags;
 	private Connection con;
@@ -54,6 +59,7 @@ public class AdminClearanceController {
 	 */
 	@FXML
 	private void adminVerifyAction(ActionEvent event) {
+		Stage stage = null;
 		if (event.getSource() == confirmButton) {
 
 			DBClass objDbClass = new DBClass();
@@ -114,11 +120,11 @@ public class AdminClearanceController {
 			} catch (SQLException ce) {
 				// logger.info(ce.toString());
 			}
+			stage.close();
 			// add file
 			// delete file
 			// edit file
 		}
-
 
 	}
 
@@ -134,4 +140,7 @@ public class AdminClearanceController {
 		return false;
 
 	}
+	
+	
+	
 }

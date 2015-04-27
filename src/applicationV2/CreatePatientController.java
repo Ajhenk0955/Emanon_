@@ -135,8 +135,8 @@ public class CreatePatientController implements Initializable {
 		System.out.println("Birthday passed");
 
 		// Billing & insurance
-		Billing newBilling = null;
-		if (newBilling(newBilling))
+		Billing newBilling = newBilling();
+		if (newBilling == null)
 			return false;
 		newPatient.setBilling(newBilling);
 		System.out.println("billing passed");
@@ -172,45 +172,45 @@ public class CreatePatientController implements Initializable {
 	 * @param newBilling
 	 * @return
 	 */
-	private boolean newBilling(Billing newBilling) {
-
+	private Billing newBilling() {
+		Billing newBilling = new Billing();
 		if (!checker.Verify("US-ZIP", zipCode.getText()))
-			return false;
+			return null;
 
 		newBilling.setZipCode(zipCode.getText());
 		System.out.println("ZIP passed");
 
 		// if no phone entered return false
 		if (homePhone.getText() == null && cellPhone.getText() == null)
-			return false;
+			return null;
 
 		String tempPhone;
 		if (cellPhone.getText() != null) {
 			tempPhone = cellPhone.getText();
 			if (!checker.Verify("PHONE", tempPhone))
-				return false;
+				return null;
 			newBilling.setCellPhone(tempPhone);
 		}
 		if (homePhone.getText() != null) {
 			tempPhone = homePhone.getText();
 			if (!checker.Verify("PHONE", tempPhone))
-				return false;
+				return null;
 			newBilling.setHomePhone(tempPhone);
 		}
 		System.out.println("Phone passed");
 
 		if (!checker.Verify("CITY", city.getText()))
-			return false;
+			return null;
 		newBilling.setCity(city.getText());
 		System.out.println("City passed");
 
 		if (!checker.Verify("STATE", state.getText()))
-			return false;
+			return null;
 		newBilling.setState(state.getText());
 		System.out.println("state passed");
 
 		newBilling.setAddress(address.getText());
-		return true;
+		return newBilling;
 	}
 
 	/**

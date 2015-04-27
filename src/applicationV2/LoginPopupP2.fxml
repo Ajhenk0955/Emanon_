@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="326.0" prefWidth="538.0" styleClass="background" stylesheets="@JMetroDarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationV2.LoginPopupController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="20.0" layoutY="14.0" styleClass="header" text="Login Recovery" />
+            <Label layoutX="105.0" layoutY="137.0" prefHeight="32.0" prefWidth="329.0" text="&lt;Insert Security Question Here &gt;" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <TextField layoutX="181.0" layoutY="207.0" prefHeight="25.0" prefWidth="202.0" />
+            <Label layoutX="105.0" layoutY="202.0" prefHeight="32.0" prefWidth="64.0" text="Answer" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="nextButton2" layoutX="401.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleNextButton2" prefHeight="33.0" prefWidth="103.0" text="Next &gt;&gt;" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
