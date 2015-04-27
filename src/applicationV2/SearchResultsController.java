@@ -233,7 +233,7 @@ public class SearchResultsController implements Initializable {
 				+ " FROM `patient`"
 				+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
 				+ " INNER JOIN patientinsurance ON patient.SSN=patientinsurance.SSN"
-				+ " WHERE Service = 'Test'";
+				+ " WHERE Service = 'va'";
 	}
 
 	public Flags getFlags() {

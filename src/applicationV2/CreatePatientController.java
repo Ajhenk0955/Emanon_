@@ -42,7 +42,7 @@ public class CreatePatientController implements Initializable {
 	@FXML
 	private TextField lastName, zipCode, MInitial, homePhone, dayOfBirth, ssn,
 			firstName, cellPhone, yearOfBirth, address, city, monthOfBirth,
-			state, gender;
+			state, Gender;
 	private Patient newPatient;
 	private Flags flags = new Flags();
 
@@ -122,8 +122,10 @@ public class CreatePatientController implements Initializable {
 
 		// Name
 		Name newName = new Name();
-		if (!newName(newName))
+		if (!newName(newName)){
+			System.out.println("Problem");
 			return false;
+		}
 		newPatient.setName(newName);
 		System.out.println("Name passed");
 
@@ -135,22 +137,23 @@ public class CreatePatientController implements Initializable {
 		System.out.println("Birthday passed");
 
 		// Billing & insurance
-		Billing newBilling = newBilling();
+		Billing newBilling = new Billing();
+		newBilling = newBilling();
 		if (newBilling == null)
 			return false;
 		newPatient.setBilling(newBilling);
 		System.out.println("billing passed");
 
 		// Gender
-		if (gender.getText() == null)
+		if (Gender.getText() == null)
 			return false;
-		newPatient.setGender(gender.getText());
+		newPatient.setGender(Gender.getText());
 		System.out.println("Gender passed");
 
 		// SSN
 		if (!checker.Verify("SSN", ssn.getText()))
 			return false;
-		newPatient.setSSN(Integer.parseInt(ssn.getText()));
+		newPatient.setSSN(parseSSN(ssn.getText()));
 		System.out.println("SSN passed");
 
 		// put data to flags
@@ -164,6 +167,16 @@ public class CreatePatientController implements Initializable {
 		}
 
 		return true;
+	}
+
+	/**
+	 * removes '-' from the SSN
+	 * @param text
+	 * @return
+	 */
+	private int parseSSN(String text) {
+		String result = text.replace("-","");
+		return Integer.parseInt(result);
 	}
 
 	/**
@@ -191,6 +204,7 @@ public class CreatePatientController implements Initializable {
 				return null;
 			newBilling.setCellPhone(tempPhone);
 		}
+		// TODO problem with homephone
 		if (homePhone.getText() != null) {
 			tempPhone = homePhone.getText();
 			if (!checker.Verify("PHONE", tempPhone))
