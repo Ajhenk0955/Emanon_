@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.*;
 
 public class LoginController implements Initializable {
@@ -27,9 +29,6 @@ public class LoginController implements Initializable {
 	@FXML
 	private Hyperlink login_Hyperlink;
 
-	// pop up window variables
-	private Button submitLoginRecovery;
-
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 
@@ -42,7 +41,7 @@ public class LoginController implements Initializable {
 	@FXML
 	private void handleLoginButton(ActionEvent loginClicked) throws IOException {
 		Stage stage;
-		Parent root, root2;
+		Parent root;
 
 		if (loginClicked.getSource() == login_Button) {
 
@@ -52,36 +51,27 @@ public class LoginController implements Initializable {
 			if (login_Username.getText().equals("l")
 					&& login_Password.getText().equals("l")) {
 				openWindow = true;
-			}else{
-				if ((checkInputs.Verify("EMAILADDRESS", login_Username.getText()) && checkInputs
-						.Verify("PASSWORD", login_Password.getText()))) {
+			} else {
+				if ((checkInputs.Verify("EMAILADDRESS",
+						login_Username.getText()) && checkInputs.Verify(
+						"PASSWORD", login_Password.getText()))) {
 					openWindow = false;
 					// log into database
 				}
 			}
 			if (openWindow) {
 				stage = (Stage) login_Button.getScene().getWindow();
-				Stage stage2 = new Stage(); // will be invisible stage
 
 				// now loading respective screens for windows
 				root = FXMLLoader.load(getClass().getResource(
 						"/applicationV2/MainMenu.fxml"));
-				root2 = FXMLLoader.load(getClass().getResource(
-						"/applicationV2/InvisibleWindow.fxml"));
-
-				// Invisible window that gets hidden
-				Scene invisibleWindow = new Scene(root2);
-				stage2.setScene(invisibleWindow);
-				stage2.setTitle("Emanon File System - Invisible Window");
-				stage2.hide();
-
+				
 				// Main Menu window
 				Scene MainMenuScene = new Scene(root);
 				stage.setScene(MainMenuScene);
 				stage.setTitle("Emanon File System - Main Menu");
 				stage.show();
 			} else {
-				System.out.println("FAILLLLLLLL");
 				failedLogin();
 			}
 		}
@@ -148,5 +138,4 @@ public class LoginController implements Initializable {
 			stage.showAndWait();// forces program to focus on pop up window
 		}
 	}
-
 }

@@ -115,7 +115,7 @@ public class LoginPopupController implements Initializable {
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+	
 
 	}
 
