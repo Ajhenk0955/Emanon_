@@ -213,6 +213,7 @@ public class Flags {
 	}
 
 	public int toFinalString() {
+		searchSettings[0] = 1;
 		String temp = "";
 		for (int i : searchSettings) {
 			temp += i;

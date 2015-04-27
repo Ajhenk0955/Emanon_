@@ -92,19 +92,27 @@ public class Search1Controller implements Initializable {
 	}
 
 	/*
-	 * should update a flags variable with checkboxes and searchTerms
+	 * should update a flags variable with checkboxes and searchTerms THE IF
+	 * STATEMENTS ARE NECESSARY
 	 * 
 	 * @author Henk
 	 */
 	private void updateFlags() {
 		flags = new Flags();
-		flags.setEar(earBox.isPressed());
-		flags.setEye(eyeBox.isPressed());
-		flags.setNose(noseBox.isPressed());
-		flags.setMedicare(medicareBox.isPressed());
-		flags.setVa(vaBox.isPressed());
-		flags.setInsurance(insuranceBox.isPressed());
-		flags.setSearchTerms(searchTerm.getText());
+		if (earBox.isPressed())
+			flags.setEar(earBox.isPressed());
+		if (eyeBox.isPressed())
+			flags.setEye(eyeBox.isPressed());
+		if (noseBox.isPressed())
+			flags.setNose(noseBox.isPressed());
+		if (medicareBox.isPressed())
+			flags.setMedicare(medicareBox.isPressed());
+		if (vaBox.isPressed())
+			flags.setVa(vaBox.isPressed());
+		if (insuranceBox.isPressed())
+			flags.setInsurance(insuranceBox.isPressed());
+		if (searchTerm.getText() != null)
+			flags.setSearchTerms(searchTerm.getText());
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {

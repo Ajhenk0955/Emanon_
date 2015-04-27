@@ -32,10 +32,8 @@ import javafx.stage.Stage;
 public class SearchResultsController implements Initializable {
 	@FXML
 	private Button backButton, mainMenuButton, loadResults;
-
 	@FXML
 	private Label gingerLabel;
-
 	@FXML
 	private TableView<TableResults> resultTable;
 	@FXML
@@ -48,7 +46,7 @@ public class SearchResultsController implements Initializable {
 	private Connection con;
 
 	private ObservableList<TableResults> data;
-	private Flags flags;
+	private Flags flags = new Flags();
 	
 	@FXML
 	private void refreshButton(ActionEvent refresh){
