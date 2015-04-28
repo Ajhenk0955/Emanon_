@@ -16,19 +16,23 @@ public class UserAccount {
 	@Id
 	private ObjectId id;
 
-	private char[] password;
+	private String password;
 
 	private String firstName;
 
 	private String lastName;
 
 	private String email;
+	
+	private String securityQuestion;
+	
+	private String securityAnswer;
 
-	public char[] getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(char[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -58,6 +62,22 @@ public class UserAccount {
 
 	public ObjectId getId() {
 		return id;
+	}
+
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
+	}
+
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
+
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
 	}
 
 }

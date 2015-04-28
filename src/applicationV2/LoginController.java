@@ -2,16 +2,12 @@ package applicationV2;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.LoggingMXBean;
-
-import com.mysql.jdbc.Connection;
-
 import backdoor_.DBClass;
-import backdoor_.DataBase;
 import backdoor_.Verification;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,8 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.*;
 
 public class LoginController implements Initializable {
@@ -34,12 +28,13 @@ public class LoginController implements Initializable {
 	private Button login_Button, signUpButton;
 	@FXML
 	private Hyperlink login_Hyperlink;
+	private Connection con;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 
 	/**
-	 * method when login button is clicked
+	 * method when login button is clicked TODO method is broken don't know why
 	 * 
 	 * @param loginClicked
 	 * @stage2 is invisible window
@@ -63,18 +58,23 @@ public class LoginController implements Initializable {
 						login_Username.getText()) && checkInputs.Verify(
 						"PASSWORD", login_Password.getText()))) {
 					// verifyPassword with db
-					if(verifyLogin())
-						openWindow = true;
+					try {
+						if (verifyLogin())
+							openWindow = true;
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
-			
+
 			if (openWindow) {
 				stage = (Stage) login_Button.getScene().getWindow();
 
 				// now loading respective screens for windows
 				root = FXMLLoader.load(getClass().getResource(
 						"/applicationV2/MainMenu.fxml"));
-				
+
 				// Main Menu window
 				Scene MainMenuScene = new Scene(root);
 				stage.setScene(MainMenuScene);
@@ -88,33 +88,45 @@ public class LoginController implements Initializable {
 
 	/**
 	 * checks username & password on the db
+	 * 
 	 * @return
 	 */
-	private boolean verifyLogin() {
-		java.sql.Connection con;
+	private boolean verifyLogin() throws ClassNotFoundException {
 		DBClass objDbClass = new DBClass();
 		try {
 			con = objDbClass.getConnection();
+		} catch (ClassNotFoundException ce) {
+			// logger.info(ce.toString());
+		} catch (SQLException ce) {
+			// logger.info(ce.toString());
+		}
+		try {
+			System.out.println("Test");
 
-			PreparedStatement statement = con.prepareStatement(
-					"SELECT * FROM `users` WHERE `Email` = ? AND `Password` = ?");
-			statement.setString(1, login_Username.getText());
-			statement.setString(2, login_Password.getText());
+			String temp = String.format(
+					"SELECT * FROM `users` WHERE `Email`"
+							+ " LIKE '%s' AND `Password`LIKE '%s'",
+					login_Username.getText(), login_Password.getText());
+			System.out.println(temp);
+
+			// TODO THIS IS BROKEN FOR SOMEREASON************************
+			PreparedStatement statement = con.prepareStatement(temp);
 			ResultSet rs = statement.executeQuery();
-			if(rs.getString(2) == login_Username.getText() &&
-					rs.getString(3) == login_Password.getText()){
+			System.out.println(rs.getInt(1));
+			System.out.println("Test");
+			// The code above does not match the below*****************
+			if (rs.getString(2) == login_Username.getText()
+					&& rs.getString(3) == login_Password.getText()) {
 				con.close();
 				return true;
 			}
-		} catch (ClassNotFoundException ce) {
-			// logger.info(ce.toString());
 		} catch (SQLException ce) {
 			// logger.info(ce.toString());
 		}
 
 		// TODO Auto-generated method stub
 		return false;
-		
+
 	}
 
 	private void failedLogin() throws IOException {

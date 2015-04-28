@@ -1,16 +1,17 @@
 package applicationV2;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import backdoor_.Billing;
 import backdoor_.DBClass;
-
 import backdoor_.DataBase;
 import backdoor_.Flags;
 import backdoor_.Patient;
 import backdoor_.TableResults;
+import backdoor_.UserAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -64,12 +65,39 @@ public class AdminClearanceController {
 			DBClass objDbClass = new DBClass();
 			try {
 				con = objDbClass.getConnection();
-				/*
-				 * 
-				 * // create user account if (flags.isCreateUser()) {
-				 * database.addAccount(flags.getTempUser());
-				 * flags.setTempUser(null); flags.setCreateUser(false); }
-				 */
+
+				// create user account
+				if (flags.isCreateUser()) {
+					UserAccount user = flags.getTempUser();
+
+					SQL = String.format("INSERT INTO `sql575408`.`users` "
+							+ "(`UserID`, `Email`, `Password`) VALUES "
+							+ "(NULL, '%s', '%s')", user.getEmail(),
+							user.getPassword());
+					pushToDatabase();
+					
+					PreparedStatement statement = con.prepareStatement("SELECT `UserID` FROM `users` WHERE `Email`"
+							+ " LIKE ? AND `Password`LIKE ?");
+					statement.setString(1, user.getEmail());
+					statement.setString(2, user.getPassword());
+					
+					ResultSet rs = statement.executeQuery();
+
+					SQL = String
+							.format("INSERT INTO  `sql575408`.`useraccount`"
+									+ " (`AccountID` ,`FirstName` ,`LastName` ,`SecurityQuestion` ,`SecurityAnswer`)"
+									+ "VALUES ('%d', '%s', '%s', '%s',  '%s')",
+									rs.getInt(1), user.getFirstName(),
+									user.getLastName(),
+									user.getSecurityQuestion(),
+									user.getSecurityAnswer());
+					pushToDatabase();
+					rs.close();
+
+					flags.setTempUser(null);
+					flags.setCreateUser(false);
+				}
+
 				// add patient
 				if (flags.isAddPatient()) {
 					Patient patient = flags.getPatient();
@@ -114,6 +142,7 @@ public class AdminClearanceController {
 				 * database.UpdateUser(flags.getTempUser());
 				 * flags.setDeletePatient(false); flags.setId(null); }
 				 */
+				con.close();
 			} catch (ClassNotFoundException ce) {
 				// logger.info(ce.toString());
 			} catch (SQLException ce) {

@@ -25,15 +25,15 @@ public class CreateUserController implements Initializable {
 	private Button cancelButton, submitButton, authorizationCancelButton;
 
 	@FXML
-	private TextField eMail, eMail_, firstName, lastName;
+	private TextField eMail, eMail_, firstName, lastName, answer;
 
 	@FXML
 	private PasswordField password, password_;
 
-	private Flags flags;
+	private Flags flags = new Flags();
 	
 	@FXML
-	private ComboBox securityComboBox;
+	private ComboBox<String> securityComboBox;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	}
@@ -47,7 +47,7 @@ public class CreateUserController implements Initializable {
 	private void handleCancelButton(ActionEvent e0) throws IOException {
 		Stage stage;
 		if (e0.getSource() == submitButton) {
-			if (validate()) {
+			if (!validate()) {
 				// ERROR HERE TODO put failure popup
 			} else {
 				popupAuth();
@@ -79,6 +79,9 @@ public class CreateUserController implements Initializable {
 		stage.setResizable(false);
 		stage.showAndWait();// forces program to focus on pop up window
 		
+		stage = (Stage) cancelButton.getScene().getWindow();
+		stage.close();
+		
 		
 		}
 	
@@ -93,20 +96,30 @@ public class CreateUserController implements Initializable {
 
 		if (!checker.Verify("FIRSTNAME", firstName.getText()))
 			return false;
+		System.out.println("First name passed");
 
 		if (!checker.Verify("LASTNAME", lastName.getText()))
 			return false;
+		System.out.println("lastName passed");
 
 		if (!checker.Verify("PASSWORD", password.getText())
 				|| (!checker.Verify("PASSWORD", password_.getText()))
 				|| !(password.getText().equals(password_.getText())))
 			return false;
-
+		System.out.println("Password passed");
+		
+		
+		if (answer.getText() == null)
+			return false;
+		System.out.println("text passed");
+		
 		UserAccount newUser = new UserAccount();
 		newUser.setEmail(eMail.getText());
 		newUser.setFirstName(firstName.getText());
 		newUser.setLastName(lastName.getText());
-		newUser.setPassword(password.getText().toCharArray());
+		newUser.setPassword(password.getText());
+		newUser.setSecurityQuestion(securityComboBox.getValue());
+		newUser.setSecurityAnswer(answer.getText());
 
 		// setting flags
 		flags.setCreateUser(true);
