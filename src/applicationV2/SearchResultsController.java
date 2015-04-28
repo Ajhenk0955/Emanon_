@@ -16,6 +16,7 @@ import backdoor_.TableResults;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -109,6 +111,7 @@ public class SearchResultsController implements Initializable {
 		resultName
 				.setCellValueFactory(new PropertyValueFactory<TableResults, String>(
 						"patientName"));
+	
 		resultService
 				.setCellValueFactory(new PropertyValueFactory<TableResults, String>(
 						"service"));
@@ -134,14 +137,42 @@ public class SearchResultsController implements Initializable {
 				cm.insurance.set(rs.getString("insurance"));
 
 				data.add(cm);
+				
+				
 			}
+		
 			resultTable.setItems(data);
+			
+			//sends to patient profile
+			resultTable.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    if (event.getClickCount() > 1) {
+                        Stage stage;
+                        Parent root = null;
+                        
+                        stage = (Stage) mainMenuButton.getScene().getWindow();
+            			try {
+							root = FXMLLoader.load(getClass().getResource(
+									"/applicationV2/PatientProfile.fxml"));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+            			Scene p = new Scene(root);
+            			stage.setScene(p);
+            			stage.setTitle("Emanon File System - Patient Profile");
+            			stage.show();
+                        
+                    }
+                }
+            });//end of sends to patient profile
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Error on Building Data");
 		}
 	}
 
+	
 	/**
 	 * controller for retrieving search results calls DataBase
 	 * 

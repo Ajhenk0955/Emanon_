@@ -33,7 +33,7 @@
                   <Font size="29.0" />
                </font>
             </Label>
-            <TableView fx:id="resultTable" layoutX="3.0" layoutY="59.0" prefHeight="341.0" prefWidth="677.0" styleClass="background">
+            <TableView fx:id="resultTable" layoutX="3.0" layoutY="59.0" prefHeight="341.0" prefWidth="677.0" styleClass="item-title" stylesheets="@JMetroDarkTheme.css">
               <columns>
                 <TableColumn fx:id="resultName" prefWidth="75.0" text="Name" />
                 <TableColumn fx:id="resultService" prefWidth="75.0" text="Service" />
