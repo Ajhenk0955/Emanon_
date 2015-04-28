@@ -47,9 +47,9 @@ public class SearchResultsController implements Initializable {
 
 	private ObservableList<TableResults> data;
 	private Flags flags = new Flags();
-	
+
 	@FXML
-	private void refreshButton(ActionEvent refresh){
+	private void refreshButton(ActionEvent refresh) {
 		DBClass objDbClass = new DBClass();
 		try {
 			con = objDbClass.getConnection();
@@ -105,24 +105,6 @@ public class SearchResultsController implements Initializable {
 		}
 	}
 
-	@FXML
-	private void handleClickProfile(MouseEvent e1) throws IOException {
-		Stage stage;
-		Parent root;
-		if (MouseEvent.MOUSE_CLICKED != null) {
-			// finding reference for button stage
-			stage = (Stage) gingerLabel.getScene().getWindow();
-			// now loading CreatePatientScreen as parent
-			root = FXMLLoader.load(getClass().getResource(
-					"/applicationV2/Copy of PatientProfile(1) - Copy.fxml"));
-
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.setTitle("Emanon File System - Gingerbread Man");
-			stage.show();
-		}
-	}
-
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		resultName
 				.setCellValueFactory(new PropertyValueFactory<TableResults, String>(
@@ -144,13 +126,13 @@ public class SearchResultsController implements Initializable {
 			PreparedStatement statement = con.prepareStatement(getResults());
 			ResultSet rs = statement.executeQuery();
 
-			
 			while (rs.next()) {
 				TableResults cm = new TableResults();
 				cm.patientName.set(rs.getString("firstName")
 						+ rs.getString("lastName"));
 				cm.service.set(rs.getString("Service"));
 				cm.insurance.set(rs.getString("insurance"));
+
 				data.add(cm);
 			}
 			resultTable.setItems(data);
@@ -171,7 +153,7 @@ public class SearchResultsController implements Initializable {
 
 		switch (settings) {
 
-		case 11: //eye
+		case 11: // eye
 			return "SELECT `firstName`,`lastName`,patientinformation.Service, patientinsurance.Insurance"
 					+ " FROM `patient`"
 					+ "INNER JOIN patientinformation ON patient.SSN=patientinformation.SSN"
